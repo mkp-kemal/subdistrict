@@ -1,0 +1,69 @@
+/* ===================================== Responsive Style CSS ==================================== */
+.popular-pack {
+  padding: 175px;
+  background-position: top;
+}
+
+@media screen and (max-width: 940px) {
+  .popular-pack {
+    padding: 30px 10px;
+  }
+}
+
+.popular-pack .pack-row {
+  margin-top: 15px;
+}
+
+.popular-pack .pack-row .pack-col {
+  background-color: #FFF;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.popular-pack .pack-row .pack-col .revire {
+  padding: 10px 15px;
+  display: flow-root;
+}
+
+.popular-pack .pack-row .pack-col .revire .rat li {
+  float: left;
+}
+
+.popular-pack .pack-row .pack-col .revire .rat li i {
+  color: #f1b517;
+  font-size: .9rem;
+}
+
+.popular-pack .pack-row .pack-col .revire .pric {
+  float: right;
+  font-weight: 700;
+}
+
+.popular-pack .pack-row .pack-col .detail {
+  padding: 10px 15px;
+  padding-top: 0px;
+}
+
+.popular-pack .pack-row .pack-col .detail h4 {
+  font-weight: 600;
+}
+
+.popular-pack .pack-row .pack-col .detail p {
+  font-size: .9rem;
+}
+
+.popular-pack .pack-row .pack-col .options {
+  padding: 10px 15px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  border-top: 1px solid #cccccc82;
+}
+
+.popular-pack .pack-row .pack-col .options ul li {
+  float: left;
+  padding: 10px 20px;
+  border-right: 1px solid #cccccc82;
+}
+
+.no-bgpack {
+  background-image: url(./assets/most-popular-bg.jpg);
+}
