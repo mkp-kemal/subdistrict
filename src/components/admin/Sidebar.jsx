@@ -1,6 +1,7 @@
 // src/components/Sidebar.jsx
 import { useState } from 'react';
 import { FaTachometerAlt, FaBlog, FaSignOutAlt } from 'react-icons/fa';
+import { RxHamburgerMenu } from 'react-icons/rx';
 
 const Sidebar = ({ setCurrentSection }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -20,7 +21,7 @@ const Sidebar = ({ setCurrentSection }) => {
           <div className="text-white font-bold text-xl">
             {isOpen ? 'KKN' : ''}
           </div>
-          {isOpen ? '<' : '>'}
+          {isOpen ? <RxHamburgerMenu /> : ''}
         </div>
       </button>
       <ul className="mt-4 space-y-2">
