@@ -1,9 +1,28 @@
 // src/components/Dashboard.jsx
-import { Table, Card, Row, Col } from 'antd';
+import { Table, Card, Row, Col, Modal, Image } from 'antd';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const Dashboard = () => {
-    const blogCount = 10;
-    const adminCount = 5;
+    const [blogs, setBlogs] = useState([]);
+    const [blogCount, setBlogCount] = useState(0);
+    const [adminCount] = useState(5);
+    const [previewImage, setPreviewImage] = useState('');  // State untuk menyimpan URL gambar yang akan dipreview
+    const [previewVisible, setPreviewVisible] = useState(false);  // State untuk mengatur visibilitas modal preview
+
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/v1/api/blogs');
+                setBlogs(response.data);
+                setBlogCount(response.data.length);
+            } catch (error) {
+                console.error('Error fetching blogs:', error);
+            }
+        };
+
+        fetchBlogs();
+    }, []);
 
     const columns = [
         {
@@ -14,51 +33,55 @@ const Dashboard = () => {
         },
         {
             title: 'Publisher',
-            dataIndex: 'name',
-            key: 'name',
+            dataIndex: 'publisher',
+            key: 'publisher',
         },
         {
             title: 'Judul',
-            dataIndex: 'email',
-            key: 'email',
+            dataIndex: 'title',
+            key: 'title',
         },
         {
             title: 'Deskripsi',
-            dataIndex: 'role',
-            key: 'role',
+            dataIndex: 'description',
+            key: 'description',
         },
         {
             title: 'Tgl Publish',
-            dataIndex: 'role',
-            key: 'role',
+            dataIndex: 'date',
+            key: 'date',
         },
         {
             title: 'Gambar',
-            dataIndex: 'role',
-            key: 'role',
+            dataIndex: 'image',
+            key: 'image',
+            render: (text) => (
+                <div>
+                    <Image
+                        preview={false}
+                        src={`http://localhost:5000/${text.replace(/\\/g, '/')}`}
+                        alt="Blog"
+                        className="object-cover cursor-pointer"
+                        onClick={() => {
+                            setPreviewImage(`http://localhost:5000/${text.replace(/\\/g, '/')}`);  // Set URL gambar untuk preview
+                            setPreviewVisible(true);
+                        }}
+                        width={100}
+                        height={40}
+                    />
+                </div>
+            ),
         },
     ];
 
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            email: 'john.brown@example.com',
-            role: 'Admin',
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            email: 'jim.green@example.com',
-            role: 'Editor',
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            email: 'joe.black@example.com',
-            role: 'Author',
-        },
-    ];
+    const data = blogs.map(blog => ({
+        key: blog._id,
+        publisher: blog.publisher,
+        title: blog.title,
+        description: blog.description,
+        date: new Date(blog.date).toLocaleDateString(),
+        image: blog.image,
+    }));
 
     return (
         <div className="p-4">
@@ -81,6 +104,18 @@ const Dashboard = () => {
                     scroll={{ x: '100%' }}
                 />
             </div>
+            <Modal
+                visible={previewVisible}
+                footer={null}
+                onCancel={() => setPreviewVisible(false)}  // Menyembunyikan modal saat cancel
+                centered
+            >
+                <Image
+                    src={previewImage}
+                    alt="Preview"
+                    className='w-12 h-12 object-cover'
+                />
+            </Modal>
         </div>
     );
 };
