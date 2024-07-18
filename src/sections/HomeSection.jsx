@@ -1,8 +1,9 @@
-// src/components/HomeSection.jsx
 import { useEffect, useState } from 'react';
-import { FaPeopleCarry } from "react-icons/fa";
-import { FaPeopleGroup, FaUmbrellaBeach } from "react-icons/fa6";
+import { FaPeopleCarry } from 'react-icons/fa';
+import { FaPeopleGroup, FaUmbrellaBeach } from 'react-icons/fa6';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
+import { formatDate } from '../components/FormatDate';
 
 const HomeSection = () => {
     return (
@@ -15,6 +16,7 @@ const HomeSection = () => {
 
 const Activity = () => {
     const [blogs, setBlogs] = useState([]);
+    const navigate = useNavigate();  // Initialize useNavigate
 
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -29,20 +31,9 @@ const Activity = () => {
         fetchBlogs();
     }, []);
 
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-        const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-
-        const dayName = days[date.getDay()];
-        const day = date.getDate();
-        const monthName = months[date.getMonth()];
-        const year = date.getFullYear();
-
-        return `${dayName}, ${day} ${monthName} ${year}`;
+    const handleClick = (id) => {
+        navigate(`/blog/${id}`);
     };
-
-    console.log(blogs);
 
     return (
         <div className="popular-pack no-bgpack container-fluid bg-gray-50 py-8">
@@ -56,20 +47,13 @@ const Activity = () => {
                 <div className="overflow-x-auto">
                     <div className="flex space-x-4">
                         {blogs.map((blog, index) => (
-                            <div key={index} className="flex-shrink-0 w-80">
+                            <div key={index} className="flex-shrink-0 w-80 cursor-pointer" onClick={() => handleClick(blog.title)}>
                                 <div className="bg-white shadow-md rounded-lg overflow-hidden">
                                     <div className="relative">
                                         <span className="absolute top-2 left-2 text-white bg-tosca200 bg-opacity-75 px-2 py-1 rounded-full text-xs">
                                             {formatDate(blog.date)}
                                         </span>
                                         <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url('http://localhost:5000/${blog.image.replace(/\\/g, '/')}')` }}></div>
-                                    </div>
-                                    <div className="revire flex justify-between items-center p-1">
-                                        <ul className="rat flex space-x-1">
-                                            {[1, 2, 3, 4, 5].map(star => (
-                                                <li key={star}><i className="fa fa-star text-yellow-500"></i></li>
-                                            ))}
-                                        </ul>
                                     </div>
                                     <div className="detail p-4">
                                         <h4 className="text-xl font-bold">{blog.title}</h4>

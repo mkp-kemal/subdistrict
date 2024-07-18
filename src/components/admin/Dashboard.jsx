@@ -3,7 +3,11 @@ import { Table, Card, Row, Col, Modal, Image, Button, Form, Input, DatePicker, U
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-import { UploadOutlined } from '@ant-design/icons';
+import { UploadOutlined, DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import ReactQuill from 'react-quill';  // Import ReactQuill
+import 'react-quill/dist/quill.snow.css';  // Import Quill CSS
+
+const { confirm } = Modal;
 
 const Dashboard = () => {
     const [blogs, setBlogs] = useState([]);
@@ -13,6 +17,8 @@ const Dashboard = () => {
     const [previewVisible, setPreviewVisible] = useState(false);
     const [selectedBlog, setSelectedBlog] = useState(null);
     const [form] = Form.useForm();
+    const [fileList, setFileList] = useState([]);
+    const [editorValue, setEditorValue] = useState('');
 
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -35,10 +41,12 @@ const Dashboard = () => {
             publisher: blog.publisher,
             title: blog.title,
             description: blog.description,
+            story: blog.story,
             date: dayjs(blog.date),
             image: null,  // Clear image field
         });
         setPreviewImage(`http://localhost:5000/${blog.image.replace(/\\/g, '/')}`);
+        setEditorValue(blog.story);  // Set editor value
         setPreviewVisible(true);
     };
 
@@ -47,18 +55,48 @@ const Dashboard = () => {
         setSelectedBlog(null);
     };
 
+    const showDeleteConfirm = (id) => {
+        confirm({
+            title: 'Apakah Anda yakin ingin menghapus blog ini?',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Tindakan ini tidak dapat dibatalkan.',
+            okText: 'Ya, hapus',
+            okType: 'danger',
+            cancelText: 'Tidak',
+            onOk() {
+                handleDelete(id);
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
+    };
+
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://localhost:5000/v1/api/blog/${id}`);
+            message.success('Blog berhasil dihapus');
+            setBlogs(blogs.filter(blog => blog._id !== id));
+            setBlogCount(blogCount - 1);
+        } catch (error) {
+            message.error('Gagal menghapus blog, coba lagi');
+            console.error(error);
+        }
+    };
+
     const handleFinish = async (values) => {
         const formData = new FormData();
         formData.append('publisher', values.publisher);
         formData.append('title', values.title);
         formData.append('description', values.description);
+        formData.append('story', editorValue);  // Use editorValue
         formData.append('date', values.date.format('YYYY-MM-DD'));
         if (fileList.length > 0) {
             formData.append('image', fileList[0].originFileObj);
         }
 
         try {
-            await axios.put(`http://localhost:5000/v1/api/blogs/${selectedBlog._id}`, formData, {
+            await axios.put(`http://localhost:5000/v1/api/blog/${selectedBlog._id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -113,7 +151,7 @@ const Dashboard = () => {
                         alt="Blog"
                         className="object-cover cursor-pointer"
                         onClick={() => {
-                            setPreviewImage(`http://localhost:5000/${text.replace(/\\/g, '/')}`);  // Set URL gambar untuk preview
+                            setPreviewImage(`http://localhost:5000/${text.replace(/\\/g, '/')}`);
                             setPreviewVisible(true);
                         }}
                         width={100}
@@ -125,13 +163,24 @@ const Dashboard = () => {
         {
             title: 'Action',
             key: 'action',
+            width: 100,
             render: (text, record) => (
-                <Button
-                    type="primary"
-                    onClick={() => handleEdit(record.key)}  // Open the edit modal
-                >
-                    Edit
-                </Button>
+                <div>
+                    <Button
+                        type="primary"
+                        icon={<EditOutlined />}
+                        size="small"
+                        onClick={() => handleEdit(record.key)}
+                    >
+                    </Button>
+                    <Button
+                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded ml-2"
+                        icon={<DeleteOutlined />}
+                        size="small"
+                        onClick={() => showDeleteConfirm(record.key)}
+                    >
+                    </Button>
+                </div>
             ),
         },
     ];
@@ -141,14 +190,15 @@ const Dashboard = () => {
         publisher: blog.publisher,
         title: blog.title,
         description: blog.description,
+        story: blog.story,
         date: new Date(blog.date).toLocaleDateString(),
         image: blog.image,
     }));
 
-    const [fileList, setFileList] = useState([]);
     const handleUploadChange = info => {
         setFileList(info.fileList);
     };
+
     return (
         <div className="p-4">
             <Row gutter={16} className="mb-6 p-4 rounded-lg">
@@ -173,7 +223,7 @@ const Dashboard = () => {
             <Modal
                 visible={previewVisible}
                 footer={null}
-                onCancel={() => setPreviewVisible(false)}  // Menyembunyikan modal saat cancel
+                onCancel={() => setPreviewVisible(false)}
                 centered
             >
                 <Image
@@ -199,9 +249,35 @@ const Dashboard = () => {
                         publisher: selectedBlog?.publisher,
                         title: selectedBlog?.title,
                         description: selectedBlog?.description,
+                        story: selectedBlog?.story,
                         date: dayjs(selectedBlog?.date),
                     }}
                 >
+                    <Form.Item
+                        name="story"
+                        label="Ceritakan Lebih Detail"
+                        rules={[{ required: true, message: 'Masukan cerita' }]}
+                    >
+                        <ReactQuill
+                            value={editorValue}
+                            onChange={setEditorValue}
+                            theme="snow"
+                            style={{ height: '300px' }}
+                            modules={
+                                {
+                                    toolbar: [
+                                        ['bold', 'italic', 'underline', 'strike', 'link', 'blockquote', 'code'],
+                                        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+                                    ],
+                                }
+                            }
+                        />
+                    </Form.Item>
+
+                    <Form.Item
+                    >
+                    </Form.Item>
+                    
                     <Form.Item
                         name="publisher"
                         label="Publisher"
