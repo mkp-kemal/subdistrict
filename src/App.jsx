@@ -20,13 +20,14 @@ const App = () => {
 const MainRoutes = () => {
   const location = useLocation();
   const isBlogDetail = location.pathname.startsWith('/blog/');
+  const isProfile = location.pathname.startsWith('/profile');
   const isAdminPage = location.pathname.startsWith('/user/admin');
 
   return (
     <>
       {!isAdminPage && <NavbarComponent />}
       <div className="pt-19">
-        {!isAdminPage && !isBlogDetail && <BgComponent />}
+        {!isAdminPage && !isBlogDetail && !isProfile && <BgComponent />}
         <Routes>
           <Route path="/" element={<HomeSection />} />
           <Route path="/home" element={<HomeSection />} />

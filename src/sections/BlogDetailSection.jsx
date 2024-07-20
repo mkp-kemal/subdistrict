@@ -54,10 +54,9 @@ const BlogDetailSection = () => {
                     <p className="text-xl text-gray-700 font-semibold">{blog.description}</p>
                 </div>
                 <div
-                    className="text-gray-700 mt-10 custom-list"
+                    className="text-gray-700 mt-10 custom-list custom-paragraph"
                     dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.story) }}
                 />
-                {blog.story}
                 <Divider />
                 <div className="options p-4 bg-tosca justify-around">
                     <h2 className="text-sm font-semibold text-white">Hubungan Kegiatan</h2>

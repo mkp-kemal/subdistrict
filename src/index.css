@@ -6,13 +6,13 @@
 
 .custom-list ul {
     list-style-type: disc;
-    padding-left: 2em;
+    padding-left: 3em;
 
 }
 
 .custom-list ol {
     list-style-type: decimal;
-    padding-left: 2em;
+    padding-left: 3em;
 
 }
 
@@ -46,12 +46,48 @@ pre {
 .ql-indent-1 {
     padding-left: 2em;
 }
+
 .ql-indent-2 {
     padding-left: 2.5em;
 }
+
 .ql-indent-3 {
     padding-left: 3em;
 }
+
 .ql-indent-4 {
     padding-left: 3.5em;
+}
+
+.custom-paragraph p {
+    text-indent: 2em;
+}
+
+/* index.css */
+@keyframes grow {
+    from {
+        font-size: 1rem;
+    }
+
+    to {
+        font-size: 2rem;
+    }
+}
+
+@keyframes shrink {
+    from {
+        font-size: 2rem;
+    }
+
+    to {
+        font-size: 1rem;
+    }
+}
+
+.animate-grow {
+    animation: grow 2s ease-in-out;
+}
+
+.animate-shrink {
+    animation: shrink 1s ease-in-out;
 }
