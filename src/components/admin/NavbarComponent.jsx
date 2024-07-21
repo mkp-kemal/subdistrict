@@ -1,6 +1,6 @@
 const NavbarComponent = () => {
-    const userName = "Nama User"; // Ganti dengan nama pengguna sebenarnya
-    const userImage = "https://via.placeholder.com/40"; // Ganti dengan URL gambar profil sebenarnya
+    const userName = "Nama User";
+    const userImage = "https://via.placeholder.com/40";
 
     return (
         <nav className="bg-gray-800 text-white px-4 py-2 flex justify-between items-center fixed w-full top-0 z-10">

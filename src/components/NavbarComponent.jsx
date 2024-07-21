@@ -9,13 +9,12 @@ const NavbarComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [navbarItems, setNavbarItems] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [hideOnScroll, setHideOnScroll] = useState(false);
 
-  // Toggle navbar mobile
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
 
-  // Fetch navbar items
   useEffect(() => {
     const fetchNavbarItems = async () => {
       try {
@@ -30,12 +29,26 @@ const NavbarComponent = () => {
     };
 
     fetchNavbarItems();
+
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setHideOnScroll(true);
+      } else {
+        setHideOnScroll(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const navOrder = ["home", "profile", "maintenance", "activity", "history"];
 
   return (
-    <nav className="bg-tosca shadow-lg fixed w-full top-0 z-50">
+    <nav className={`bg-tosca shadow-lg fixed w-full top-0 z-50 transition-transform duration-300 ease-in-out ${hideOnScroll ? 'transform -translate-y-full' : ''}`}>
       <div className="bg-tosca200 header-top py-2">
         <div className="container mx-auto px-4">
           <div className="row flex flex-wrap items-center justify-between">
@@ -43,6 +56,14 @@ const NavbarComponent = () => {
               <ul className="text-white flex space-x-4">
                 {navbarItems?.header && (
                   <>
+                    <li className="flex items-center group">
+                      <i className="far fa-envelope mr-2"></i>
+                      <span className={`hover:text-sage transition-all duration-300 ease-in-out`}><img src="https://fst.uinsgd.ac.id/wp-content/uploads/2020/05/cropped-logo-uin.png" alt="UINSGD" className="h-8 w-8 rounded-full" /></span>
+                    </li>
+                    <li className="flex items-center group">
+                      <i className="far fa-envelope mr-2"></i>
+                      <span className={`hover:text-sage transition-all duration-300 ease-in-out`}><img src="https://i.ibb.co.com/Y25CX4R/Desain-tanpa-judul-1.png" alt="KKN415" className="h-8 w-8 mr-2 rounded-full" /></span>
+                    </li>
                     <li className="flex items-center group">
                       <i className="far fa-envelope mr-2"></i>
                       <span className={`hover:text-sage transition-all duration-300 ease-in-out cursor-pointer`}>{navbarItems.header[1]}</span>
@@ -69,7 +90,7 @@ const NavbarComponent = () => {
                   </i>
                 </li>
               </ul>
-                <DateTime />
+              <DateTime />
             </div>
           </div>
         </div>

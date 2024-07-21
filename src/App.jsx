@@ -5,7 +5,6 @@ import HomeSection from './sections/HomeSection';
 import ProfileSection from './sections/ProfileSection';
 import ActivityKknSection from './sections/ActivityKknSection';
 import HistorySection from './sections/HistorySection';
-import BgComponent from './components/BgComponent';
 import { AdminSection } from './sections/AdminSection';
 import BlogDetailSection from './sections/BlogDetailSection';
 
@@ -19,15 +18,12 @@ const App = () => {
 
 const MainRoutes = () => {
   const location = useLocation();
-  const isBlogDetail = location.pathname.startsWith('/blog/');
-  const isProfile = location.pathname.startsWith('/profile');
   const isAdminPage = location.pathname.startsWith('/user/admin');
 
   return (
     <>
       {!isAdminPage && <NavbarComponent />}
       <div className="pt-19">
-        {!isAdminPage && !isBlogDetail && !isProfile && <BgComponent />}
         <Routes>
           <Route path="/" element={<HomeSection />} />
           <Route path="/home" element={<HomeSection />} />

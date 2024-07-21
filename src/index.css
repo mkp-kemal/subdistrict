@@ -91,3 +91,14 @@ pre {
 .animate-shrink {
     animation: shrink 1s ease-in-out;
 }
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}

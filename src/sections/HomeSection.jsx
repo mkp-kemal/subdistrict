@@ -1,23 +1,16 @@
 import { useEffect, useState } from 'react';
 import { FaPeopleCarry } from 'react-icons/fa';
 import { FaPeopleGroup, FaUmbrellaBeach } from 'react-icons/fa6';
+import { ImSpinner10 } from "react-icons/im";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../components/FormatDate';
 import { baseURLAPI } from '../helpers/helper';
+import BgComponent from '../components/BgComponent';
 
 const HomeSection = () => {
-    return (
-        <div className="home-container">
-            <Activity />
-            <Attractions />
-        </div>
-    );
-};
-
-const Activity = () => {
+    const [loading, setLoading] = useState(true);
     const [blogs, setBlogs] = useState([]);
-    const navigate = useNavigate();  // Initialize useNavigate
 
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -26,11 +19,33 @@ const Activity = () => {
                 setBlogs(response.data);
             } catch (error) {
                 console.error('Error fetching blogs:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchBlogs();
     }, []);
+
+    return (
+        <div className="home-container">
+            {loading ? (
+                <div className="flex justify-center items-center h-screen">
+                    <ImSpinner10 className="text-4xl animate-spin text-tosca" />
+                </div>
+            ) : (
+                <div className="fade-in">
+                    <BgComponent />
+                    <Activity blogs={blogs} />
+                    <Attractions />
+                </div>
+            )}
+        </div>
+    );
+};
+
+const Activity = ({ blogs }) => {
+    const navigate = useNavigate();
 
     const handleClick = (id) => {
         navigate(`/blog/${id}`);
