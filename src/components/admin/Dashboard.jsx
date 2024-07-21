@@ -1,11 +1,11 @@
-// src/components/Dashboard.jsx
 import { Table, Card, Row, Col, Modal, Image, Button, Form, Input, DatePicker, Upload, message } from 'antd';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { UploadOutlined, DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
-import ReactQuill from 'react-quill';  // Import ReactQuill
-import 'react-quill/dist/quill.snow.css';  // Import Quill CSS
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import { baseURLAPI } from '../../helpers/helper';
 
 const { confirm } = Modal;
 
@@ -23,7 +23,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/v1/api/blogs');
+                const response = await axios.get(baseURLAPI('blogs'));
                 setBlogs(response.data);
                 setBlogCount(response.data.length);
             } catch (error) {
@@ -43,9 +43,8 @@ const Dashboard = () => {
             description: blog.description,
             story: blog.story,
             date: dayjs(blog.date),
-            image: null,  // Clear image field
         });
-        setPreviewImage(`http://localhost:5000/${blog.image.replace(/\\/g, '/')}`);
+        setPreviewImage(blog.image);  // Set image URL from MongoDB
         setEditorValue(blog.story);  // Set editor value
         setPreviewVisible(true);
     };
@@ -53,6 +52,7 @@ const Dashboard = () => {
     const handleCancel = () => {
         setPreviewVisible(false);
         setSelectedBlog(null);
+        setFileList([]);
     };
 
     const showDeleteConfirm = (id) => {
@@ -74,7 +74,7 @@ const Dashboard = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:5000/v1/api/blog/${id}`);
+            await axios.delete(`${baseURLAPI('blog')}/${id}`);
             message.success('Blog berhasil dihapus');
             setBlogs(blogs.filter(blog => blog._id !== id));
             setBlogCount(blogCount - 1);
@@ -89,25 +89,25 @@ const Dashboard = () => {
         formData.append('publisher', values.publisher);
         formData.append('title', values.title);
         formData.append('description', values.description);
-        formData.append('story', editorValue);  // Use editorValue
+        formData.append('story', editorValue);
         formData.append('date', values.date.format('YYYY-MM-DD'));
         if (fileList.length > 0) {
             formData.append('image', fileList[0].originFileObj);
         }
 
         try {
-            await axios.put(`http://localhost:5000/v1/api/blog/${selectedBlog._id}`, formData, {
+            await axios.put(`${baseURLAPI('blog')}/${selectedBlog._id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
             message.success('Update blog berhasil');
-            const response = await axios.get('http://localhost:5000/v1/api/blogs');
+            const response = await axios.get(baseURLAPI('blogs'));
             setBlogs(response.data);
             setBlogCount(response.data.length);
             handleCancel();
         } catch (error) {
-            message.error('Gagal update blog, coba lagi');
+            message.error('Gagal update blog, coba lagi yaa');
             console.error(error);
         }
     };
@@ -147,11 +147,11 @@ const Dashboard = () => {
                 <div>
                     <Image
                         preview={false}
-                        src={`http://localhost:5000/${text.replace(/\\/g, '/')}`}
+                        src={text}  // Directly use the URL from MongoDB
                         alt="Blog"
                         className="object-cover cursor-pointer"
                         onClick={() => {
-                            setPreviewImage(`http://localhost:5000/${text.replace(/\\/g, '/')}`);
+                            setPreviewImage(text);
                             setPreviewVisible(true);
                         }}
                         width={100}
@@ -229,7 +229,7 @@ const Dashboard = () => {
                 <Image
                     src={previewImage}
                     alt="Preview"
-                    className='w-12 h-12 object-cover'
+                    className='w-full'
                 />
             </Modal>
 
@@ -263,21 +263,18 @@ const Dashboard = () => {
                             onChange={setEditorValue}
                             theme="snow"
                             style={{ height: '300px' }}
-                            modules={
-                                {
-                                    toolbar: [
-                                        ['bold', 'italic', 'underline', 'strike', 'link', 'blockquote', 'code'],
-                                        [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-                                    ],
-                                }
-                            }
+                            modules={{
+                                toolbar: [
+                                    ['bold', 'italic', 'underline', 'strike', 'link', 'blockquote', 'code'],
+                                    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+                                ],
+                            }}
                         />
                     </Form.Item>
 
                     <Form.Item
                     >
                     </Form.Item>
-                    
                     <Form.Item
                         name="publisher"
                         label="Publisher"

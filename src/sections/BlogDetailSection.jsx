@@ -7,6 +7,7 @@ import { FaPeopleCarry, FaUmbrellaBeach } from 'react-icons/fa';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import { formatDate } from '../components/FormatDate';
 import DOMPurify from 'dompurify';
+import { baseURLAPI } from '../helpers/helper';
 
 
 const BlogDetailSection = () => {
@@ -17,7 +18,7 @@ const BlogDetailSection = () => {
     useEffect(() => {
         const fetchBlog = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/v1/api/blog/${id}`);
+                const response = await axios.get(`${baseURLAPI('blog')}/${id}`);
                 setBlog(response.data);
             } catch (error) {
                 console.error('Error fetching blog:', error);
@@ -43,7 +44,7 @@ const BlogDetailSection = () => {
                 </div>
                 <div className="mb-4">
                     <Image
-                        src={`http://localhost:5000/${blog.image.replace(/\\/g, '/')}`}
+                        src={`${blog.image}`}
                         alt="Blog"
                         className="object-cover"
                         width="100%"

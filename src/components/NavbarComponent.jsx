@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import DateTime from './DateTime';
 import { RiInstagramFill } from 'react-icons/ri';
 import { FaFacebook } from 'react-icons/fa';
+import { baseURLAPI } from '../helpers/helper.jsx';
 
 const NavbarComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,7 +19,7 @@ const NavbarComponent = () => {
   useEffect(() => {
     const fetchNavbarItems = async () => {
       try {
-        const response = await fetch('http://localhost:5000/v1/api/navbar');
+        const response = await fetch(baseURLAPI('navbar'));
         const data = await response.json();
         setNavbarItems(data[0] || null);
       } catch (error) {

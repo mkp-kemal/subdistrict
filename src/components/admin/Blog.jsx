@@ -3,6 +3,7 @@ import { Form, Input, Button, Upload, Card, message, Modal, DatePicker } from 'a
 import { PlusOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import { baseURLAPI } from '../../helpers/helper';
 
 const Blog = () => {
     const [form] = Form.useForm();
@@ -47,7 +48,7 @@ const Blog = () => {
         formData.append('wisata', wisata);
 
         try {
-            await axios.post('http://localhost:5000/v1/api/post', formData, {
+            await axios.post(baseURLAPI('post'), formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -61,6 +62,7 @@ const Blog = () => {
         } catch (error) {
             message.error('Error creating blog');
             console.error(error);
+            console.log(error);
         }
     };
 

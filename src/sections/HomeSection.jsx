@@ -4,6 +4,7 @@ import { FaPeopleGroup, FaUmbrellaBeach } from 'react-icons/fa6';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import { formatDate } from '../components/FormatDate';
+import { baseURLAPI } from '../helpers/helper';
 
 const HomeSection = () => {
     return (
@@ -21,7 +22,7 @@ const Activity = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/v1/api/blogs');
+                const response = await axios.get(baseURLAPI('blogs'));
                 setBlogs(response.data);
             } catch (error) {
                 console.error('Error fetching blogs:', error);
@@ -53,7 +54,7 @@ const Activity = () => {
                                         <span className="absolute top-2 left-2 text-white bg-tosca200 bg-opacity-75 px-2 py-1 rounded-full text-xs">
                                             {formatDate(blog.date)}
                                         </span>
-                                        <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url('http://localhost:5000/${blog.image.replace(/\\/g, '/')}')` }}></div>
+                                        <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${blog.image})` }}></div>
                                     </div>
                                     <div className="detail p-4">
                                         <h4 className="text-xl font-bold">{blog.title}</h4>
