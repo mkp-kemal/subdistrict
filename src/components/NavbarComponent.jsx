@@ -62,7 +62,9 @@ const NavbarComponent = () => {
                     </li>
                     <li className="flex items-center group">
                       <i className="far fa-envelope mr-2"></i>
-                      <span className={`hover:text-sage transition-all duration-300 ease-in-out`}><img src="https://i.ibb.co.com/Y25CX4R/Desain-tanpa-judul-1.png" alt="KKN415" className="h-8 w-8 mr-2 rounded-full" /></span>
+                      <a href="http://localhost:5173/auth/login" className={`hover:text-sage transition-all duration-300 ease-in-out`}>
+                        <img src="https://i.ibb.co.com/Y25CX4R/Desain-tanpa-judul-1.png" alt="KKN415" className="h-8 w-8 mr-2 rounded-full" />
+                      </a>
                     </li>
                     <li className="flex items-center group">
                       <i className="far fa-envelope mr-2"></i>
