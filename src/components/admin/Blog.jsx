@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form, Input, Button, Upload, Card, message, Modal, DatePicker } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { baseURLAPI } from '../../helpers/helper';
 
-const Blog = () => {
+// eslint-disable-next-line react/prop-types
+const Blog = ({ user }) => {
     const [form] = Form.useForm();
     const [fileList, setFileList] = useState([]);
     const [previewVisible, setPreviewVisible] = useState(false);
@@ -14,6 +15,16 @@ const Blog = () => {
     const [gotongRoyong, setGotongRoyong] = useState(false);
     const [masyarakat, setMasyarakat] = useState(false);
     const [wisata, setWisata] = useState(false);
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        if (user) {
+            setUserData(user);
+        }
+    }, [user]);
+
+    const email = userData?.email;
 
     const handleCancel = () => setPreviewVisible(false);
 
@@ -35,8 +46,14 @@ const Blog = () => {
     };
 
     const handleFinish = async values => {
+        setLoading(true);
+        const token = document.cookie
+            .split(';')
+            .map(cookie => cookie.split('='))
+            .find(cookie => cookie[0].trim() === 'jwt')?.[1];
+
         const formData = new FormData();
-        formData.append('publisher', values.publisher);
+        formData.append('publisher', email);
         formData.append('title', values.title);
         formData.append('description', values.description);
         formData.append('date', values.date.format('YYYY-MM-DD'));
@@ -51,6 +68,9 @@ const Blog = () => {
             await axios.post(baseURLAPI('post'), formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`,
+
+
                 },
             });
             message.success('Berhasil memposting blog');
@@ -63,6 +83,8 @@ const Blog = () => {
             message.error('Error creating blog');
             console.error(error);
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -82,15 +104,9 @@ const Blog = () => {
                     onFinish={handleFinish}
                     initialValues={{
                         date: dayjs(),
+                        publisher: email
                     }}
                 >
-                    <Form.Item
-                        name="publisher"
-                        label="Publisher"
-                        rules={[{ required: true, message: 'Masukan Nama Publisher' }]}
-                    >
-                        <Input />
-                    </Form.Item>
                     <Form.Item
                         name="title"
                         label="Judul"
@@ -172,7 +188,12 @@ const Blog = () => {
                         </div>
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit">Submit</Button>
+                        {loading ? (
+                            <Button type="primary" htmlType="submit" loading>
+                            </Button>
+                        ) : (
+                            <Button type="primary" htmlType="submit">Posting</Button>
+                        )}
                     </Form.Item>
                 </Form>
             </Card>

@@ -1,13 +1,24 @@
-// src/components/Sidebar.jsx
+/* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { FaTachometerAlt, FaBlog, FaSignOutAlt } from 'react-icons/fa';
 import { RxHamburgerMenu } from 'react-icons/rx';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ setCurrentSection }) => {
   const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    document.cookie.split(";").forEach(cookie => {
+      const name = cookie.split("=")[0].trim();
+      document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+    });
+
+    navigate('/auth/login');
   };
 
   return (
@@ -38,7 +49,7 @@ const Sidebar = ({ setCurrentSection }) => {
           </button>
         </li>
         <li>
-          <button onClick={() => setCurrentSection('logout')} className="flex items-center p-2 space-x-2 hover:bg-gray-700 w-full text-left">
+          <button onClick={handleLogout} className="flex items-center p-2 space-x-2 hover:bg-gray-700 w-full text-left">
             <FaSignOutAlt className="group-hover:animate-bounce transition-all duration-300 ease-in-out" />
             {isOpen && <span>Logout</span>}
           </button>

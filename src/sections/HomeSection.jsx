@@ -44,6 +44,7 @@ const HomeSection = () => {
     );
 };
 
+// eslint-disable-next-line react/prop-types
 const Activity = ({ blogs }) => {
     const navigate = useNavigate();
 

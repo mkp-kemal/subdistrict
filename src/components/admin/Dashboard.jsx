@@ -6,19 +6,23 @@ import { UploadOutlined, DeleteOutlined, EditOutlined, ExclamationCircleOutlined
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { baseURLAPI } from '../../helpers/helper';
+import { ImSpinner10 } from 'react-icons/im';
 
 const { confirm } = Modal;
 
 const Dashboard = () => {
     const [blogs, setBlogs] = useState([]);
     const [blogCount, setBlogCount] = useState(0);
-    const [adminCount] = useState(5);
+    const [adminCount, setAdminCount] = useState(0);
     const [previewImage, setPreviewImage] = useState('');
     const [previewVisible, setPreviewVisible] = useState(false);
     const [selectedBlog, setSelectedBlog] = useState(null);
     const [form] = Form.useForm();
     const [fileList, setFileList] = useState([]);
     const [editorValue, setEditorValue] = useState('');
+    const [loading, setLoading] = useState(true);
+    const [loadingModal, setLoadingModal] = useState(false);
+
 
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -28,24 +32,45 @@ const Dashboard = () => {
                 setBlogCount(response.data.length);
             } catch (error) {
                 console.error('Error fetching blogs:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        const fetchCountAdmin = async () => {
+            const token = document.cookie
+                .split(';')
+                .map(cookie => cookie.split('='))
+                .find(cookie => cookie[0].trim() === 'jwt')?.[1];
+
+            try {
+                const response = await axios.get(baseURLAPI('users'), {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                setAdminCount(response.data.length);
+            } catch (error) {
+                console.error('Error fetching admin count:', error);
             }
         };
 
         fetchBlogs();
+        fetchCountAdmin();
     }, []);
+
 
     const handleEdit = (id) => {
         const blog = blogs.find(blog => blog._id === id);
         setSelectedBlog(blog);
         form.setFieldsValue({
-            publisher: blog.publisher,
             title: blog.title,
             description: blog.description,
             story: blog.story,
             date: dayjs(blog.date),
         });
-        setPreviewImage(blog.image);  // Set image URL from MongoDB
-        setEditorValue(blog.story);  // Set editor value
+        setPreviewImage(blog.image);
+        setEditorValue(blog.story);
         setPreviewVisible(true);
     };
 
@@ -73,24 +98,43 @@ const Dashboard = () => {
     };
 
     const handleDelete = async (id) => {
+        setLoadingModal(true);
+
+        const token = document.cookie
+            .split(';')
+            .map(cookie => cookie.split('='))
+            .find(cookie => cookie[0].trim() === 'jwt')?.[1];
         try {
-            await axios.delete(`${baseURLAPI('blog')}/${id}`);
+            await axios.delete(`${baseURLAPI('blog')}/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            });
             message.success('Blog berhasil dihapus');
             setBlogs(blogs.filter(blog => blog._id !== id));
             setBlogCount(blogCount - 1);
         } catch (error) {
             message.error('Gagal menghapus blog, coba lagi');
             console.error(error);
+        } finally {
+            setLoadingModal(false);
         }
     };
 
     const handleFinish = async (values) => {
+        setLoadingModal(true);
+
+        const token = document.cookie
+            .split(';')
+            .map(cookie => cookie.split('='))
+            .find(cookie => cookie[0].trim() === 'jwt')?.[1];
+
         const formData = new FormData();
-        formData.append('publisher', values.publisher);
         formData.append('title', values.title);
         formData.append('description', values.description);
         formData.append('story', editorValue);
         formData.append('date', values.date.format('YYYY-MM-DD'));
+
         if (fileList.length > 0) {
             formData.append('image', fileList[0].originFileObj);
         }
@@ -99,6 +143,7 @@ const Dashboard = () => {
             await axios.put(`${baseURLAPI('blog')}/${selectedBlog._id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${token}`,
                 },
             });
             message.success('Update blog berhasil');
@@ -109,6 +154,8 @@ const Dashboard = () => {
         } catch (error) {
             message.error('Gagal update blog, coba lagi yaa');
             console.error(error);
+        } finally {
+            setLoadingModal(false);
         }
     };
 
@@ -138,6 +185,7 @@ const Dashboard = () => {
             title: 'Tgl Publish',
             dataIndex: 'date',
             key: 'date',
+            render: (text) => text ? text : '-',
         },
         {
             title: 'Gambar',
@@ -147,7 +195,7 @@ const Dashboard = () => {
                 <div>
                     <Image
                         preview={false}
-                        src={text}  // Directly use the URL from MongoDB
+                        src={text}
                         alt="Blog"
                         className="object-cover cursor-pointer"
                         onClick={() => {
@@ -200,149 +248,156 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="p-4">
-            <Row gutter={16} className="mb-6 p-4 rounded-lg">
-                <Col span={12}>
-                    <Card title={<span className='text-white'>Jumlah Blog</span>} bordered={false} className="p-4 text-white font-bold bg-tosca shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                        {blogCount}
-                    </Card>
-                </Col>
-                <Col span={12}>
-                    <Card title={<span className='text-white'>Jumlah Admin</span>} bordered={false} className="p-4 bg-lime-900 text-white font-bold shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                        {adminCount}
-                    </Card>
-                </Col>
-            </Row>
-            <div className="mt-6">
-                <Table
-                    columns={columns}
-                    dataSource={data}
-                    scroll={{ x: '100%' }}
-                />
-            </div>
-            <Modal
-                visible={previewVisible}
-                footer={null}
-                onCancel={() => setPreviewVisible(false)}
-                centered
-            >
-                <Image
-                    src={previewImage}
-                    alt="Preview"
-                    className='w-full'
-                />
-            </Modal>
-
-            {/* Modal Edit Blog */}
-            <Modal
-                visible={selectedBlog !== null}
-                title="Edit Blog"
-                onCancel={handleCancel}
-                footer={null}
-                centered
-            >
-                <Form
-                    form={form}
-                    layout="vertical"
-                    onFinish={handleFinish}
-                    initialValues={{
-                        publisher: selectedBlog?.publisher,
-                        title: selectedBlog?.title,
-                        description: selectedBlog?.description,
-                        story: selectedBlog?.story,
-                        date: dayjs(selectedBlog?.date),
-                    }}
-                >
-                    <Form.Item
-                        name="story"
-                        label="Ceritakan Lebih Detail"
-                        rules={[{ required: true, message: 'Masukan cerita' }]}
-                    >
-                        <ReactQuill
-                            value={editorValue}
-                            onChange={setEditorValue}
-                            theme="snow"
-                            style={{ height: '300px' }}
-                            modules={{
-                                toolbar: [
-                                    ['bold', 'italic', 'underline', 'strike', 'link', 'blockquote', 'code'],
-                                    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
-                                ],
-                            }}
+        <>
+            {loading ? (
+                <div className="flex justify-center items-center h-screen">
+                    <ImSpinner10 className="text-4xl animate-spin text-tosca" />
+                </div>
+            ) : (
+                <div className="p-4">
+                    <Row gutter={16} className="mb-6 p-4 rounded-lg">
+                        <Col span={12}>
+                            <Card title={<span className='text-white'>Jumlah Blog</span>} bordered={false} className="p-4 text-white font-bold bg-tosca shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                {blogCount}
+                            </Card>
+                        </Col>
+                        <Col span={12}>
+                            <Card title={<span className='text-white'>Jumlah Admin</span>} bordered={false} className="p-4 bg-lime-900 text-white font-bold shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                {adminCount}
+                            </Card>
+                        </Col>
+                    </Row>
+                    <div className="mt-6">
+                        <Table
+                            columns={columns}
+                            dataSource={data}
+                            scroll={{ x: '100%' }}
                         />
-                    </Form.Item>
+                    </div>
+                    <Modal
+                        visible={previewVisible}
+                        footer={null}
+                        onCancel={() => setPreviewVisible(false)}
+                        centered
+                    >
+                        <Image
+                            src={previewImage}
+                            alt="Preview"
+                            className='w-full'
+                        />
+                    </Modal>
 
-                    <Form.Item
+                    {/* Modal Edit Blog */}
+                    <Modal
+                        visible={selectedBlog !== null}
+                        title="Edit Blog"
+                        onCancel={handleCancel}
+                        footer={null}
+                        centered
                     >
-                    </Form.Item>
-                    <Form.Item
-                        name="publisher"
-                        label="Publisher"
-                        rules={[{ required: true, message: 'Masukan Nama Publisher' }]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        name="title"
-                        label="Judul"
-                        rules={[{ required: true, message: 'Masukan Judul' }]}
-                    >
-                        <Input />
-                    </Form.Item>
-                    <Form.Item
-                        name="description"
-                        label="Deskripsi"
-                        rules={[{ required: true, message: 'Masukan Deskripsi' }]}
-                    >
-                        <Input.TextArea rows={4} />
-                    </Form.Item>
-                    <Form.Item
-                        label="Tanggal"
-                        name="date"
-                        rules={[{ required: true, message: 'Masukan Tanggal Publish' }]}
-                    >
-                        <DatePicker />
-                    </Form.Item>
-                    <Form.Item
-                        name="image"
-                        label="Gambar"
-                        valuePropName="file"
-                    >
-                        <Upload
-                            name="image"
-                            listType="picture-card"
-                            showUploadList={false}
-                            beforeUpload={(file) => {
-                                const reader = new FileReader();
-                                reader.onload = () => setPreviewImage(reader.result);
-                                reader.readAsDataURL(file);
-                                return false;
+                        <Form
+                            form={form}
+                            layout="vertical"
+                            onFinish={handleFinish}
+                            initialValues={{
+                                publisher: selectedBlog?.publisher,
+                                title: selectedBlog?.title,
+                                description: selectedBlog?.description,
+                                story: selectedBlog?.story,
+                                date: dayjs(selectedBlog?.date),
                             }}
-                            onChange={handleUploadChange}
                         >
-                            {previewImage ? (
-                                <Image
-                                    preview={false}
-                                    src={previewImage}
-                                    alt="Blog"
-                                    className="object-cover"
-                                    width={200}
-                                    height={100}
+                            <Form.Item
+                                name="story"
+                                label="Ceritakan Lebih Detail"
+                                rules={[{ required: true, message: 'Masukan cerita' }]}
+                            >
+                                <ReactQuill
+                                    value={editorValue}
+                                    onChange={setEditorValue}
+                                    theme="snow"
+                                    style={{ height: '300px' }}
+                                    modules={{
+                                        toolbar: [
+                                            ['bold', 'italic', 'underline', 'strike', 'link', 'blockquote', 'code'],
+                                            [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+                                        ],
+                                    }}
                                 />
-                            ) : (
-                                <div>
-                                    <UploadOutlined />
-                                    <div className="ant-upload-text">Upload</div>
-                                </div>
-                            )}
-                        </Upload>
-                    </Form.Item>
-                    <Form.Item>
-                        <Button type="primary" htmlType="submit">Ubah Blog</Button>
-                    </Form.Item>
-                </Form>
-            </Modal>
-        </div>
+                            </Form.Item>
+
+                            <Form.Item
+                            >
+                            </Form.Item>
+
+                            <Form.Item
+                                name="title"
+                                label="Judul"
+                                rules={[{ required: true, message: 'Masukan Judul' }]}
+                            >
+                                <Input />
+                            </Form.Item>
+                            <Form.Item
+                                name="description"
+                                label="Deskripsi"
+                                rules={[{ required: true, message: 'Masukan Deskripsi' }]}
+                            >
+                                <Input.TextArea rows={4} />
+                            </Form.Item>
+                            <Form.Item
+                                label="Tanggal"
+                                name="date"
+                                rules={[{ required: true, message: 'Masukan Tanggal Publish' }]}
+                            >
+                                <DatePicker />
+                            </Form.Item>
+                            <Form.Item
+                                name="image"
+                                label="Gambar"
+                                valuePropName="file"
+                            >
+                                <Upload
+                                    name="image"
+                                    listType="picture-card"
+                                    showUploadList={false}
+                                    beforeUpload={(file) => {
+                                        const reader = new FileReader();
+                                        reader.onload = () => setPreviewImage(reader.result);
+                                        reader.readAsDataURL(file);
+                                        return false;
+                                    }}
+                                    onChange={handleUploadChange}
+                                >
+                                    {previewImage ? (
+                                        <Image
+                                            preview={false}
+                                            src={previewImage}
+                                            alt="Blog"
+                                            className="object-cover"
+                                            width={200}
+                                            height={100}
+                                        />
+                                    ) : (
+                                        <div>
+                                            <UploadOutlined />
+                                            <div className="ant-upload-text">Upload</div>
+                                        </div>
+                                    )}
+                                </Upload>
+                            </Form.Item>
+                            <Form.Item>
+                                {loadingModal ? (
+                                    <Button type="primary" htmlType="submit" loading>
+                                    </Button>
+                                ) : (
+                                    <Button type="primary" htmlType="submit">Ubah Blog</Button>
+                                )}
+                            </Form.Item>
+                        </Form>
+                    </Modal>
+                </div>
+            )}
+        </>
     );
 };
 
