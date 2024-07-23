@@ -21,9 +21,9 @@ const ProfileSection = () => {
             <div className="bg-white shadow-2xl rounded-xl p-8 max-w-4xl w-full">
                 <div className="relative mb-6">
                     <img src="https://picsum.photos/1200/800?random=1" alt="" className='w-full h-56 object-cover rounded-xl hover:scale-105 duration-300 ' />
-                    <img src="https://picsum.photos/1200/800?random=2" alt="Logo" className="absolute top-0 left-0 w-12 h-12 m-2 rounded-full" />
+                    <img src="https://i.ibb.co.com/WBndm69/Lambang-Kabupaten-Subang-removebg-preview.png" alt="Logo" className="absolute top-0 left-0 h-11 w-10 m-2 bg-white rounded-md" />
                 </div>
-                <h1 className="text-4xl font-bold mb-6 text-center text-blue-900">Profil Desa Nagrak</h1>
+                <h1 className="text-4xl font-bold mb-6 text-center text-blue-900">PROFILE DESA</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
                     <div>
                         <p><span className="font-semibold">NAMA DESA:</span> NAGRAK</p>

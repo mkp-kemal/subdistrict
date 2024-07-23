@@ -46,7 +46,7 @@ const ActivityKknSection = () => {
                             <img src="https://picsum.photos/1200/800?random=1" alt="" className='w-full h-56 object-cover rounded-xl hover:scale-105 duration-300 ' />
                             <img src="https://picsum.photos/1200/800?random=2" alt="Logo" className="absolute top-0 left-0 w-12 h-12 m-2 rounded-full" />
                         </div>
-                        <h1 className="text-4xl font-bold mb-6 text-center text-blue-900">Aktivitas KKN di Desa Nagrak</h1>
+                        <h1 className="text-3xl font-bold mb-6 text-center text-blue-900">AKTIVITAS KKN DI DESA NAGRAK</h1>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {blogs.map((blog, index) => (
                                 <div key={index} className="flex-shrink-0 w-70 cursor-pointer" onClick={() => handleClick(blog.title)}>
