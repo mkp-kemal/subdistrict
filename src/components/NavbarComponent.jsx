@@ -48,11 +48,11 @@ const NavbarComponent = () => {
   const navOrder = ["home", "profile", "maintenance", "activity", "history"];
 
   return (
-    <nav className={`bg-tosca shadow-lg fixed w-full top-0 z-50 transition-transform duration-300 ease-in-out ${hideOnScroll ? 'transform -translate-y-full' : ''}`}>
+    <nav className={`bg-tosca shadow-lg fixed w-full top-0 z-50 font-inherit transition-transform duration-300 ease-in-out ${hideOnScroll ? 'transform -translate-y-full' : ''}`}>
       <div className="bg-tosca200 header-top py-2">
         <div className="container mx-auto px-4">
           <div className="row flex flex-wrap items-center justify-between">
-            <div className="col-lg-6 hidden lg:flex">
+            <div className="col-lg-6">
               <ul className="text-white flex space-x-4">
                 {navbarItems?.header && (
                   <>
@@ -79,7 +79,7 @@ const NavbarComponent = () => {
                 )}
               </ul>
             </div>
-            <div className="col-md-12 mt-2 flex justify-center text-white space-x-10">
+            <div className="col-md-12 mt-2 justify-center text-white space-x-10 hidden lg:flex">
               <ul className="flex text-xl space-x-4 my-1">
                 <li>
                   <i>
@@ -100,11 +100,13 @@ const NavbarComponent = () => {
 
       <div className="container mx-auto flex items-center justify-between p-4">
         <div className="flex items-center">
-          <img src="https://placehold.co/400" alt="Logo Desa Nagrak Subang" className="h-10 w-10 mr-2 rounded-full border-2 border-sage" />
-          <div className="text-white font-bold text-xl">
-            Desa Nagrak Ciater
+          <img src="https://i.ibb.co.com/WBndm69/Lambang-Kabupaten-Subang-removebg-preview.png" alt="Logo Desa Nagrak Subang" className="h-11 w-10" />
+          <div className="text-white p-2">
+            <p className="font-bold">Desa Nagrak</p>
+            <p className='text-sm'>Kec. Ciater Kab. Subang</p>
           </div>
         </div>
+
         <div className="lg:hidden">
           <button className="text-white" onClick={toggleNavbar}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

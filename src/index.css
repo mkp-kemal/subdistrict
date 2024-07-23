@@ -102,3 +102,8 @@ pre {
         opacity: 1;
     }
 }
+
+.font-inherit {
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
