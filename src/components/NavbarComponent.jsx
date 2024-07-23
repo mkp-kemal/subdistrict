@@ -111,27 +111,25 @@ const NavbarComponent = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          {isOpen && (
-            <div className="absolute right-0 top-full w-full bg-white border-t-2 border-tosca rounded-b-lg transition-all duration-300">
-              <div className="grid grid-cols-1 p-4">
-                {loading ? (
-                  <div>Loading...</div>
-                ) : (
-                  navOrder.map((key) => (
-                    navbarItems?.[key] && (
-                      <NavLink
-                        key={key}
-                        to={`/${key}`}
-                        className="text-sage hover:text-sage-dark transition-colors duration-300"
-                      >
-                        {navbarItems[key]}
-                      </NavLink>
-                    )
-                  ))
-                )}
-              </div>
+          <div className={`absolute right-0 top-full w-full bg-white border-t-2 border-tosca rounded-b-lg transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+            <div className="grid grid-cols-1 p-4">
+              {loading ? (
+                <div>Loading...</div>
+              ) : (
+                navOrder.map((key) => (
+                  navbarItems?.[key] && (
+                    <NavLink
+                      key={key}
+                      to={`/${key}`}
+                      className="text-sage hover:text-sage-dark transition-colors duration-300"
+                    >
+                      {navbarItems[key]}
+                    </NavLink>
+                  )
+                ))
+              )}
             </div>
-          )}
+          </div>
         </div>
         <div className="hidden lg:flex items-center space-x-4">
           {loading ? (
