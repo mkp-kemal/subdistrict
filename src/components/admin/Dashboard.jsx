@@ -7,6 +7,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { baseURLAPI } from '../../helpers/helper';
 import { ImSpinner10 } from 'react-icons/im';
+import { truncateText } from '../Truncated';
 
 const { confirm } = Modal;
 
@@ -159,6 +160,20 @@ const Dashboard = () => {
         }
     };
 
+    const formatDateAdmin = (dateString) => {
+        const [day, month, year] = dateString.split('/');
+    
+        const date = new Date(`${year}-${month}-${day}`);
+    
+        const dayFormatter = new Intl.DateTimeFormat('id-ID', { weekday: 'long' });
+        const dateFormatter = new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+    
+        const dayString = dayFormatter.format(date);
+        const dateStringFormatted = dateFormatter.format(date);
+    
+        return `${dayString}, ${dateStringFormatted}`;
+    };
+
     const columns = [
         {
             title: 'No',
@@ -180,12 +195,13 @@ const Dashboard = () => {
             title: 'Deskripsi',
             dataIndex: 'description',
             key: 'description',
+            render: (text) => text ? truncateText(text) : '-',
         },
         {
             title: 'Tgl Publish',
             dataIndex: 'date',
             key: 'date',
-            render: (text) => text ? text : '-',
+            render: (text) => text ? formatDateAdmin(text) : '-',
         },
         {
             title: 'Gambar',
