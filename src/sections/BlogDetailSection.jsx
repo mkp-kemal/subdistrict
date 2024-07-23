@@ -47,6 +47,10 @@ const BlogDetailSection = () => {
             });
     };
 
+    const removeTextAfterAtSymbol = (text) => {
+        return text.replace(/@.*/, '');
+    };
+
     return (
         <>
             {loading ? (
@@ -61,7 +65,7 @@ const BlogDetailSection = () => {
                         <h1 className="text-3xl font-bold mb-2">{blog.title}</h1>
                         <div className="mb-4 flex justify-between">
                             <span className="text-sm text-gray-600">{formatDate(blog.date)}</span>
-                            <p className="text-sm text-gray-600">Diposting oleh: {blog.publisher}</p>
+                            <p className="text-sm text-white font-semibold bg-tosca rounded-lg px-2">Author: {removeTextAfterAtSymbol(blog.publisher)}</p>
                         </div>
                         <div className="mb-4">
                             <Image

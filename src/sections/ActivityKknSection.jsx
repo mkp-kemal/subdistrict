@@ -6,6 +6,7 @@ import { formatDate } from '../components/FormatDate';
 import { FaPeopleCarry, FaUmbrellaBeach } from 'react-icons/fa';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import { ImSpinner10 } from 'react-icons/im';
+import { truncateText } from '../components/Truncated';
 
 const ActivityKknSection = () => {
     const [blogs, setBlogs] = useState([]);
@@ -48,7 +49,7 @@ const ActivityKknSection = () => {
                         <h1 className="text-4xl font-bold mb-6 text-center text-blue-900">Aktivitas KKN di Desa Nagrak</h1>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {blogs.map((blog, index) => (
-                                <div key={index} className="flex-shrink-0 w-80 cursor-pointer" onClick={() => handleClick(blog.title)}>
+                                <div key={index} className="flex-shrink-0 w-70 cursor-pointer" onClick={() => handleClick(blog.title)}>
                                     <div className="bg-white shadow-md rounded-lg overflow-hidden">
                                         <div className="relative">
                                             <span className="absolute top-2 left-2 text-white bg-tosca200 bg-opacity-75 px-2 py-1 rounded-full text-xs">
@@ -59,7 +60,7 @@ const ActivityKknSection = () => {
                                         <div className="detail p-4">
                                             <h4 className="text-xl font-bold">{blog.title}</h4>
                                             <p className="text-gray-600">
-                                                {blog.description}
+                                                {truncateText(blog.description, 65)}
                                             </p>
                                         </div>
                                         <div className="options p-4 bg-tosca justify-around">
