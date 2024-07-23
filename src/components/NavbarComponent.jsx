@@ -58,7 +58,9 @@ const NavbarComponent = () => {
                   <>
                     <li className="flex items-center group">
                       <i className="far fa-envelope mr-2"></i>
-                      <span className={`hover:text-sage transition-all duration-300 ease-in-out`}><img src="https://fst.uinsgd.ac.id/wp-content/uploads/2020/05/cropped-logo-uin.png" alt="UINSGD" className="h-8 w-8 rounded-full" /></span>
+                      <span className={`hover:text-sage transition-all duration-300 ease-in-out`}>
+                        <img src="https://fst.uinsgd.ac.id/wp-content/uploads/2020/05/cropped-logo-uin.png" alt="UINSGD" className="h-8 w-8 rounded-full" />
+                      </span>
                     </li>
                     <li className="flex items-center group">
                       <i className="far fa-envelope mr-2"></i>
@@ -68,12 +70,12 @@ const NavbarComponent = () => {
                     </li>
                     <li className="flex items-center group">
                       <i className="far fa-envelope mr-2"></i>
-                      <span className={`hover:text-sage transition-all duration-300 ease-in-out cursor-pointer`}>{navbarItems.header[1]}</span>
+                      <a href={`mailto:${navbarItems.header[1]}`} target='_blank' className={`hover:text-sage transition-all duration-300 ease-in-out cursor-pointer`}>{navbarItems.header[1]}</a>
                     </li>
                     <span className={`mx-2`}>|</span>
                     <li className="flex items-center group">
                       <i className="fas fa-phone-volume mr-2"></i>
-                      <span className={`hover:text-sage transition-all duration-300 ease-in-out cursor-pointer`}>{navbarItems.header[0]}</span>
+                      <a href={`https://wa.me/${navbarItems.header[0]}`} target='_blank' className={`hover:text-sage transition-all duration-300 ease-in-out cursor-pointer`}>{navbarItems.header[0]}</a>
                     </li>
                   </>
                 )}
@@ -82,14 +84,18 @@ const NavbarComponent = () => {
             <div className="col-md-12 mt-2 justify-center text-white space-x-10 hidden lg:flex">
               <ul className="flex text-xl space-x-4 my-1">
                 <li>
-                  <i>
-                    <RiInstagramFill className="text-white hover:text-tosca transition-all duration-300 ease-in-out cursor-pointer" />
-                  </i>
+                  <a href="https://www.instagram.com/nagrakciater/">
+                    <i>
+                      <RiInstagramFill className="text-white hover:text-tosca transition-all duration-300 ease-in-out cursor-pointer" />
+                    </i>
+                  </a>
                 </li>
                 <li>
-                  <i>
-                    <FaFacebook className="text-white hover:text-tosca transition-all duration-300 ease-in-out cursor-pointer" />
-                  </i>
+                  <a href="https://www.facebook.com/nagrakciater/">
+                    <i>
+                      <FaFacebook className="text-white hover:text-tosca transition-all duration-300 ease-in-out cursor-pointer" />
+                    </i>
+                  </a>
                 </li>
               </ul>
               <DateTime />
@@ -101,10 +107,12 @@ const NavbarComponent = () => {
       <div className="container mx-auto flex items-center justify-between p-4">
         <div className="flex items-center">
           <img src="https://i.ibb.co.com/WBndm69/Lambang-Kabupaten-Subang-removebg-preview.png" alt="Logo Desa Nagrak Subang" className="h-11 w-10" />
-          <div className="text-white p-2">
-            <p className="font-bold">Desa Nagrak</p>
-            <p className='text-sm'>Kec. Ciater Kab. Subang</p>
-          </div>
+          <a href="https://nagrakciater.vercel.app/">
+            <div className="text-white p-2">
+              <p className="font-bold">Desa Nagrak</p>
+              <p className='text-sm'>Kec. Ciater Kab. Subang</p>
+            </div>
+          </a>
         </div>
 
         <div className="lg:hidden">
