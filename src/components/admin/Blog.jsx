@@ -80,9 +80,7 @@ const Blog = ({ user }) => {
             setMasyarakat(false);
             setWisata(false);
         } catch (error) {
-            message.error('Error creating blog');
-            console.error(error);
-            console.log(error);
+            message.error(error.response.data.message);
         } finally {
             setLoading(false);
         }

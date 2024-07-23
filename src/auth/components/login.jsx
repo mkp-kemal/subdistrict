@@ -32,9 +32,10 @@ const Login = () => {
             const res = await axios.post(`${baseURLAPI('login')}`, { username, password });
             const token = res.data.token;
             document.cookie = `jwt=${token}; path=/; max-age=${60 * 15}`;
+            
             navigate('/user/admin');
         } catch (err) {
-            setError('Invalid credentials');
+            setError(err.response.data.message);
         } finally {
             setLoading(false);
         }

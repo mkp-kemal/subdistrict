@@ -1,22 +1,20 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Button, Image, Divider } from 'antd';
+import { Button, Image, Divider, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { FaPeopleCarry, FaUmbrellaBeach } from 'react-icons/fa';
+import { FaPeopleCarry, FaShareAltSquare, FaUmbrellaBeach } from 'react-icons/fa';
 import { FaPeopleGroup } from 'react-icons/fa6';
 import { formatDate } from '../components/FormatDate';
 import DOMPurify from 'dompurify';
 import { baseURLAPI } from '../helpers/helper';
 import { ImSpinner10 } from "react-icons/im";
 
-
 const BlogDetailSection = () => {
     const { id } = useParams();
     const [blog, setBlog] = useState(null);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -37,15 +35,28 @@ const BlogDetailSection = () => {
         navigate(-1);
     };
 
+    const handleShare = () => {
+        const url = window.location.href;
+        navigator.clipboard.writeText(url)
+            .then(() => {
+                message.success('Link copied to clipboard!');
+            })
+            .catch(err => {
+                message.error('Failed to copy the link!');
+                console.error('Error copying text: ', err);
+            });
+    };
+
     return (
         <>
             {loading ? (
-                <div className="flex justify-center items-center h-screen mt-33" >
+                <div className="flex justify-center items-center h-screen mt-33">
                     <ImSpinner10 className="text-4xl animate-spin text-tosca" />
-                </div >
+                </div>
             ) : (
                 <div className="container mx-auto py-8 px-4 mt-28 fade-in">
                     <Button onClick={handleBack}>Kembali</Button>
+                    <Button onClick={handleShare} style={{ marginLeft: '10px' }}><FaShareAltSquare />Share Link</Button>
                     <div className="bg-white shadow-md rounded-lg p-6">
                         <h1 className="text-3xl font-bold mb-2">{blog.title}</h1>
                         <div className="mb-4">

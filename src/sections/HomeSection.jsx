@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import { FaPeopleCarry } from 'react-icons/fa';
 import { FaPeopleGroup, FaUmbrellaBeach } from 'react-icons/fa6';
@@ -7,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../components/FormatDate';
 import { baseURLAPI } from '../helpers/helper';
 import BgComponent from '../components/BgComponent';
+import { truncateText } from '../components/Truncated';
 
 const HomeSection = () => {
     const [loading, setLoading] = useState(true);
@@ -75,7 +77,7 @@ const Activity = ({ blogs }) => {
                                     <div className="detail p-4">
                                         <h4 className="text-xl font-bold">{blog.title}</h4>
                                         <p className="text-gray-600">
-                                            {blog.description}
+                                            {truncateText(blog.description)}
                                         </p>
                                     </div>
                                     <div className="options p-4 bg-tosca justify-around">
