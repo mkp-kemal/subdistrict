@@ -77,7 +77,7 @@ const Activity = ({ blogs }) => {
                                     <div className="detail p-4">
                                         <h4 className="text-xl font-bold">{blog.title}</h4>
                                         <p className="text-gray-600">
-                                            {truncateText(blog.description)}
+                                            {truncateText(blog.description, 75)}
                                         </p>
                                     </div>
                                     <div className="options p-4 bg-tosca justify-around">
