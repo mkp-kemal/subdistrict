@@ -66,7 +66,7 @@ const Activity = ({ blogs }) => {
                 <div className="overflow-x-auto">
                     <div className="flex space-x-4">
                         {blogs.map((blog, index) => (
-                            <div key={index} className="flex-shrink-0 w-80 cursor-pointer" onClick={() => handleClick(blog.title)}>
+                            <div key={index} className="flex-shrink-0 w-56 sm:w-80 cursor-pointer" onClick={() => handleClick(blog.title)}>
                                 <div className="bg-white shadow-md rounded-lg overflow-hidden">
                                     <div className="relative">
                                         <span className="absolute top-2 left-2 text-white bg-tosca200 bg-opacity-75 px-2 py-1 rounded-full text-xs">
