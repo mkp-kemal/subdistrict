@@ -1,12 +1,13 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react';
-import { FaTachometerAlt, FaBlog, FaSignOutAlt } from 'react-icons/fa';
+import { FaTachometerAlt, FaBlog, FaSignOutAlt, FaRegImages } from 'react-icons/fa';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { useNavigate } from 'react-router-dom';
 
-const Sidebar = ({ setCurrentSection }) => {
+const Sidebar = ({ setCurrentSection, user }) => {
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
+  const email = user?.email;
+
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -48,6 +49,14 @@ const Sidebar = ({ setCurrentSection }) => {
             {isOpen && <span>Blog</span>}
           </button>
         </li>
+        {email === 'kemal@gmail.com' && (
+          <li>
+            <button onClick={() => setCurrentSection('images')} className="flex items-center p-2 space-x-2 hover:bg-gray-700 w-full text-left">
+              <FaRegImages  className="group-hover:animate-bounce transition-all duration-300 ease-in-out" />
+              {isOpen && <span>Images</span>}
+            </button>
+          </li>
+        )}
         <li>
           <button onClick={handleLogout} className="flex items-center p-2 space-x-2 hover:bg-gray-700 w-full text-left">
             <FaSignOutAlt className="group-hover:animate-bounce transition-all duration-300 ease-in-out" />

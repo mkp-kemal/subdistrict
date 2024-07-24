@@ -7,6 +7,7 @@ import NavbarComponent from '../components/admin/NavbarComponent';
 import { useNavigate } from 'react-router-dom';
 import { baseURLAPI } from '../helpers/helper';
 import axios from 'axios';
+import { Images } from '../components/admin/Images';
 
 export const AdminSection = () => {
     const [currentSection, setCurrentSection] = useState('dashboard');
@@ -46,6 +47,8 @@ export const AdminSection = () => {
                 return <Dashboard />;
             case 'blog':
                 return <Blog user={user} />;
+            case 'images':
+                return <Images />;
             default:
                 return <Dashboard />;
         }
@@ -55,7 +58,7 @@ export const AdminSection = () => {
         <>
             <NavbarComponent user={user} />
             <div className="flex mt-14">
-                <Sidebar setCurrentSection={setCurrentSection} />
+                <Sidebar setCurrentSection={setCurrentSection} user={user} />
                 <main className="flex-1 p-4">
                     {renderSection()}
                 </main>
