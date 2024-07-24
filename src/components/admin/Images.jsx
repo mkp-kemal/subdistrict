@@ -49,18 +49,18 @@ export const Images = () => {
 
     return (
         <div className="container mx-auto py-8 px-4">
-            <h1 className="text-3xl font-bold mb-8 text-center">GCS Images</h1>
+            <h1 className="text-3xl font-bold mb-8 text-center">GCP Images</h1>
             <Row gutter={[16, 16]}>
                 {images.map((image) => (
-                    <Col key={image.name} xs={24} sm={12} md={8} lg={6}>
+                    <Col key={image} xs={24} sm={12} md={8} lg={6}>
                         <Card
                             hoverable
                             cover={
                                 <Image
-                                    src={image.url}
-                                    alt={image.name}
+                                    src={image}
+                                    alt="images"
                                     preview={{
-                                        src: image.url
+                                        src: image
                                     }}
                                 />
                             }
