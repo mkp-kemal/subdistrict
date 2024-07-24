@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Image, Row, Col, Card, Spin, Button, Popconfirm, message } from 'antd';
+import { Image, Row, Col, Card, Button, Popconfirm, message } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import { baseURLAPI } from '../../helpers/helper';
+import axios from 'axios';
+import { ImSpinner10 } from 'react-icons/im';
+
 
 export const Images = () => {
     const [images, setImages] = useState([]);
@@ -10,9 +13,8 @@ export const Images = () => {
     useEffect(() => {
         const fetchImages = async () => {
             try {
-                const response = await fetch(baseURLAPI('images'));
-                const data = await response.json();
-                setImages(data);
+                const response = await axios.get(baseURLAPI('images'));
+                setImages(response.data);
             } catch (error) {
                 console.error('Error fetching images:', error);
             } finally {
@@ -25,13 +27,12 @@ export const Images = () => {
 
     const handleDelete = async (fileName) => {
         try {
-            const response = await fetch(baseURLAPI('images'), {
-                method: 'DELETE',
+            const response = await axios.delete(baseURLAPI('images'), {
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ fileName })
+                data: { fileName }
             });
 
-            if (response.ok) {
+            if (response.status === 200) {
                 message.success('Image deleted successfully');
                 setImages(images.filter(image => image.name !== fileName));
             } else {
@@ -43,8 +44,13 @@ export const Images = () => {
         }
     };
 
+
     if (loading) {
-        return <Spin />;
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <ImSpinner10 className="text-4xl animate-spin text-tosca" />
+            </div>
+        );
     }
 
     return (
@@ -52,15 +58,16 @@ export const Images = () => {
             <h1 className="text-3xl font-bold mb-8 text-center">GCP Images</h1>
             <Row gutter={[16, 16]}>
                 {images.map((image) => (
-                    <Col key={image} xs={24} sm={12} md={8} lg={6}>
+                    <Col key={image.name} xs={24} sm={12} md={8} lg={6}>
                         <Card
                             hoverable
                             cover={
                                 <Image
-                                    src={image}
-                                    alt="images"
+                                    src={image.url}
+                                    alt={image.name}
+                                    height={200}
                                     preview={{
-                                        src: image
+                                        src: image.url
                                     }}
                                 />
                             }
