@@ -58,7 +58,7 @@ const BlogDetailSection = () => {
                     <ImSpinner10 className="text-4xl animate-spin text-tosca" />
                 </div>
             ) : (
-                <div className="container mx-auto py-8 px-4 mt-28 fade-in">
+                <div className="container mx-auto py-8 px-4 mt-32 fade-in">
                     <Button onClick={handleBack}>Kembali</Button>
                     <Button onClick={handleShare} style={{ marginLeft: '10px' }}><FaShareAltSquare />Share Link</Button>
                     <div className="bg-white shadow-md rounded-lg p-6">
