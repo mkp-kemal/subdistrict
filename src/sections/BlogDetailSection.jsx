@@ -90,13 +90,13 @@ const BlogDetailSection = () => {
                                 {blog.gotongRoyong && (
                                     <li className="flex flex-col items-center">
                                         <FaPeopleCarry className="text-white text-2xl" />
-                                        <span className="text-xs text-white">Masyarakat</span>
+                                        <span className="text-xs text-white">Gotong-royong</span>
                                     </li>
                                 )}
                                 {blog.masyarakat && (
                                     <li className="flex flex-col items-center">
                                         <FaPeopleGroup className="text-white text-2xl" />
-                                        <span className="text-xs text-white">Gotong-royong</span>
+                                        <span className="text-xs text-white">Masyarakat</span>
                                     </li>
                                 )}
                                 {blog.wisata && (
