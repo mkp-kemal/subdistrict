@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import NavbarComponent from './components/NavbarComponent';
-import HomeSection from './sections/HomeSection';
+import {HomeSection} from './sections/HomeSection';
 import ProfileSection from './sections/ProfileSection';
 import ActivityKknSection from './sections/ActivityKknSection';
 import HistorySection from './sections/HistorySection';
