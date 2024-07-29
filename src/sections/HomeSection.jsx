@@ -170,18 +170,18 @@ const Footer = () => {
     }, [])
 
     return (
-        <footer className="bg-gray-800 text-white py-8">
+        <footer className="bg-tosca200 text-white py-8">
             <div className="container mx-auto px-52">
                 <div className="flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left">
                     {loading ? (
                         <div><svg xmlns="http://www.w3.org/2000/svg" width="4em" height="2em" viewBox="0 0 24 24"><circle cx="4" cy="12" r="3" fill="white"><animate id="svgSpinners3DotsScale0" attributeName="r" begin="0;svgSpinners3DotsScale1.end-0.25s" dur="0.75s" values="3;.2;3" /></circle><circle cx="12" cy="12" r="3" fill="white"><animate attributeName="r" begin="svgSpinners3DotsScale0.end-0.6s" dur="0.75s" values="3;.2;3" /></circle><circle cx="20" cy="12" r="3" fill="white"><animate id="svgSpinners3DotsScale1" attributeName="r" begin="svgSpinners3DotsScale0.end-0.45s" dur="0.75s" values="3;.2;3" /></circle></svg></div>
                     ) : (
                         <>
-                            <div className="mb-8 md:mb-0">
+                            <div className="mb-8 md:mb-0 w-52 md:w-full">
                                 <h3 className="text-2xl font-bold mb-4">Kontak Kami</h3>
                                 <p><FaPhone className="inline-block mr-2" />{navbarItems?.header[0]}</p>
                                 <p><FaEnvelope className="inline-block mr-2" />{navbarItems?.header[1]}</p>
-                                <div className="flex justify-center md:justify-start space-x-4 mt-4">
+                                <div className="flex justify-center md:justify-start space-x-4 mt-10">
                                     <a href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
                                         <FaInstagram className="text-3xl" />
                                     </a>
@@ -192,7 +192,7 @@ const Footer = () => {
                             </div>
                             <div>
                                 <h3 className="text-2xl font-bold mb-4">Lokasi</h3>
-                                <p>Desa Nagrak Kecamatan Ciater Kabupaten Subang</p>
+                                <p className='mb-4'>Desa Nagrak Kecamatan Ciater Kabupaten Subang</p>
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126411.58782255615!2d107.55099348205198!3d-6.730664304237963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6909d2bc37d943%3A0x401e8f1fc28b140!2sNagrak%2C%20Ciater%2C%20Subang%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1624608113432!5m2!1sen!2sid&markers=color:red%7Clabel:K%7C-6.730664304237963,107.55099348205198"
                                     height="100"
@@ -203,12 +203,12 @@ const Footer = () => {
                         </>
                     )}
                 </div>
-                <div className="text-center mt-8">
-                    <p>&copy; 2024 mkp. All Rights Reserved.</p>
-                </div>
+            </div>
+            <div className="text-center mt-8 w-full">
+                <p>&copy; 2024 mkp. All Rights Reserved.</p>
             </div>
         </footer>
     );
 };
 
-export {HomeSection, Footer};
+export { HomeSection, Footer };

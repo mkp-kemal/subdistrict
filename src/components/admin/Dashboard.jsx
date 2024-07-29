@@ -348,10 +348,10 @@ const Dashboard = () => {
 
                             <Form.Item
                                 name="title"
-                                label="Judul"
+                                label="Judul (max 23 huruf)"
                                 rules={[{ required: true, message: 'Masukan Judul' }]}
                             >
-                                <Input />
+                                <Input maxLength={23}/>
                             </Form.Item>
                             <Form.Item
                                 name="description"

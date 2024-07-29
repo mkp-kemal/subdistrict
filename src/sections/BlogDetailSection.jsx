@@ -9,6 +9,7 @@ import { formatDate } from '../components/FormatDate';
 import DOMPurify from 'dompurify';
 import { baseURLAPI } from '../helpers/helper';
 import { ImSpinner10 } from "react-icons/im";
+import { Footer } from './HomeSection';
 
 const BlogDetailSection = () => {
     const { id } = useParams();
@@ -110,6 +111,7 @@ const BlogDetailSection = () => {
                     </div>
                 </div>
             )}
+            <Footer />
         </>
     );
 };

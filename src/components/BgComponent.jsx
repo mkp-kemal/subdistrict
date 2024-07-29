@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
 
 const images = [
-  'https://picsum.photos/1200/800?random=1',
-  'https://picsum.photos/1200/800?random=2',
+  'https://i.ibb.co.com/NYPHw1D/20240728-083711.jpg',
+  'https://i.ibb.co.com/XySXFyN/IMG-5338.jpg',
   'https://picsum.photos/1200/800?random=3',
   'https://picsum.photos/1200/800?random=4',
   'https://picsum.photos/1200/800?random=5'
