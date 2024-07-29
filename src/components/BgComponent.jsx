@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
+import foto1 from './../assets/img1.jpg';
+import foto2 from './../assets/img2.jpg';
 
 const images = [
-  'https://i.ibb.co.com/NYPHw1D/20240728-083711.jpg',
-  'https://i.ibb.co.com/XySXFyN/IMG-5338.jpg',
+  foto1,
+  foto2,
   'https://picsum.photos/1200/800?random=3',
   'https://picsum.photos/1200/800?random=4',
   'https://picsum.photos/1200/800?random=5'

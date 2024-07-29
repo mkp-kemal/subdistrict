@@ -25,7 +25,7 @@ const ProfileSection = () => {
                         <img src="https://picsum.photos/1200/800?random=1" alt="" className='w-full h-56 object-cover rounded-xl hover:scale-105 duration-300 ' />
                         <img src="https://i.ibb.co.com/WBndm69/Lambang-Kabupaten-Subang-removebg-preview.png" alt="Logo" className="absolute top-0 left-0 h-11 w-10 m-2 bg-white rounded-md" />
                     </div>
-                    <h1 className="text-4xl font-bold mb-6 text-center text-blue-900">PROFILE DESA</h1>
+                    <h1 className="text-3xl font-bold mb-6 text-center text-blue-900">PROFILE DESA</h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
                         <div>
                             <p><span className="font-semibold">NAMA DESA:</span> NAGRAK</p>
@@ -83,7 +83,15 @@ const ProfileSection = () => {
                             loading="lazy"
                             className="rounded-xl"
                         ></iframe>
-
+                    </div>
+                    <div className="mt-8">
+                        <h2 className="font-semibold text-xl mb-4">INFORMASI TAMBAHAN:</h2>
+                        <p><span className="font-semibold">Letak:</span> Desa Nagrak terletak di Kecamatan Ciater, Kabupaten Subang, Provinsi Jawa Barat. Koordinat geografisnya adalah 6.730664 LS dan 107.550993 BT.</p>
+                        <p><span className="font-semibold">Relief:</span> Desa ini memiliki topografi yang bervariasi dengan kontur berbukit dan ketinggian rata-rata sekitar 700 meter di atas permukaan laut.</p>
+                        <p><span className="font-semibold">Iklim dan Cuaca:</span> Desa Nagrak beriklim tropis dengan dua musim utama, yaitu musim hujan dan musim kemarau. Suhu rata-rata berkisar antara 20-30°C.</p>
+                        <p><span className="font-semibold">Jenis Tanah:</span> Tanah di Desa Nagrak sebagian besar adalah tanah vulkanik yang subur, cocok untuk pertanian dan perkebunan.</p>
+                        <p><span className="font-semibold">Sumber Daya:</span> Sumber daya air yang melimpah dari mata air alami dan sungai. Terdapat juga sumber daya mineral seperti pasir dan batu yang digunakan untuk konstruksi.</p>
+                        <p><span className="font-semibold">Flora dan Fauna:</span> Flora di desa ini terdiri dari berbagai jenis tanaman pertanian dan perkebunan, seperti padi, sayuran, dan teh. Fauna yang umum ditemui antara lain burung, serangga, dan hewan ternak.</p>
                     </div>
                 </div>
             </div>

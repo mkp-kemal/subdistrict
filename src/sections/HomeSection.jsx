@@ -10,6 +10,7 @@ import { baseURLAPI } from '../helpers/helper';
 import BgComponent from '../components/BgComponent';
 import { truncateText } from '../components/Truncated';
 import { FaFacebook, FaInstagram, FaPhone, FaEnvelope } from 'react-icons/fa';
+import foto1 from './../assets/img1.jpg';
 
 const HomeSection = () => {
     const [loading, setLoading] = useState(true);
@@ -116,7 +117,7 @@ const Attractions = () => {
         <div className="popular-pack container-fluid bg-gray-50 py-8">
             <div className="container mx-auto">
                 <div className="session-title text-center mb-8">
-                    <h2 className="text-3xl font-bold">Objek Wisata</h2>
+                    <h2 className="text-3xl font-bold">Objek Wisata Terdekat</h2>
                     <p className="text-gray-600">
                         Berikut objek wisata yang ada di dekat desa
                     </p>
@@ -127,7 +128,7 @@ const Attractions = () => {
                             <div key={index} className="flex-shrink-0 w-80">
                                 <div className="bg-white shadow-md rounded-lg overflow-hidden">
                                     <div className="relative">
-                                        <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url('https://picsum.photos/200/300?random=${index}')` }}></div>
+                                        <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${foto1})` }}></div>
                                     </div>
                                     <div className="revire flex justify-between items-center p-1">
                                         <ul className="rat flex space-x-1">

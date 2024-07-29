@@ -69,8 +69,6 @@ const Blog = ({ user }) => {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     Authorization: `Bearer ${token}`,
-
-
                 },
             });
             message.success('Berhasil memposting blog');
@@ -124,7 +122,7 @@ const Blog = ({ user }) => {
                         name="date"
                         rules={[{ required: true, message: 'Masukan Tanggal Publish' }]}
                     >
-                        <DatePicker />
+                        <DatePicker format="YYYY-MM-DD" />
                     </Form.Item>
                     <Form.Item
                         name="image"
