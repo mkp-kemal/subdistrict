@@ -11,6 +11,7 @@ import BgComponent from '../components/BgComponent';
 import { truncateText } from '../components/Truncated';
 import { FaFacebook, FaInstagram, FaPhone, FaEnvelope } from 'react-icons/fa';
 import foto1 from './../assets/img1.jpg';
+import foto2 from './../assets/img2.jpg';
 
 const HomeSection = () => {
     const [loading, setLoading] = useState(true);
@@ -69,18 +70,18 @@ const Activity = ({ blogs }) => {
                 <div className="overflow-x-auto">
                     <div className="flex space-x-4">
                         {blogs.map((blog, index) => (
-                            <div key={index} className="flex-shrink-0 w-64 sm:w-80 cursor-pointer" onClick={() => handleClick(blog.title)}>
+                            <div key={index} className="flex-shrink-0 w-64 sm:w-72 cursor-pointer" onClick={() => handleClick(blog.title)}>
                                 <div className="bg-white shadow-md rounded-lg overflow-hidden">
                                     <div className="relative">
                                         <span className="absolute top-2 left-2 text-white bg-tosca200 bg-opacity-75 px-2 py-1 rounded-full text-xs">
                                             {formatDate(blog.date)}
                                         </span>
-                                        <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${blog.image})` }}></div>
+                                        <div className="bg-cover bg-center w-full h-40" style={{ backgroundImage: `url(${blog.image})` }}></div>
                                     </div>
                                     <div className="detail p-4">
                                         <h4 className="text-xl font-bold">{blog.title}</h4>
                                         <p className="text-gray-600">
-                                            {truncateText(blog.description, 75)}
+                                            {truncateText(blog.description, 55)}
                                         </p>
                                     </div>
                                     <div className="options p-4 bg-tosca justify-around">
@@ -128,7 +129,7 @@ const Attractions = () => {
                             <div key={index} className="flex-shrink-0 w-80">
                                 <div className="bg-white shadow-md rounded-lg overflow-hidden">
                                     <div className="relative">
-                                        <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${foto1})` }}></div>
+                                        <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${index === 0 ? foto1 : foto2})` }}></div>
                                     </div>
                                     <div className="revire flex justify-between items-center p-1">
                                         <ul className="rat flex space-x-1">
@@ -138,7 +139,19 @@ const Attractions = () => {
                                         </ul>
                                     </div>
                                     <div className="detail p-4">
-                                        <h4 className="text-xl font-bold">{index === 0 ? 'Curug Koleangkak' : 'Wisata Lain'}</h4>
+                                        <h4 className="text-xl font-bold">{index === 0 ? 'Curug Cikoleangkak' : 'Wisata Lain'}</h4>
+                                        <p className="text-gray-600">
+                                            {index === 0 ? (
+                                                <>
+                                                <p>Tiket Masuk: Rp 10.000/orang</p>
+                                                <p>Harga Tikar: Rp 15.000/tikar</p>
+                                                <p>Harga Makanan: ≥Rp 10.000</p>
+                                                </>
+                                            ) : 'Wisata Lain'}
+                                        </p>
+                                    </div>
+                                    <div className='flex text-white font-bold bg-tosca200 bg-opacity-75 p-2 justify-end'>
+                                        <p className='mr-5'>Update 2024</p>
                                     </div>
                                 </div>
                             </div>
