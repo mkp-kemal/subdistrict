@@ -290,18 +290,7 @@ const Dashboard = () => {
                             scroll={{ x: '100%' }}
                         />
                     </div>
-                    <Modal
-                        open={previewVisible}
-                        footer={null}
-                        onCancel={() => setPreviewVisible(false)}
-                        centered
-                    >
-                        <Image
-                            src={previewImage}
-                            alt="Preview"
-                            className='w-full'
-                        />
-                    </Modal>
+                  
 
                 </div>
             )}
