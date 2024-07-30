@@ -8,6 +8,8 @@ import 'react-quill/dist/quill.snow.css';
 import { baseURLAPI } from '../../helpers/helper';
 import { ImSpinner10 } from 'react-icons/im';
 import { truncateText } from '../Truncated';
+import { format } from 'date-fns';
+
 
 const { confirm } = Modal;
 
@@ -255,7 +257,7 @@ const Dashboard = () => {
         title: blog.title,
         description: blog.description,
         story: blog.story,
-        date: new Date(blog.date),
+        date: format(new Date(blog.date), 'dd/MM/yyyy'),
         image: blog.image,
     }));
 
