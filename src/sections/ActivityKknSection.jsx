@@ -62,7 +62,7 @@ const ActivityKknSection = () => {
                                             <div className="detail p-4">
                                                 <h4 className="text-xl font-bold">{blog.title}</h4>
                                                 <p className="text-gray-600">
-                                                    {truncateText(blog.description, 65)}
+                                                    {truncateText(blog.description, 60)}
                                                 </p>
                                             </div>
                                             <div className="options p-4 bg-tosca justify-around">
