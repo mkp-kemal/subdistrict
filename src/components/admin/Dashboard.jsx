@@ -255,7 +255,7 @@ const Dashboard = () => {
         title: blog.title,
         description: blog.description,
         story: blog.story,
-        date: new Date(blog.date).toLocaleDateString(),
+        date: new Date(blog.date),
         image: blog.image,
     }));
 
@@ -271,13 +271,146 @@ const Dashboard = () => {
                 </div>
             ) : (
                 <div className="p-4">
-                     <div className="mt-6">
+                    <Row gutter={16} className="mb-6 p-4 rounded-lg">
+                        <Col span={12}>
+                            <Card title={<span className='text-white'>Jumlah Blog</span>} bordered={false} className="p-4 text-white font-bold bg-tosca shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                {blogCount}
+                            </Card>
+                        </Col>
+                        <Col span={12}>
+                            <Card title={<span className='text-white'>Jumlah Admin</span>} bordered={false} className="p-4 bg-lime-900 text-white font-bold shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                                {adminCount}
+                            </Card>
+                        </Col>
+                    </Row>
+                    <div className="mt-6">
                         <Table
                             columns={columns}
                             dataSource={data}
                             scroll={{ x: '100%' }}
                         />
                     </div>
+                    <Modal
+                        open={previewVisible}
+                        footer={null}
+                        onCancel={() => setPreviewVisible(false)}
+                        centered
+                    >
+                        <Image
+                            src={previewImage}
+                            alt="Preview"
+                            className='w-full'
+                        />
+                    </Modal>
+
+                    {/* Modal Edit Blog */}
+                    <Modal
+                        visible={selectedBlog !== null}
+                        title="Edit Blog"
+                        onCancel={handleCancel}
+                        footer={null}
+                        centered
+                    >
+                        <Form
+                            form={form}
+                            layout="vertical"
+                            onFinish={handleFinish}
+                            initialValues={{
+                                publisher: selectedBlog?.publisher,
+                                title: selectedBlog?.title,
+                                description: selectedBlog?.description,
+                                story: selectedBlog?.story,
+                                date: dayjs(selectedBlog?.date),
+                            }}
+                        >
+                            <Form.Item
+                                name="story"
+                                label="Ceritakan Lebih Detail"
+                                rules={[{ required: true, message: 'Masukan cerita' }]}
+                            >
+                                <ReactQuill
+                                    value={editorValue}
+                                    onChange={setEditorValue}
+                                    theme="snow"
+                                    style={{ height: '300px' }}
+                                    modules={{
+                                        toolbar: [
+                                            ['bold', 'italic', 'underline', 'strike', 'link', 'blockquote', 'code'],
+                                            [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+                                        ],
+                                    }}
+                                />
+                            </Form.Item>
+
+                            <Form.Item
+                            >
+                            </Form.Item>
+
+                            <Form.Item
+                                name="title"
+                                label="Judul (max 23 huruf)"
+                                rules={[{ required: true, message: 'Masukan Judul' }]}
+                            >
+                                <Input maxLength={23}/>
+                            </Form.Item>
+                            <Form.Item
+                                name="description"
+                                label="Deskripsi"
+                                rules={[{ required: true, message: 'Masukan Deskripsi' }]}
+                            >
+                                <Input.TextArea rows={4} />
+                            </Form.Item>
+                            <Form.Item
+                                label="Tanggal"
+                                name="date"
+                                rules={[{ required: true, message: 'Masukan Tanggal Publish' }]}
+                            >
+                                <DatePicker format="YYYY-MM-DD" />
+                            </Form.Item>
+                            <Form.Item
+                                name="image"
+                                label="Gambar"
+                                valuePropName="file"
+                            >
+                                <Upload
+                                    name="image"
+                                    listType="picture-card"
+                                    showUploadList={false}
+                                    beforeUpload={(file) => {
+                                        const reader = new FileReader();
+                                        reader.onload = () => setPreviewImage(reader.result);
+                                        reader.readAsDataURL(file);
+                                        return false;
+                                    }}
+                                    onChange={handleUploadChange}
+                                >
+                                    {previewImage ? (
+                                        <Image
+                                            preview={false}
+                                            src={previewImage}
+                                            alt="Blog"
+                                            className="object-cover"
+                                            width={200}
+                                            height={100}
+                                        />
+                                    ) : (
+                                        <div>
+                                            <UploadOutlined />
+                                            <div className="ant-upload-text">Upload</div>
+                                        </div>
+                                    )}
+                                </Upload>
+                            </Form.Item>
+                            <Form.Item>
+                                {loadingModal ? (
+                                    <Button type="primary" htmlType="submit" loading>
+                                    </Button>
+                                ) : (
+                                    <Button type="primary" htmlType="submit">Ubah Blog</Button>
+                                )}
+                            </Form.Item>
+                        </Form>
+                    </Modal>
                 </div>
             )}
         </>
