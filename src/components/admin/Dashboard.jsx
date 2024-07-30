@@ -365,7 +365,7 @@ const Dashboard = () => {
                                 name="date"
                                 rules={[{ required: true, message: 'Masukan Tanggal Publish' }]}
                             >
-                                <DatePicker />
+                                <DatePicker format="YYYY-MM-DD" />
                             </Form.Item>
                             <Form.Item
                                 name="image"
