@@ -13,7 +13,8 @@ const ActivityKknSection = () => {
     const [blogs, setBlogs] = useState([]);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 12;
 
     useEffect(() => {
         const fetchActivities = async () => {
@@ -34,6 +35,14 @@ const ActivityKknSection = () => {
         navigate(`/blog/${id}`);
     };
 
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+    };
+
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const selectedBlogs = blogs.slice(startIndex, startIndex + itemsPerPage);
+    const totalPages = Math.ceil(blogs.length / itemsPerPage);
+
     return (
         <>
             {loading ? (
@@ -46,11 +55,11 @@ const ActivityKknSection = () => {
                         <div className="bg-white shadow-2xl rounded-xl p-8 max-w-5xl w-full">
                             <div className="relative mb-6">
                                 <img src="https://picsum.photos/1200/800?random=1" alt="" className='w-full h-56 object-cover rounded-xl hover:scale-105 duration-300 ' />
-                                <img src="https://i.ibb.co.com/WBndm69/Lambang-Kabupaten-Subang-removebg-preview.png" alt="Logo" className="absolute top-0 left-0 h-11 w-10 m-2 bg-white rounded-md" />
+                                <img src="https://i.ibb.co/WBndm69/Lambang-Kabupaten-Subang-removebg-preview.png" alt="Logo" className="absolute top-0 left-0 h-11 w-10 m-2 bg-white rounded-md" />
                             </div>
                             <h1 className="text-3xl font-bold mb-6 text-center text-blue-900">AKTIVITAS KKN DI DESA NAGRAK</h1>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {blogs.map((blog, index) => (
+                                {selectedBlogs.map((blog, index) => (
                                     <div key={index} className="flex-shrink-0 w-70 cursor-pointer" onClick={() => handleClick(blog.title)}>
                                         <div className="bg-white shadow-md rounded-lg overflow-hidden">
                                             <div className="relative">
@@ -86,6 +95,17 @@ const ActivityKknSection = () => {
                                             </div>
                                         </div>
                                     </div>
+                                ))}
+                            </div>
+                            <div className="flex justify-center mt-4">
+                                {Array.from({ length: totalPages }, (_, index) => (
+                                    <button
+                                        key={index}
+                                        className={`mx-1 px-3 py-1 rounded-md ${currentPage === index + 1 ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'}`}
+                                        onClick={() => handlePageChange(index + 1)}
+                                    >
+                                        {index + 1}
+                                    </button>
                                 ))}
                             </div>
                         </div>
