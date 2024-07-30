@@ -30,6 +30,7 @@ const Dashboard = () => {
             try {
                 const response = await axios.get(baseURLAPI('blogs'));
                 setBlogs(response.data);
+                console.log(response.data.map(i => i.date));
                 setBlogCount(response.data.length);
             } catch (error) {
                 console.error('Error fetching blogs:', error);
@@ -291,7 +292,7 @@ const Dashboard = () => {
                         />
                     </div>
                     <Modal
-                        visible={previewVisible}
+                        open={previewVisible}
                         footer={null}
                         onCancel={() => setPreviewVisible(false)}
                         centered
@@ -365,7 +366,7 @@ const Dashboard = () => {
                                 name="date"
                                 rules={[{ required: true, message: 'Masukan Tanggal Publish' }]}
                             >
-                                {/* <DatePicker format="YYYY-MM-DD" /> */}
+                                <DatePicker format="YYYY-MM-DD" />
                             </Form.Item>
                             <Form.Item
                                 name="image"
