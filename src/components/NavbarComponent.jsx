@@ -45,7 +45,7 @@ const NavbarComponent = () => {
     };
   }, []);
 
-  const navOrder = ["home", "profile", "maintenance", "activity", "history"];
+  const navOrder = ["home", "profile", "maintenance", "activity", "apbd", "history"];
 
   return (
     <nav className={`bg-tosca shadow-lg fixed w-full top-0 z-50 font-inherit transition-transform duration-300 ease-in-out ${hideOnScroll ? 'transform -translate-y-full' : ''}`}>

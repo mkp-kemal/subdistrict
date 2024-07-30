@@ -146,6 +146,7 @@ const Attractions = () => {
                                                 <p>Tiket Masuk: Rp 10.000/orang</p>
                                                 <p>Harga Tikar: Rp 15.000/tikar</p>
                                                 <p>Harga Makanan: ≥Rp 10.000</p>
+                                                <p>Parkir</p>
                                                 </>
                                             ) : 'Wisata Lain'}
                                         </p>

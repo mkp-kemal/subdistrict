@@ -4,11 +4,11 @@ import NavbarComponent from './components/NavbarComponent';
 import {HomeSection} from './sections/HomeSection';
 import ProfileSection from './sections/ProfileSection';
 import ActivityKknSection from './sections/ActivityKknSection';
-import HistorySection from './sections/HistorySection';
 import { AdminSection } from './sections/AdminSection';
 import BlogDetailSection from './sections/BlogDetailSection';
 import Login from './auth/components/login';
 import NotFound from './components/NotFound';
+import ApbdSection from './sections/HistorySection';
 
 const App = () => {
   return (
@@ -31,7 +31,7 @@ const MainRoutes = () => {
           <Route path="/home" element={<HomeSection />} />
           <Route path="/profile" element={<ProfileSection />} />
           <Route path="/activity" element={<ActivityKknSection />} />
-          <Route path="/history" element={<HistorySection />} />
+          <Route path="/apbd" element={<ApbdSection />} />
           <Route path="/blog/:id" element={<BlogDetailSection />} />
           <Route path="/user/admin" element={<AdminSection />} />
           <Route path="/auth/login" element={<Login />} />

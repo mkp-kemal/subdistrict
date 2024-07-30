@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
 import foto1 from './../assets/img1.jpg';
 import foto2 from './../assets/img2.jpg';
+import foto3 from './../assets/img3.jpg';
+import foto4 from './../assets/img4.jpg';
 
 const images = [
+  foto4,
+  foto3,
   foto1,
   foto2,
-  'https://picsum.photos/1200/800?random=3',
-  'https://picsum.photos/1200/800?random=4',
-  'https://picsum.photos/1200/800?random=5'
 ];
 
 const BgComponent = () => {
