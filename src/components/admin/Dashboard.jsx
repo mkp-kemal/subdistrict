@@ -30,7 +30,6 @@ const Dashboard = () => {
             try {
                 const response = await axios.get(baseURLAPI('blogs'));
                 setBlogs(response.data);
-                console.log(response.data.map(i => i.date));
                 setBlogCount(response.data.length);
             } catch (error) {
                 console.error('Error fetching blogs:', error);
