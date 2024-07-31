@@ -29,13 +29,14 @@ const ApbdSection = () => {
     };
 
     const renderTable = (data) => (
-        <table className="min-w-full bg-white">
-            <thead>
-                <tr className="bg-tosca text-white">
+        <table className="min-w-full bg-white rounded-lg">
+            <thead className="bg-tosca text-white">
+                <tr>
+                    <th className="py-2 px-4 rounded-bl-lg rounded-tl-lg">Uraian</th>
                     <th className="py-2 px-4">Uraian</th>
                     <th className="py-2 px-4">Anggaran</th>
                     <th className="py-2 px-4">Realisasi</th>
-                    <th className="py-2 px-4">Lebih/Kurang</th>
+                    <th className="py-2 px-4 rounded-br-lg rounded-tr-lg">Lebih/Kurang</th>
                 </tr>
             </thead>
             <tbody>

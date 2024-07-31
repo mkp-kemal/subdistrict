@@ -8,7 +8,7 @@ import { AdminSection } from './sections/AdminSection';
 import BlogDetailSection from './sections/BlogDetailSection';
 import Login from './auth/components/login';
 import NotFound from './components/NotFound';
-import ApbdSection from './sections/HistorySection';
+import ApbdSection from './sections/ApbdSection';
 
 const App = () => {
   return (

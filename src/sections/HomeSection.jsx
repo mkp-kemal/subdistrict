@@ -79,25 +79,25 @@ const Activity = ({ blogs }) => {
                                         <div className="bg-cover bg-center w-full h-40" style={{ backgroundImage: `url(${blog.image})` }}></div>
                                     </div>
                                     <div className="detail p-4">
-                                        <h4 className="text-xl font-bold">{blog.title}</h4>
-                                        <p className="text-gray-600">
-                                            {truncateText(blog.description, 55)}
+                                        <h4 className="text-base font-bold">{blog.title}</h4>
+                                        <p className="text-gray-600 text-sm">
+                                            {truncateText(blog.description, 60)}
                                         </p>
                                     </div>
-                                    <div className="options p-4 bg-tosca justify-around">
+                                    <div className="options p-2 bg-tosca justify-around">
                                         <ul className="flex justify-around">
                                             {blog.gotongRoyong && (
-                                                <li className="w-10 h-10 rounded-full bg-tosca200 flex justify-center items-center">
+                                                <li className="w-8 h-8 rounded-full bg-tosca200 flex justify-center items-center">
                                                     <FaPeopleCarry className="text-white" />
                                                 </li>
                                             )}
                                             {blog.masyarakat && (
-                                                <li className="w-10 h-10 rounded-full bg-tosca200 flex justify-center items-center">
+                                                <li className="w-8 h-8 rounded-full bg-tosca200 flex justify-center items-center">
                                                     <FaPeopleGroup className="text-white" />
                                                 </li>
                                             )}
                                             {blog.wisata && (
-                                                <li className="w-10 h-10 rounded-full bg-tosca200 flex justify-center items-center">
+                                                <li className="w-8 h-8 rounded-full bg-tosca200 flex justify-center items-center">
                                                     <FaUmbrellaBeach className="text-white" />
                                                 </li>
                                             )}
@@ -125,30 +125,37 @@ const Attractions = () => {
                 </div>
                 <div className="overflow-x-auto">
                     <div className="flex justify-around space-x-4">
-                        {[1, 2].map((_, index) => (
-                            <div key={index} className="flex-shrink-0 w-80">
+                        {[1, 2, 3].map((_, index) => (
+                            <div key={index} className="flex-shrink-0 w-64 sm:w-72">
                                 <div className="bg-white shadow-md rounded-lg overflow-hidden">
                                     <div className="relative">
                                         <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${index === 0 ? foto1 : foto2})` }}></div>
                                     </div>
                                     <div className="revire flex justify-between items-center p-1">
                                         <ul className="rat flex space-x-1">
-                                            {[1, 2].map(star => (
+                                            {[1, 2, 3].map(star => (
                                                 <li key={star}><i className="fa fa-star text-yellow-500"></i></li>
                                             ))}
                                         </ul>
                                     </div>
                                     <div className="detail p-4">
-                                        <h4 className="text-xl font-bold">{index === 0 ? 'Curug Cikoleangkak' : 'Wisata Lain'}</h4>
-                                        <p className="text-gray-600">
+                                        <h4 className="text-base font-bold">{index === 0 ? 'Curug Cikoleangkak' : 'Wisata Lain'}</h4>
+                                        <p className="text-gray-600 text-sm lg:md">
                                             {index === 0 ? (
                                                 <>
-                                                <p>Tiket Masuk: Rp 10.000/orang</p>
-                                                <p>Harga Tikar: Rp 15.000/tikar</p>
-                                                <p>Harga Makanan: ≥Rp 10.000</p>
-                                                <p>Parkir</p>
+                                                    <p>Tiket Masuk: Rp 10.000/orang</p>
+                                                    <p>Harga Tikar: Rp 15.000/tikar</p>
+                                                    <p>Harga Makanan: ≥Rp 10.000</p>
+                                                    <p>Parkir</p>
                                                 </>
-                                            ) : 'Wisata Lain'}
+                                            ) : (
+                                                <>
+                                                    <p>Tiket Masuk: -</p>
+                                                    <p>Harga Tikar: -</p>
+                                                    <p>Harga Makanan: -</p>
+                                                    <p>Parkir</p>
+                                                </>
+                                            )}
                                         </p>
                                     </div>
                                     <div className='flex text-white font-bold bg-tosca200 bg-opacity-75 p-2 justify-end'>
