@@ -192,7 +192,7 @@ const Footer = () => {
     }, [])
 
     return (
-        <footer className="bg-tosca200 text-white py-8">
+        <footer className="bg-tosca200 text-white py-8 rounded-tl-full rounded-tr-full">
             <div className="container mx-auto px-52">
                 <div className="flex flex-col md:flex-row justify-between items-center md:items-start text-center md:text-left">
                     {loading ? (
