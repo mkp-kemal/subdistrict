@@ -22,7 +22,7 @@ const BgComponent = () => {
       setTimeout(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
         setFade(true);
-      }, 500); // Match this with the CSS transition duration
+      }, 500); 
     }, 5000);
 
     return () => clearInterval(interval);
@@ -33,7 +33,7 @@ const BgComponent = () => {
     setTimeout(() => {
       setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
       setFade(true);
-    }, 500); // Match this with the CSS transition duration
+    }, 500); 
   };
 
   const handleNext = () => {
@@ -41,7 +41,7 @@ const BgComponent = () => {
     setTimeout(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
       setFade(true);
-    }, 500); // Match this with the CSS transition duration
+    }, 500); 
   };
 
   return (
