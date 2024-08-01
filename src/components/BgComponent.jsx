@@ -6,42 +6,52 @@ import foto3 from './../assets/img3.jpg';
 import foto4 from './../assets/img4.jpg';
 
 const images = [
+  foto2,
+  foto1,
   foto4,
   foto3,
-  foto1,
-  foto2,
 ];
 
 const BgComponent = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [fade, setFade] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000);
+      setFade(false);
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        setFade(true);
+      }, 500); // Match this with the CSS transition duration
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setFade(false);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+      setFade(true);
+    }, 500); // Match this with the CSS transition duration
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setFade(false);
+    setTimeout(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setFade(true);
+    }, 500); // Match this with the CSS transition duration
   };
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      <div
-        className="flex transition-transform duration-1000 ease-in-out"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-      >
+      <div className="relative w-full h-full">
         {images.map((image, index) => (
           <div
             key={index}
-            className="flex-shrink-0 w-full h-screen bg-cover bg-center"
-            style={{ backgroundImage: `url(${image})` }}
+            className={`absolute w-full h-full bg-cover bg-center transition-opacity duration-500 ease-in-out ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+            style={{ backgroundImage: `url(${image})`, borderBottomLeftRadius: "50%" }}
           ></div>
         ))}
       </div>
