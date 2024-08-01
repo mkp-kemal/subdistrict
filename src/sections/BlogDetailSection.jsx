@@ -59,59 +59,61 @@ const BlogDetailSection = () => {
                     <ImSpinner10 className="text-4xl animate-spin text-tosca" />
                 </div>
             ) : (
-                <div className="container mx-auto py-8 px-4 mt-32 fade-in">
-                    <Button onClick={handleBack}>Kembali</Button>
-                    <Button onClick={handleShare} style={{ marginLeft: '10px' }}><FaShareAltSquare />Share Link</Button>
-                    <div className="bg-white shadow-md rounded-lg p-6">
-                        <h1 className="text-3xl font-bold mb-2">{blog.title}</h1>
-                        <div className="mb-4 flex justify-between">
-                            <span className="text-sm text-gray-600">{formatDate(blog.date)}</span>
-                            <p className="text-sm text-white font-semibold bg-tosca rounded-lg px-2">Author: {removeTextAfterAtSymbol(blog.publisher)}</p>
-                        </div>
-                        <div className="mb-4">
-                            <Image
-                                src={`${blog.image}`}
-                                alt="Blog"
-                                className="object-cover"
-                                width="100%"
-                                height={400}
+                <>
+                    <div className="container mx-auto py-8 px-4 mt-32 fade-in">
+                        <Button onClick={handleBack}>Kembali</Button>
+                        <Button onClick={handleShare} style={{ marginLeft: '10px' }}><FaShareAltSquare />Share Link</Button>
+                        <div className="bg-white shadow-md rounded-lg p-6">
+                            <h1 className="text-3xl font-bold mb-2">{blog.title}</h1>
+                            <div className="mb-4 flex justify-between">
+                                <span className="text-sm text-gray-600">{formatDate(blog.date)}</span>
+                                <p className="text-sm text-white font-semibold bg-tosca rounded-lg px-2">Author: {removeTextAfterAtSymbol(blog.publisher)}</p>
+                            </div>
+                            <div className="mb-4">
+                                <Image
+                                    src={`${blog.image}`}
+                                    alt="Blog"
+                                    className="object-cover"
+                                    width="100%"
+                                    height={400}
+                                />
+                            </div>
+                            <div className="mb-4">
+                                <p className="text-xl text-gray-700 font-semibold">{blog.description}</p>
+                            </div>
+                            <div
+                                className="text-gray-700 mt-10 custom-list custom-paragraph"
+                                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.story) }}
                             />
-                        </div>
-                        <div className="mb-4">
-                            <p className="text-xl text-gray-700 font-semibold">{blog.description}</p>
-                        </div>
-                        <div
-                            className="text-gray-700 mt-10 custom-list custom-paragraph"
-                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blog.story) }}
-                        />
-                        <Divider />
-                        <div className="options p-4 bg-tosca justify-around">
-                            <h2 className="text-sm font-semibold text-white">Hubungan Kegiatan</h2>
-                            <ul className="flex justify-around">
-                                {blog.gotongRoyong && (
-                                    <li className="flex flex-col items-center">
-                                        <FaPeopleCarry className="text-white text-2xl" />
-                                        <span className="text-xs text-white">Gotong-royong</span>
-                                    </li>
-                                )}
-                                {blog.masyarakat && (
-                                    <li className="flex flex-col items-center">
-                                        <FaPeopleGroup className="text-white text-2xl" />
-                                        <span className="text-xs text-white">Masyarakat</span>
-                                    </li>
-                                )}
-                                {blog.wisata && (
-                                    <li className="flex flex-col items-center">
-                                        <FaUmbrellaBeach className="text-white text-2xl" />
-                                        <span className="text-xs text-white">Wisata</span>
-                                    </li>
-                                )}
-                            </ul>
+                            <Divider />
+                            <div className="options p-4 bg-tosca justify-around">
+                                <h2 className="text-sm font-semibold text-white">Hubungan Kegiatan</h2>
+                                <ul className="flex justify-around">
+                                    {blog.gotongRoyong && (
+                                        <li className="flex flex-col items-center">
+                                            <FaPeopleCarry className="text-white text-2xl" />
+                                            <span className="text-xs text-white">Gotong-royong</span>
+                                        </li>
+                                    )}
+                                    {blog.masyarakat && (
+                                        <li className="flex flex-col items-center">
+                                            <FaPeopleGroup className="text-white text-2xl" />
+                                            <span className="text-xs text-white">Masyarakat</span>
+                                        </li>
+                                    )}
+                                    {blog.wisata && (
+                                        <li className="flex flex-col items-center">
+                                            <FaUmbrellaBeach className="text-white text-2xl" />
+                                            <span className="text-xs text-white">Wisata</span>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <Footer />
+                </>
             )}
-            <Footer />
         </>
     );
 };
