@@ -201,8 +201,7 @@ const Footer = () => {
                         <>
                             <div className="mb-8 md:mb-0 w-52 md:w-full">
                                 <h3 className="text-2xl font-bold mb-4">Kontak Kami</h3>
-                                <p><FaPhone className="inline-block mr-2" />{navbarItems?.header[0]}</p>
-                                <p><FaEnvelope className="inline-block mr-2" />{navbarItems?.header[1]}</p>
+                                <p><FaEnvelope className="inline-block mr-2" />{navbarItems?.header[0]}</p>
                                 <div className="flex justify-center md:justify-start space-x-4 mt-10">
                                     <a href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
                                         <FaInstagram className="text-3xl" />
