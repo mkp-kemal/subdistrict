@@ -49,7 +49,7 @@ const ApbdSection = () => {
     const PADES2024 = 26880000;
     const DD2024 = 776165000;
     const BHP2024 = 90410050;
-    const ADD2024 = 500334000;
+    const ADD2024 = 500334100;
     const BANPROV2024 = 130000000;
     const BKU2024 = 375106583;
     const PETRANS2024 = DD2024 + BHP2024 + ADD2024 + BANPROV2024 + BKU2024;
