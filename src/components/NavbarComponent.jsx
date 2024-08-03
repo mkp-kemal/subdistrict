@@ -10,8 +10,6 @@ const NavbarComponent = () => {
   const [navbarItems, setNavbarItems] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hideOnScroll, setHideOnScroll] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [dropdownTimer, setDropdownTimer] = useState(null);
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
@@ -49,21 +47,6 @@ const NavbarComponent = () => {
 
   const navOrder = ["home", "profile", "maintenance", "activity", "apbd", "history", "jdih"];
 
-  const handleMouseEnter = () => {
-    if (dropdownTimer) {
-      clearTimeout(dropdownTimer);
-      setDropdownTimer(null);
-    }
-    setIsDropdownOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    const timer = setTimeout(() => {
-      setIsDropdownOpen(false);
-    }, 500);
-    setDropdownTimer(timer);
-  };
-
   return (
     <nav className={`bg-tosca shadow-lg fixed w-full top-0 z-50 font-inherit transition-transform duration-300 ease-in-out ${hideOnScroll ? 'transform -translate-y-full' : ''}`}>
       <div className="bg-tosca200 header-top py-2">
@@ -87,6 +70,11 @@ const NavbarComponent = () => {
                   <i className="far fa-envelope mr-2"></i>
                   <a href={`mailto:${navbarItems?.header[0]}`} target='_blank' className={`hover:text-sage transition-all duration-300 ease-in-out cursor-pointer`}>{navbarItems?.header[0]}</a>
                 </li>
+                {/* <span className="mx-2 hidden lg:flex">|</span>
+                    <li className="flex items-center group">
+                      <i className="fas fa-phone-volume mr-2"></i>
+                      <a href={`https://wa.me/${navbarItems.header[0]}`} target='_blank' className={`hover:text-sage transition-all duration-300 ease-in-out cursor-pointer`}>{navbarItems.header[0]}</a>
+                    </li> */}
               </ul>
             </div>
             <div className="col-md-12 mt-2 justify-center text-white space-x-10 hidden lg:flex">
@@ -153,50 +141,19 @@ const NavbarComponent = () => {
           {loading ? (
             <div><svg xmlns="http://www.w3.org/2000/svg" width="4em" height="2em" viewBox="0 0 24 24"><circle cx="4" cy="12" r="3" fill="white"><animate id="svgSpinners3DotsScale0" attributeName="r" begin="0;svgSpinners3DotsScale1.end-0.25s" dur="0.75s" values="3;.2;3" /></circle><circle cx="12" cy="12" r="3" fill="white"><animate attributeName="r" begin="svgSpinners3DotsScale0.end-0.6s" dur="0.75s" values="3;.2;3" /></circle><circle cx="20" cy="12" r="3" fill="white"><animate id="svgSpinners3DotsScale1" attributeName="r" begin="svgSpinners3DotsScale0.end-0.45s" dur="0.75s" values="3;.2;3" /></circle></svg></div>
           ) : (
-            navOrder.map((key) => {
-              if (key === "jdih" && navbarItems?.jdih) {
-                return (
-                  <div
-                    key={key}
-                    className="relative group"
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <NavLink
-                      to={`/${key}`}
-                      className="text-white hover:text-sage transition-colors duration-300"
-                    >
-                      {navbarItems.jdih}
-                    </NavLink>
-                    <div className={`absolute bg-white text-sage rounded-lg shadow-lg mt-2 py-2 ${isDropdownOpen ? 'block' : 'hidden'}`}>
-                      {navbarItems.jdih_subitems.map((subitem, index) => (
-                        <NavLink
-                          key={index}
-                          to={`/${key}/${subitem.toLowerCase().replace(/\s+/g, '-')}`}
-                          className="block px-4 py-2 hover:bg-tosca hover:text-white"
-                        >
-                          {subitem}
-                        </NavLink>
-                      ))}
-                    </div>
-                  </div>
-                );
-              } else {
-                return (
-                  navbarItems?.[key] && (
-                    <NavLink
-                      key={key}
-                      to={`/${key}`}
-                      className={({ isActive }) =>
-                        isActive ? "text-sage" : "text-white hover:text-sage transition-colors duration-300"
-                      }
-                    >
-                      {navbarItems[key]}
-                    </NavLink>
-                  )
-                );
-              }
-            })
+            navOrder.map((key) => (
+              navbarItems?.[key] && (
+                <NavLink
+                  key={key}
+                  to={`/${key}`}
+                  className={({ isActive }) =>
+                    isActive ? "text-sage" : "text-white hover:text-sage transition-colors duration-300"
+                  }
+                >
+                  {navbarItems[key]}
+                </NavLink>
+              )
+            ))
           )}
         </div>
       </div>
