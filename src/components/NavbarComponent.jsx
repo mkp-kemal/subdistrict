@@ -54,31 +54,27 @@ const NavbarComponent = () => {
           <div className="row flex flex-wrap items-center justify-between">
             <div className="col-lg-6">
               <ul className="text-white flex space-x-4">
-                {navbarItems?.header && (
-                  <>
-                    <li className="hidden lg:flex items-center group">
-                      <i className="far fa-envelope mr-2"></i>
-                      <span className={`hover:text-sage transition-all duration-300 ease-in-out`}>
-                        <img src="https://fst.uinsgd.ac.id/wp-content/uploads/2020/05/cropped-logo-uin.png" alt="UINSGD" className="h-8 w-8 rounded-full" />
-                      </span>
-                    </li>
-                    <li className="hidden lg:flex items-center group">
-                      <i className="far fa-envelope mr-2"></i>
-                      <a href="https://nagrakciater.vercel.app/auth/login" className={`hover:text-sage transition-all duration-300 ease-in-out`}>
-                        <img src="https://i.ibb.co.com/Y25CX4R/Desain-tanpa-judul-1.png" alt="KKN415" className="h-8 w-8 mr-2 rounded-full" />
-                      </a>
-                    </li>
-                    <li className="hidden lg:flex items-center group">
-                      <i className="far fa-envelope mr-2"></i>
-                      <a href={`mailto:${navbarItems.header[1]}`} target='_blank' className={`hover:text-sage transition-all duration-300 ease-in-out cursor-pointer`}>{navbarItems.header[1]}</a>
-                    </li>
-                    <span className="mx-2 hidden lg:flex">|</span>
+                <li className="hidden lg:flex items-center group">
+                  <i className="far fa-envelope mr-2"></i>
+                  <span className={`hover:text-sage transition-all duration-300 ease-in-out`}>
+                    <img src="https://fst.uinsgd.ac.id/wp-content/uploads/2020/05/cropped-logo-uin.png" alt="UINSGD" className="h-8 w-8 rounded-full" />
+                  </span>
+                </li>
+                <li className="hidden lg:flex items-center group">
+                  <i className="far fa-envelope mr-2"></i>
+                  <a href="https://nagrakciater.vercel.app/auth/login" className={`hover:text-sage transition-all duration-300 ease-in-out`}>
+                    <img src="https://i.ibb.co.com/Y25CX4R/Desain-tanpa-judul-1.png" alt="KKN415" className="h-8 w-8 mr-2 rounded-full" />
+                  </a>
+                </li>
+                <li className="flex items-center group text-sm lg:text-base">
+                  <i className="far fa-envelope mr-2"></i>
+                  <a href={`mailto:${navbarItems?.header[0]}`} target='_blank' className={`hover:text-sage transition-all duration-300 ease-in-out cursor-pointer`}>{navbarItems?.header[0]}</a>
+                </li>
+                {/* <span className="mx-2 hidden lg:flex">|</span>
                     <li className="flex items-center group">
                       <i className="fas fa-phone-volume mr-2"></i>
                       <a href={`https://wa.me/${navbarItems.header[0]}`} target='_blank' className={`hover:text-sage transition-all duration-300 ease-in-out cursor-pointer`}>{navbarItems.header[0]}</a>
-                    </li>
-                  </>
-                )}
+                    </li> */}
               </ul>
             </div>
             <div className="col-md-12 mt-2 justify-center text-white space-x-10 hidden lg:flex">
