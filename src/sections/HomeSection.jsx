@@ -9,7 +9,7 @@ import { formatDate } from '../components/FormatDate';
 import { baseURLAPI } from '../helpers/helper';
 import BgComponent from '../components/BgComponent';
 import { truncateText } from '../components/Truncated';
-import { FaFacebook, FaInstagram, FaPhone, FaEnvelope } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import foto1 from './../assets/img1.jpg';
 import foto2 from './../assets/img2.jpg';
 
