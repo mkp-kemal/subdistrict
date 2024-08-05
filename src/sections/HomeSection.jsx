@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
-import { FaPeopleCarry } from 'react-icons/fa';
+import { FaCar, FaMotorcycle, FaPeopleCarry } from 'react-icons/fa';
 import { FaPeopleGroup, FaUmbrellaBeach } from 'react-icons/fa6';
 import { ImSpinner10 } from "react-icons/im";
 import axios from 'axios';
@@ -50,7 +50,6 @@ const HomeSection = () => {
     );
 };
 
-// eslint-disable-next-line react/prop-types
 const Activity = ({ blogs }) => {
     const navigate = useNavigate();
 
@@ -145,15 +144,35 @@ const Attractions = () => {
                                                 <>
                                                     <p>Tiket Masuk: Rp 10.000/orang</p>
                                                     <p>Harga Tikar: Rp 15.000/tikar</p>
-                                                    <p>Harga Makanan: ≥Rp 10.000</p>
-                                                    <p>Parkir</p>
+                                                    <p>Harga Makanan: ≥Rp 5.000</p>
+                                                    <p>Parkir:</p>
+                                                    <div className="flex justify-center items-center space-x-4">
+                                                        <p className="flex flex-col items-center">
+                                                            <FaMotorcycle />
+                                                            <span className="text-sm">5k</span>
+                                                        </p>
+                                                        <p className="flex flex-col items-center">
+                                                            <FaCar />
+                                                            <span className="text-sm">10k</span>
+                                                        </p>
+                                                    </div>
                                                 </>
                                             ) : (
                                                 <>
-                                                    <p>Tiket Masuk: -</p>
-                                                    <p>Harga Tikar: -</p>
-                                                    <p>Harga Makanan: -</p>
-                                                    <p>Parkir</p>
+                                                    <p>Tiket Masuk: Rp 10.000/orang</p>
+                                                    <p>Harga Tikar: Rp 15.000/tikar</p>
+                                                    <p>Harga Makanan: ≥Rp 5.000</p>
+                                                    <p>Parkir:</p>
+                                                    <div className="flex justify-center items-center space-x-4">
+                                                        <p className="flex flex-col items-center">
+                                                            <FaMotorcycle />
+                                                            <span className="text-sm">5k</span>
+                                                        </p>
+                                                        <p className="flex flex-col items-center">
+                                                            <FaCar />
+                                                            <span className="text-sm">10k</span>
+                                                        </p>
+                                                    </div>
                                                 </>
                                             )}
                                         </p>
