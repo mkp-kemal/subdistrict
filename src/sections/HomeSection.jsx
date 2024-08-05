@@ -10,9 +10,9 @@ import { baseURLAPI } from '../helpers/helper';
 import BgComponent from '../components/BgComponent';
 import { truncateText } from '../components/Truncated';
 import { FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa';
-import foto1 from './../assets/img1.jpg';
-import foto2 from './../assets/img5.jpg';
-import foto3 from './../assets/img6.jpg';
+import foto1 from './../assets/img2.jpg';
+import foto2 from './../assets/img7.jpg';
+import foto3 from './../assets/img8.jpg';
 
 const HomeSection = () => {
   const [loading, setLoading] = useState(true);
