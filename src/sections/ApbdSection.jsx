@@ -256,7 +256,44 @@ const ApbdSection = () => {
                         </div>
                     </div>
                 </Panel>
-                <Panel header={<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>{data2024.header} <span style={{ fontSize: '12px', color: 'gray' }}>31 Desember 2024</span></div>} key="2">
+                <Panel header={<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>{data2023.header} <span style={{ fontSize: '12px', color: 'gray' }}>31 Desember 2023</span></div>} key="2">
+                    <div style={{ display: 'flex', flexDirection: 'column' }} className='font-bold'>
+                        <div style={{ flex: 1, padding: '10px' }}>
+                            <h3 className='text-center font-bold bg-tosca200 rounded-tl-lg rounded-tr-lg text-white p-2'>Pemasukan</h3>
+                            <div style={{ overflowX: 'auto' }} className='rounded-xl'>
+                                <Table
+                                    dataSource={[...data2023.pemasukan, totalMasuk2023]}
+                                    columns={columns}
+                                    pagination={false}
+                                    expandable={{
+                                        expandedRowKeys,
+                                        onExpand: (expanded, record) => handleRowClick(record),
+                                        expandIcon: ({ expanded, onExpand, record }) =>
+                                            record.children ? (
+                                                <a className='mr-5' style={{ marginLeft: '-2%' }} onClick={e => onExpand(record, e)}>{expanded ? '-' : '+'}</a>
+                                            ) : null,
+                                    }}
+                                    rowClassName={(record) => record.key === 'totalMasuk2023' ? 'bg-tosca200 text-white font-bold' : ''}
+                                    onRow={(record) => ({
+                                        onClick: () => handleRowClick(record),
+                                    })}
+                                />
+                            </div>
+                        </div>
+                        <div style={{ flex: 1, padding: '10px' }}>
+                            <h3 className='text-center font-bold bg-tosca200 rounded-tl-lg rounded-tr-lg text-white p-2'>Pengeluaran</h3>
+                            <div style={{ overflowX: 'auto' }} className='rounded-xl'>
+                                <Table
+                                    dataSource={[...data2023.pengeluaran, totalKeluar2023, totalDefisit2023, totalSilpa2023]}
+                                    columns={columns}
+                                    pagination={false}
+                                    rowClassName={(record) => ['totalKeluar2023', 'totalDefisit2023', 'totalSilpa2023'].includes(record.key) ? 'bg-tosca200 text-white font-bold' : ''}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </Panel>
+                <Panel header={<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>{data2024.header} <span style={{ fontSize: '12px', color: 'gray' }}>31 Desember 2024</span></div>} key="3">
                     <div style={{ display: 'flex', flexDirection: 'column' }} className='font-bold'>
                         <div style={{ flex: 1, padding: '10px' }}>
                             <h3 className='text-center font-bold bg-tosca200 rounded-tl-lg rounded-tr-lg text-white p-2'>Pemasukan</h3>
