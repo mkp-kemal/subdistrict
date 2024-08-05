@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
-import { FaCar, FaMotorcycle, FaPeopleCarry } from 'react-icons/fa';
+import { FaPeopleCarry } from 'react-icons/fa';
 import { FaPeopleGroup, FaUmbrellaBeach } from 'react-icons/fa6';
 import { ImSpinner10 } from 'react-icons/im';
 import axios from 'axios';
@@ -50,6 +50,7 @@ const HomeSection = () => {
   );
 };
 
+// eslint-disable-next-line react/prop-types
 const Activity = ({ blogs }) => {
   const navigate = useNavigate();
 
@@ -107,88 +108,12 @@ const Activity = ({ blogs }) => {
 };
 
 const Attractions = () => {
-<<<<<<< HEAD
   return (
     <div className="popular-pack container-fluid bg-gray-50 py-8">
       <div className="container mx-auto">
         <div className="session-title text-center mb-8">
           <h2 className="text-3xl font-bold">Objek Wisata Terdekat</h2>
           <p className="text-gray-600">Berikut objek wisata yang ada di dekat desa</p>
-=======
-    return (
-        <div className="popular-pack container-fluid bg-gray-50 py-8">
-            <div className="container mx-auto">
-                <div className="session-title text-center mb-8">
-                    <h2 className="text-3xl font-bold">Objek Wisata Terdekat</h2>
-                    <p className="text-gray-600">
-                        Berikut objek wisata yang ada di dekat desa
-                    </p>
-                </div>
-                <div className="overflow-x-auto">
-                    <div className="flex justify-around space-x-4">
-                        {[1, 2, 3].map((_, index) => (
-                            <div key={index} className="flex-shrink-0 w-64 sm:w-72">
-                                <div className="bg-white shadow-md rounded-lg overflow-hidden">
-                                    <div className="relative">
-                                        <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${index === 0 ? foto1 : foto2})` }}></div>
-                                    </div>
-                                    <div className="revire flex justify-between items-center p-1">
-                                        <ul className="rat flex space-x-1">
-                                            {[1, 2, 3].map(star => (
-                                                <li key={star}><i className="fa fa-star text-yellow-500"></i></li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                    <div className="detail p-4">
-                                        <h4 className="text-base font-bold">{index === 0 ? 'Curug Cikoleangkak' : 'Wisata Lain'}</h4>
-                                        <p className="text-gray-600 text-sm lg:md">
-                                            {index === 0 ? (
-                                                <>
-                                                    <p>Tiket Masuk: Rp 10.000/orang</p>
-                                                    <p>Harga Tikar: Rp 15.000/tikar</p>
-                                                    <p>Harga Makanan: ≥Rp 5.000</p>
-                                                    <p>Parkir:</p>
-                                                    <div className="flex justify-center items-center space-x-4">
-                                                        <p className="flex flex-col items-center">
-                                                            <FaMotorcycle />
-                                                            <span className="text-sm">5k</span>
-                                                        </p>
-                                                        <p className="flex flex-col items-center">
-                                                            <FaCar />
-                                                            <span className="text-sm">10k</span>
-                                                        </p>
-                                                    </div>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <p>Tiket Masuk: Rp 10.000/orang</p>
-                                                    <p>Harga Tikar: Rp 15.000/tikar</p>
-                                                    <p>Harga Makanan: ≥Rp 5.000</p>
-                                                    <p>Parkir:</p>
-                                                    <div className="flex justify-center items-center space-x-4">
-                                                        <p className="flex flex-col items-center">
-                                                            <FaMotorcycle />
-                                                            <span className="text-sm">5k</span>
-                                                        </p>
-                                                        <p className="flex flex-col items-center">
-                                                            <FaCar />
-                                                            <span className="text-sm">10k</span>
-                                                        </p>
-                                                    </div>
-                                                </>
-                                            )}
-                                        </p>
-                                    </div>
-                                    <div className='flex text-white font-bold bg-tosca200 bg-opacity-75 p-2 justify-end'>
-                                        <p className='mr-5'>Update 2024</p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
->>>>>>> 3b5edbcf406f34b811c39c585e5a6351fb3a5acd
         </div>
         <div className="overflow-x-auto">
           <div className="flex justify-around space-x-4">
