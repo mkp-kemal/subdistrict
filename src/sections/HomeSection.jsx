@@ -122,7 +122,19 @@ const Attractions = () => {
               <div key={index} className="flex-shrink-0 w-64 sm:w-72">
                 <div className="bg-white shadow-md rounded-lg overflow-hidden">
                   <div className="relative">
-                    <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${index === 0 ? foto1 : index === 1 ? foto2 : foto3})` }}></div>
+                    <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${index === 0 ? foto1 : index === 1 ? foto2 : foto3})` }}>
+                      {index === 0 ? (
+                        <div className="absolute top-0 left-0 bg-tosca200 text-white p-1 rounded-br-lg">
+                          Rekomendasi
+                        </div>
+                      ) : index === 1 ? (
+                        <div className="absolute top-0 left-0 bg-tosca200 text-white p-1 rounded-br-lg">
+                          Rekomendasi
+                        </div>
+                      ) : (
+                        ''
+                      )}
+                    </div>
                   </div>
                   <div className="revire flex justify-between items-center p-1">
                     <ul className="rat flex space-x-1">
@@ -138,9 +150,12 @@ const Attractions = () => {
                     <p className="text-gray-600 text-sm lg:md">
                       {index === 0 ? (
                         <>
+                          <p>Tipe: Berenang, Ramai</p>
                           <p>Tiket Masuk: Rp 10.000/orang</p>
                           <p>Harga Tikar: Rp 15.000/tikar</p>
                           <p>Harga Makanan: ≥Rp 10.000</p>
+                          <p>Buka: Setiap Hari <span className='text-red-600'>(Jumat Tutup)</span></p>
+                          <p>Jam:  07:00 - 17:00</p>
                           <p>Parkir</p>
                           <div className="flex justify-center items-center space-x-4">
                             <p className="flex flex-col items-center">
@@ -155,9 +170,12 @@ const Attractions = () => {
                         </>
                       ) : index === 1 ? (
                         <>
+                          <p>Tipe: Berenang, Santai</p>
                           <p>Tiket Masuk: Rp 10.000/orang</p>
                           <p>Harga Tikar: -</p>
                           <p>Harga Makanan: ≥Rp 10.000</p>
+                          <p>Buka: Setiap Hari </p>
+                          <p>Jam: 07:00 - 17:00</p>
                           <p>Parkir</p>
                           <div className="flex justify-center items-center space-x-4">
                             <p className="flex flex-col items-center">
@@ -172,18 +190,21 @@ const Attractions = () => {
                         </>
                       ) : (
                         <>
+                          <p>Tipe: Family Gathering</p>
                           <p>Tiket Masuk: Rp 10.000/orang</p>
                           <p>Harga Tikar: -</p>
                           <p>Harga Makanan: ≥Rp 10.000</p>
+                          <p>Buka: Setiap Hari</p>
+                          <p>Jam: 07:00 - 17:00</p>
                           <p>Parkir</p>
                           <div className="flex justify-center items-center space-x-4">
                             <p className="flex flex-col items-center">
                               <FaMotorcycle />
-                              <span className="text-sm">5k</span>
+                              <span className="text-sm">3k</span>
                             </p>
                             <p className="flex flex-col items-center">
                               <FaCar />
-                              <span className="text-sm">10k</span>
+                              <span className="text-sm">8k</span>
                             </p>
                           </div>
                         </>
