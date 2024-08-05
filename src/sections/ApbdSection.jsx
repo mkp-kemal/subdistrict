@@ -412,7 +412,6 @@ const ApbdSection = () => {
                     </div>
                 </Panel>
             </Collapse>
-            <p className='text-center font-bold mt-5'>Di bawah naungan</p>
             <div className='flex justify-center mt-5'>
                 <img src={foto3} className='w-14 h-14 mr-4' alt="img" />
                 <img src={foto1} className='w-14 h-14 rounded-full mr-4' alt="img" />
