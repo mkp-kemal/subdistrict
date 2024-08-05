@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Table, Collapse } from 'antd';
 import { formatRupiah } from '../components/FormatRupiah';
+import foto1 from './../assets/logodesatertinggal.png';
+import foto2 from './../assets/logosgds.png';
+import foto3 from './../assets/logo_nagrak.png';
 
 const { Panel } = Collapse;
 
@@ -28,7 +31,6 @@ const ApbdSection = () => {
     const BANPROV2022 = 130000000;
     const BKU2022 = 256166667;
     const PETRANS2022 = DD2022 + BHP2022 + ADD2022 + BANPROV2022 + BKU2022 + 428258;
-    const REALISASIPETRANS2022 = 1714529483;
     const TOTALMASUK2022 = PADES2022 + PETRANS2022;
 
     const BPPD2022 = 797519919;
@@ -36,13 +38,7 @@ const ApbdSection = () => {
     const BPK2022 = 58750000;
     const BPM2022 = 75500000;
     const BPBD2022 = 342400000;
-    const BPPDRealisasi2022 = 804195381;
-    const BPPRealisasi2022 = 582977000;
-    const BPKRealisasi2022 = 62300000;
-    const BPMRealisasi2022 = 33475000;
-    const BPBDRealisasi2022 = 151200000;
     const TOTALKELUAR2022 = BPPD2022 + BPP2022 + BPK2022 + BPM2022 + BPBD2022;
-    const TOTALKELUARREALISASI2022 = BPPDRealisasi2022 + BPPRealisasi2022 + BPKRealisasi2022 + BPMRealisasi2022 + BPBDRealisasi2022;
 
     //2023
     const PADES2023 = 26880000;
@@ -416,6 +412,12 @@ const ApbdSection = () => {
                     </div>
                 </Panel>
             </Collapse>
+            <p className='text-center font-bold mt-5'>Di bawah naungan</p>
+            <div className='flex justify-center mt-5'>
+                <img src={foto3} className='w-14 h-14 mr-4' alt="img" />
+                <img src={foto1} className='w-14 h-14 rounded-full mr-4' alt="img" />
+                <img src={foto2} className='w-14 h-14 rounded-full' alt="img" />
+            </div>
         </div>
     );
 };
