@@ -47,7 +47,7 @@ const ApbdSection = () => {
 
     //2024
     const PADES2024 = 26880000;
-    const DD2024 = 776165000;
+    const DD2024 = 776185000;
     const BHP2024 = 90410050;
     const ADD2024 = 500334100;
     const BANPROV2024 = 130000000;
@@ -56,16 +56,16 @@ const ApbdSection = () => {
     const REALISASIPETRANS2024 = 1714529483;
     const TOTALMASUK2024 = PADES2024 + DD2024 + BHP2024 + ADD2024 + BANPROV2024 + BKU2024
 
-    const BPPD2024 = 973493631;
-    const BPP2024 = 582977000;
-    const BPK2024 = 70220000;
-    const BPM2024 = 36475000;
+    const BPPD2024 = 954988084;
+    const BPP2024 = 687343000;
+    const BPK2024 = 66260000;
+    const BPM2024 = 58284450;
     const BPBD2024 = 151200000;
-    const BPPDRealisasi2024 = 804195381;
-    const BPPRealisasi2024 = 582977000;
-    const BPKRealisasi2024 = 62300000;
-    const BPMRealisasi2024 = 33475000;
-    const BPBDRealisasi2024 = 151200000;
+    const BPPDRealisasi2024 = 0;
+    const BPPRealisasi2024 = 0;
+    const BPKRealisasi2024 = 0;
+    const BPMRealisasi2024 = 0;
+    const BPBDRealisasi2024 = 0;
     const TOTALKELUAR2024 = BPPD2024 + BPP2024 + BPK2024 + BPM2024 + BPBD2024;
     const TOTALKELUARREALISASI2024 = BPPDRealisasi2024 + BPPRealisasi2024 + BPKRealisasi2024 + BPMRealisasi2024 + BPBDRealisasi2024;
 
@@ -119,11 +119,11 @@ const ApbdSection = () => {
             { key: '3', uraian: 'Pendapatan Lainnya', anggaran: '-', realisasi: formatRupiah(316126), lebihKurang: formatRupiah(316126) },
         ],
         pengeluaran: [
-            { key: '4', uraian: 'Bidang Penyelenggaraan Pemerintah Desa', anggaran: formatRupiah(BPPD2024), realisasi: formatRupiah(BPPDRealisasi2024), lebihKurang: formatRupiah(BPPD2024 - BPPDRealisasi2024) },
-            { key: '5', uraian: 'Bidang Pelaksanaan Pembangunan', anggaran: formatRupiah(BPP2024), realisasi: formatRupiah(BPPRealisasi2024), lebihKurang: '-' },
-            { key: '6', uraian: 'Bidang Pembinaan Kemasyarakatan', anggaran: formatRupiah(BPK2024), realisasi: formatRupiah(BPKRealisasi2024), lebihKurang: formatRupiah(BPK2024 - BPKRealisasi2024) },
-            { key: '7', uraian: 'Bidang Pemberdayaan Masyarakat', anggaran: formatRupiah(BPM2024), realisasi: formatRupiah(BPMRealisasi2024), lebihKurang: formatRupiah(BPM2024 - BPMRealisasi2024) },
-            { key: '8', uraian: 'Bidang Penanggulangan Bencana Darurat & Mendesak', anggaran: formatRupiah(BPBD2024), realisasi: formatRupiah(BPBDRealisasi2024), lebihKurang: '-' },
+            { key: '4', uraian: 'Bidang Penyelenggaraan Pemerintah Desa', anggaran: formatRupiah(BPPD2024), realisasi: '-', lebihKurang: formatRupiah(BPPD2024 - BPPDRealisasi2024) },
+            { key: '5', uraian: 'Bidang Pelaksanaan Pembangunan', anggaran: formatRupiah(BPP2024), realisasi: '-', lebihKurang: formatRupiah(BPP2024) },
+            { key: '6', uraian: 'Bidang Pembinaan Kemasyarakatan', anggaran: formatRupiah(BPK2024), realisasi: '-', lebihKurang: formatRupiah(BPK2024 - BPKRealisasi2024) },
+            { key: '7', uraian: 'Bidang Pemberdayaan Masyarakat', anggaran: formatRupiah(BPM2024), realisasi: '-', lebihKurang: formatRupiah(BPM2024 - BPMRealisasi2024) },
+            { key: '8', uraian: 'Bidang Penanggulangan Bencana Darurat & Mendesak', anggaran: formatRupiah(BPBD2024), realisasi: '-', lebihKurang: formatRupiah(BPBD2024) },
         ],
     };
 
@@ -203,17 +203,17 @@ const ApbdSection = () => {
     const totalDefisit2024 = {
         key: 'totalDefisit2024',
         uraian: 'Total Defisit',
-        anggaran: formatRupiah(77517102),
-        realisasi: formatRupiah(80698228),
-        lebihKurang: formatRupiah(3181126),
+        anggaran: '-',
+        realisasi: '-',
+        lebihKurang: '-',
     };
 
     const totalSilpa2024 = {
         key: 'totalSilpa2024',
-        uraian: 'SILPA Tahun Berjalan',
-        anggaran: formatRupiah(0),
-        realisasi: formatRupiah(3181126),
-        lebihKurang: formatRupiah(3181126),
+        uraian: 'SILPA Tahun Sebelumnya',
+        anggaran: formatRupiah(19159801),
+        realisasi: formatRupiah(0),
+        lebihKurang: formatRupiah(19159801),
     };
 
     return (
