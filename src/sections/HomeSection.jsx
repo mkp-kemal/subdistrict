@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
-import { FaPeopleCarry } from 'react-icons/fa';
+import { FaCar, FaMotorcycle, FaPeopleCarry } from 'react-icons/fa';
 import { FaPeopleGroup, FaUmbrellaBeach } from 'react-icons/fa6';
 import { ImSpinner10 } from 'react-icons/im';
 import axios from 'axios';
@@ -11,7 +11,8 @@ import BgComponent from '../components/BgComponent';
 import { truncateText } from '../components/Truncated';
 import { FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import foto1 from './../assets/img1.jpg';
-import foto2 from './../assets/img2.jpg';
+import foto2 from './../assets/img5.jpg';
+import foto3 from './../assets/img6.jpg';
 
 const HomeSection = () => {
   const [loading, setLoading] = useState(true);
@@ -121,7 +122,7 @@ const Attractions = () => {
               <div key={index} className="flex-shrink-0 w-64 sm:w-72">
                 <div className="bg-white shadow-md rounded-lg overflow-hidden">
                   <div className="relative">
-                    <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${index === 0 ? foto1 : foto2})` }}></div>
+                    <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${index === 0 ? foto1 : index === 1 ? foto2 : foto3})` }}></div>
                   </div>
                   <div className="revire flex justify-between items-center p-1">
                     <ul className="rat flex space-x-1">
@@ -133,7 +134,7 @@ const Attractions = () => {
                     </ul>
                   </div>
                   <div className="detail p-4">
-                    <h4 className="text-base font-bold"> {index === 0 ? 'Curug Cikoleangkak' : index === 1 ? 'Curug Cipondok' : 'Curug Dayang Sumbi'}</h4>
+                    <h4 className="text-base font-bold"> {index === 0 ? 'Curug Koleangkak' : index === 1 ? 'Curug Cipondok' : 'Curug Dayang Sumbi'}</h4>
                     <p className="text-gray-600 text-sm lg:md">
                       {index === 0 ? (
                         <>
@@ -141,13 +142,50 @@ const Attractions = () => {
                           <p>Harga Tikar: Rp 15.000/tikar</p>
                           <p>Harga Makanan: ≥Rp 10.000</p>
                           <p>Parkir</p>
+                          <div className="flex justify-center items-center space-x-4">
+                            <p className="flex flex-col items-center">
+                              <FaMotorcycle />
+                              <span className="text-sm">5k</span>
+                            </p>
+                            <p className="flex flex-col items-center">
+                              <FaCar />
+                              <span className="text-sm">10k</span>
+                            </p>
+                          </div>
+                        </>
+                      ) : index === 1 ? (
+                        <>
+                          <p>Tiket Masuk: Rp 10.000/orang</p>
+                          <p>Harga Tikar: -</p>
+                          <p>Harga Makanan: ≥Rp 10.000</p>
+                          <p>Parkir</p>
+                          <div className="flex justify-center items-center space-x-4">
+                            <p className="flex flex-col items-center">
+                              <FaMotorcycle />
+                              <span className="text-sm">5k</span>
+                            </p>
+                            <p className="flex flex-col items-center">
+                              <FaCar />
+                              <span className="text-sm">10k</span>
+                            </p>
+                          </div>
                         </>
                       ) : (
                         <>
-                          <p>Tiket Masuk: -</p>
+                          <p>Tiket Masuk: Rp 10.000/orang</p>
                           <p>Harga Tikar: -</p>
-                          <p>Harga Makanan: -</p>
+                          <p>Harga Makanan: ≥Rp 10.000</p>
                           <p>Parkir</p>
+                          <div className="flex justify-center items-center space-x-4">
+                            <p className="flex flex-col items-center">
+                              <FaMotorcycle />
+                              <span className="text-sm">5k</span>
+                            </p>
+                            <p className="flex flex-col items-center">
+                              <FaCar />
+                              <span className="text-sm">10k</span>
+                            </p>
+                          </div>
                         </>
                       )}
                     </p>
