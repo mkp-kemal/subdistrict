@@ -53,7 +53,7 @@ const chartConfig = {
 const JdihSection = () => {
     return (
         <div className="p-4 mt-36">
-            <h1 className="text-xl text-center font-bold mb-4">Jaringan Dokumentasi dan Informasi Hukum Desa Nagrak</h1>
+            <h1 className="text-xl text-center font-bold mb-4">Jaringan Dokumentasi dan Informasi Hukum <br /> (JDIH) Desa Nagrak</h1>
             <Collapse>
                 {Object.keys(dataDummy).map((judul, index) => (
                     <Panel

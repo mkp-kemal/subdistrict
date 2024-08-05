@@ -76,7 +76,7 @@
           {images.map((_, index) => (
             <button
               key={index}
-              className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'}`}
+              className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-tosca' : 'bg-lime-950'}`}
               onClick={() => setCurrentIndex(index)}
               aria-label={`Slide ${index + 1}`}
             ></button>

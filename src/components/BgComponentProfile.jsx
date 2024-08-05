@@ -1,13 +1,13 @@
   import { useState, useEffect } from 'react';
   import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
-  import foto1 from './../assets/img1.jpg';
-  import foto2 from './../assets/img2.jpg';
-  import foto3 from './../assets/img3.jpg';
-  import foto4 from './../assets/img4.jpg';
+  import foto2 from './../assets/img3.jpg';
+  import foto3 from './../assets/img4.jpg';
+  import foto1 from './../assets/img9.jpg';
+  import foto4 from './../assets/img7.jpg';
 
   const images = [
-    foto2,
     foto1,
+    foto2,
     foto4,
     foto3,
   ];

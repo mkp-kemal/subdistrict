@@ -299,6 +299,7 @@ const ApbdSection = () => {
 
     return (
         <div style={{ padding: '20px' }} className="mt-36">
+            <h1 className="text-xl text-center font-bold mb-4">Anggaran Pendapatan dan Belanja Daerah <br />(APBD) Desa Nagrak Tiap Tahun</h1>
             <Collapse defaultActiveKey={['0']}>
                 <Panel header={<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>{data2022.header} <span style={{ fontSize: '12px', color: 'gray' }}>31 Desember 2022</span></div>} key="1">
                     <div style={{ display: 'flex', flexDirection: 'column' }} className='font-bold'>
