@@ -20,6 +20,30 @@ const ApbdSection = () => {
         setExpandedRowKeys(keys);
     };
 
+    //2022
+    const PADES2022 = 0;
+    const DD2022 = 755000000;
+    const BHP2022 = 101005786;
+    const ADD2022 = 498985400;
+    const BANPROV2022 = 130000000;
+    const BKU2022 = 256166667;
+    const PETRANS2022 = DD2022 + BHP2022 + ADD2022 + BANPROV2022 + BKU2022 + 428258;
+    const REALISASIPETRANS2022 = 1714529483;
+    const TOTALMASUK2022 = PADES2022 + PETRANS2022;
+
+    const BPPD2022 = 797519919;
+    const BPP2022 = 492900000;
+    const BPK2022 = 58750000;
+    const BPM2022 = 75500000;
+    const BPBD2022 = 342400000;
+    const BPPDRealisasi2022 = 804195381;
+    const BPPRealisasi2022 = 582977000;
+    const BPKRealisasi2022 = 62300000;
+    const BPMRealisasi2022 = 33475000;
+    const BPBDRealisasi2022 = 151200000;
+    const TOTALKELUAR2022 = BPPD2022 + BPP2022 + BPK2022 + BPM2022 + BPBD2022;
+    const TOTALKELUARREALISASI2022 = BPPDRealisasi2022 + BPPRealisasi2022 + BPKRealisasi2022 + BPMRealisasi2022 + BPBDRealisasi2022;
+
     //2023
     const PADES2023 = 26880000;
     const DD2023 = 769152000;
@@ -68,6 +92,35 @@ const ApbdSection = () => {
     const BPBDRealisasi2024 = 0;
     const TOTALKELUAR2024 = BPPD2024 + BPP2024 + BPK2024 + BPM2024 + BPBD2024;
     const TOTALKELUARREALISASI2024 = BPPDRealisasi2024 + BPPRealisasi2024 + BPKRealisasi2024 + BPMRealisasi2024 + BPBDRealisasi2024;
+
+    const data2022 = {
+        header: 'APBDes 2022',
+        pemasukan: [
+            { key: '1', uraian: 'Pendapatan Asli Desa (PADES)', anggaran: '-', realisasi: '-', lebihKurang: '-' },
+            {
+                key: '2',
+                uraian: 'Pendapatan Transfer',
+                anggaran: formatRupiah(PETRANS2022),
+                realisasi: '-',
+                lebihKurang: formatRupiah(PETRANS2022),
+                children: [
+                    { key: '2-1', uraian: 'Dana Desa (DD)', anggaran: formatRupiah(DD2022), realisasi: '-', lebihKurang: formatRupiah(DD2022) },
+                    { key: '2-2', uraian: 'Bagi Hasil Pajak dan Retribusi (BHP)', anggaran: formatRupiah(BHP2022), realisasi: '-', lebihKurang: formatRupiah(BHP2022) },
+                    { key: '2-3', uraian: 'Alokasi Dana Desa (ADD)', anggaran: formatRupiah(ADD2022), realisasi: '-', lebihKurang: formatRupiah(ADD2022) },
+                    { key: '2-4', uraian: 'Bantuan Keuangan Provinsi (BANPROV)', anggaran: formatRupiah(BANPROV2022), realisasi: '-', lebihKurang: formatRupiah(BANPROV2022) },
+                    { key: '2-5', uraian: 'Bantuan Keuangan Kabupaten (BKU)', anggaran: formatRupiah(BKU2022), realisasi: '-', lebihKurang: formatRupiah(BKU2022) },
+                    { key: '2-6', uraian: 'Pendapatan Lainnya', anggaran: formatRupiah(428258), realisasi: '-', lebihKurang: formatRupiah(428258) },
+                ],
+            },
+        ],
+        pengeluaran: [
+            { key: '4', uraian: 'Bidang Penyelenggaraan Pemerintah Desa', anggaran: formatRupiah(BPPD2022), realisasi: '-', lebihKurang: formatRupiah(BPPD2022) },
+            { key: '5', uraian: 'Bidang Pelaksanaan Pembangunan', anggaran: formatRupiah(BPP2022), realisasi: '-', lebihKurang: formatRupiah(BPP2022) },
+            { key: '6', uraian: 'Bidang Pembinaan Kemasyarakatan', anggaran: formatRupiah(BPK2022), realisasi: '-', lebihKurang: formatRupiah(BPK2022) },
+            { key: '7', uraian: 'Bidang Pemberdayaan Masyarakat', anggaran: formatRupiah(BPM2022), realisasi: '-', lebihKurang: formatRupiah(BPM2022) },
+            { key: '8', uraian: 'Bidang Penanggulangan Bencana Darurat & Mendesak', anggaran: formatRupiah(BPBD2022), realisasi: '-', lebihKurang: formatRupiah(BPBD2022) },
+        ],
+    };
 
     const data2023 = {
         header: 'APBDes 2023',
@@ -150,6 +203,38 @@ const ApbdSection = () => {
         },
     ];
 
+    //2022
+    const totalMasuk2022 = {
+        key: 'totalMasuk2022',
+        uraian: 'Total Pendapatan',
+        anggaran: formatRupiah(TOTALMASUK2022),
+        realisasi: '-',
+        lebihKurang: formatRupiah(TOTALMASUK2022),
+    };
+    const totalKeluar2022 = {
+        key: 'totalKeluar2022',
+        uraian: 'Total Pengeluaran',
+        anggaran: formatRupiah(TOTALKELUAR2022),
+        realisasi: '-',
+        lebihKurang: formatRupiah(TOTALKELUAR2022),
+    };
+
+    const totalDefisit2022 = {
+        key: 'totalDefisit2022',
+        uraian: 'Total Defisit',
+        anggaran: formatRupiah(25483808),
+        realisasi: '-',
+        lebihKurang: formatRupiah(25483808),
+    };
+
+    const totalSilpa2022 = {
+        key: 'totalSilpa2022',
+        uraian: 'SILPA Tahun Berjalan',
+        anggaran: formatRupiah(308258),
+        realisasi: '-',
+        lebihKurang: formatRupiah(308258),
+    };
+
     //2023
     const totalMasuk2023 = {
         key: 'totalMasuk2023',
@@ -219,13 +304,13 @@ const ApbdSection = () => {
     return (
         <div style={{ padding: '20px' }} className="mt-36">
             <Collapse defaultActiveKey={['0']}>
-                <Panel header={<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>{data2023.header} <span style={{ fontSize: '12px', color: 'gray' }}>31 Desember 2023</span></div>} key="1">
+                <Panel header={<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>{data2022.header} <span style={{ fontSize: '12px', color: 'gray' }}>31 Desember 2022</span></div>} key="1">
                     <div style={{ display: 'flex', flexDirection: 'column' }} className='font-bold'>
                         <div style={{ flex: 1, padding: '10px' }}>
                             <h3 className='text-center font-bold bg-tosca200 rounded-tl-lg rounded-tr-lg text-white p-2'>Pemasukan</h3>
                             <div style={{ overflowX: 'auto' }} className='rounded-xl'>
                                 <Table
-                                    dataSource={[...data2023.pemasukan, totalMasuk2023]}
+                                    dataSource={[...data2022.pemasukan, totalMasuk2022]}
                                     columns={columns}
                                     pagination={false}
                                     expandable={{
@@ -236,7 +321,7 @@ const ApbdSection = () => {
                                                 <a className='mr-5' style={{ marginLeft: '-2%' }} onClick={e => onExpand(record, e)}>{expanded ? '-' : '+'}</a>
                                             ) : null,
                                     }}
-                                    rowClassName={(record) => record.key === 'totalMasuk2023' ? 'bg-tosca200 text-white font-bold' : ''}
+                                    rowClassName={(record) => record.key === 'totalMasuk2022' ? 'bg-tosca200 text-white font-bold' : ''}
                                     onRow={(record) => ({
                                         onClick: () => handleRowClick(record),
                                     })}
@@ -247,10 +332,10 @@ const ApbdSection = () => {
                             <h3 className='text-center font-bold bg-tosca200 rounded-tl-lg rounded-tr-lg text-white p-2'>Pengeluaran</h3>
                             <div style={{ overflowX: 'auto' }} className='rounded-xl'>
                                 <Table
-                                    dataSource={[...data2023.pengeluaran, totalKeluar2023, totalDefisit2023, totalSilpa2023]}
+                                    dataSource={[...data2022.pengeluaran, totalKeluar2022, totalDefisit2022, totalSilpa2022]}
                                     columns={columns}
                                     pagination={false}
-                                    rowClassName={(record) => ['totalKeluar2023', 'totalDefisit2023', 'totalSilpa2023'].includes(record.key) ? 'bg-tosca200 text-white font-bold' : ''}
+                                    rowClassName={(record) => ['totalKeluar2022', 'totalDefisit2022', 'totalSilpa2022'].includes(record.key) ? 'bg-tosca200 text-white font-bold' : ''}
                                 />
                             </div>
                         </div>
