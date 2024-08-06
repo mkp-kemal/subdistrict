@@ -1,15 +1,17 @@
   import { useState, useEffect } from 'react';
   import { HiArrowNarrowLeft, HiArrowNarrowRight } from 'react-icons/hi';
-  import foto2 from './../assets/img3.jpg';
-  import foto3 from './../assets/img4.jpg';
-  import foto1 from './../assets/img9.jpg';
-  import foto4 from './../assets/img7.jpg';
+  import foto1 from './../assets/img13.jpg';
+  import foto2 from './../assets/img14.jpg';
+  import foto3 from './../assets/img15.jpg';
+  import foto4 from './../assets/img16.jpg';
+  import foto5 from './../assets/img4.jpg';
 
   const images = [
+    foto3,
     foto1,
     foto2,
+    foto5,
     foto4,
-    foto3,
   ];
 
   const BgComponent = () => {

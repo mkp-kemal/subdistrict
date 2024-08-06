@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import CountUp from 'react-countup';
 import { Footer } from './HomeSection';
-import foto1 from './../assets/img3.jpg';
 import foto2 from './../assets/logo_nagrak.png';
 import BgComponent from '../components/BgComponentProfile';
 
