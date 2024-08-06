@@ -52,7 +52,7 @@
           {images.map((image, index) => (
             <div
               key={index}
-              className={`absolute w-full h-screen bg-cover bg-center transition-opacity duration-500 ease-in-out rounded-3xl ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+              className={`absolute w-full h-3/5 lg:h-screen bg-cover bg-center transition-opacity duration-500 ease-in-out rounded-3xl ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
               style={{ backgroundImage: `url(${image})`}}
             ></div>
           ))}
