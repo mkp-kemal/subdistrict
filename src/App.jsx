@@ -10,6 +10,7 @@ import Login from './auth/components/login';
 import NotFound from './components/NotFound';
 import ApbdSection from './sections/ApbdSection';
 import JdihSection from './sections/JdihSection';
+import AttractionDetailKoleangkak from './sections/AttractionDetail';
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const MainRoutes = () => {
           <Route path="/activity" element={<ActivityKknSection />} />
           <Route path="/apbd" element={<ApbdSection />} />
           <Route path="/jdih" element={<JdihSection />} />
+          <Route path="/wisata/curug-koleangkak" element={<AttractionDetailKoleangkak />} />
           <Route path="/blog/:id" element={<BlogDetailSection />} />
           <Route path="/user/admin" element={<AdminSection />} />
           <Route path="/auth/login" element={<Login />} />
