@@ -79,7 +79,7 @@ const AttractionDetailDayangSumbi = () => {
               <div className="map">
                 <h2 className="text-2xl font-bold mb-4">Lokasi Curug Dayang Sumbi</h2>
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.2701570907757!2d107.66398887441723!3d-6.736861165870381!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e691f8a373654e7%3A0x6d709e9a7e4a7083!2sCurug%20Koleangkak%20(Curug%20Biru)!5e0!3m2!1sid!2sid!4v1722914017916!5m2!1sid!2sid"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5417.132379920144!2d107.65914511177168!3d-6.739891393228287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e691f007b0f1703%3A0xc4a8461ed736f944!2sCurug%20Dayang%20Sumbi!5e1!3m2!1sid!2sid!4v1723046901050!5m2!1sid!2sid"
                   className="w-full h-96 rounded-lg shadow-md"
                   allowFullScreen=""
                   loading="lazy"
