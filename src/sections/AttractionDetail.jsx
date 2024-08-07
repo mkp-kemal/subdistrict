@@ -1,11 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { Button, Divider, message } from 'antd';
-import { FaPeopleCarry, FaShareAltSquare, FaSwimmer } from "react-icons/fa";
-import { Footer } from "./HomeSection";
-import BgComponentKoleangkak from "../components/bg/BgComponentKoleangkak";
-import { FaChildren } from "react-icons/fa6";
-import { HiUserGroup } from "react-icons/hi";
-
+import { FaPeopleCarry, FaShareAltSquare, FaSwimmer } from 'react-icons/fa';
+import { Footer } from './HomeSection';
+import BgComponentKoleangkak from '../components/bg/BgComponentKoleangkak';
+import { FaChildren } from 'react-icons/fa6';
+import { HiUserGroup } from 'react-icons/hi';
 
 const AttractionDetailKoleangkak = () => {
   const navigate = useNavigate();
@@ -16,11 +15,12 @@ const AttractionDetailKoleangkak = () => {
 
   const handleShare = () => {
     const url = window.location.href;
-    navigator.clipboard.writeText(url)
+    navigator.clipboard
+      .writeText(url)
       .then(() => {
         message.success('Link copied to clipboard!');
       })
-      .catch(err => {
+      .catch((err) => {
         message.error('Failed to copy the link!');
         console.error('Error copying text: ', err);
       });
@@ -31,7 +31,10 @@ const AttractionDetailKoleangkak = () => {
       <>
         <div className="container mx-auto py-8 px-4 mt-32 fade-in">
           <Button onClick={handleBack}>Kembali</Button>
-          <Button onClick={handleShare} style={{ marginLeft: '10px' }}><FaShareAltSquare />Share Link</Button>
+          <Button onClick={handleShare} style={{ marginLeft: '10px' }}>
+            <FaShareAltSquare />
+            Share Link
+          </Button>
           <div className="bg-white shadow-md rounded-lg p-6">
             <BgComponentKoleangkak />
             <h1 className="text-3xl font-bold mb-2">Curug Koleangkak</h1>
@@ -44,15 +47,23 @@ const AttractionDetailKoleangkak = () => {
                 Curug Koleangkak adalah sebuah air terjun yang terletak di kawasan wisata Ciater, Subang, Jawa Barat. Air terjun ini dikenal dengan keindahan alamnya yang masih asri dan alami, serta suasana yang sejuk dan menyegarkan.
               </p>
               <ul className="list-disc list-inside mb-4">
-                <li><strong>Lokasi:</strong> Terletak di Ciater, Subang, Jawa Barat, sekitar 2 jam perjalanan dari Bandung.</li>
-                <li><strong>Aksesibilitas:</strong> Akses menuju Curug Koleangkak dapat dilakukan dengan kendaraan roda empat dan roda dua.</li>
-                <li><strong>Keindahan Alam:</strong> Curug Koleangkak menawarkan pemandangan yang indah dengan aliran air yang jernih dan deras, serta lingkungan sekitar yang hijau dan rimbun.</li>
-                <li><strong>Aktivitas:</strong> Wisatawan dapat menikmati berbagai aktivitas seperti berenang, bermain air, atau sekadar menikmati keindahan alam dan suasana tenang di sekitar air terjun.</li>
-                <li><strong>Fasilitas:</strong> Fasilitas di sekitar Curug Koleangkak sudah cukup lengkap, tersedia makanan, minuman dan pakaian renang</li>
+                <li>
+                  <strong>Lokasi:</strong> Terletak di Ciater, Subang, Jawa Barat, sekitar 2 jam perjalanan dari Bandung.
+                </li>
+                <li>
+                  <strong>Aksesibilitas:</strong> Akses menuju Curug Koleangkak dapat dilakukan dengan kendaraan roda empat dan roda dua.
+                </li>
+                <li>
+                  <strong>Keindahan Alam:</strong> Curug Koleangkak menawarkan pemandangan yang indah dengan aliran air yang jernih dan deras, serta lingkungan sekitar yang hijau dan rimbun.
+                </li>
+                <li>
+                  <strong>Aktivitas:</strong> Wisatawan dapat menikmati berbagai aktivitas seperti berenang, bermain air, atau sekadar menikmati keindahan alam dan suasana tenang di sekitar air terjun.
+                </li>
+                <li>
+                  <strong>Fasilitas:</strong> Fasilitas di sekitar Curug Koleangkak sudah cukup lengkap, tersedia makanan, minuman dan pakaian renang
+                </li>
               </ul>
-              <p className="mb-6">
-                Curug Koleangkak menjadi destinasi yang ideal bagi para pecinta alam dan petualang yang ingin menikmati keindahan alam Jawa Barat yang masih alami dan jauh dari keramaian kota.
-              </p>
+              <p className="mb-6">Curug Koleangkak menjadi destinasi yang ideal bagi para pecinta alam dan petualang yang ingin menikmati keindahan alam Jawa Barat yang masih alami dan jauh dari keramaian kota.</p>
               <div className="map">
                 <h2 className="text-2xl font-bold mb-4">Lokasi Curug Koleangkak</h2>
                 <iframe
