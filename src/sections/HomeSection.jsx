@@ -121,16 +121,9 @@ const Attractions = () => {
             {[1, 2, 3].map((_, index) => (
               <div key={index} className="flex-shrink-0 w-64 sm:w-72">
                 <div className="bg-white shadow-md rounded-lg overflow-hidden">
-                  <NavLink to={`/wisata/${index===0 ? 'curug-koleangkak' : index===1 ? '2' : '3'}`} className="relative block">
-                    <div
-                      className="bg-cover bg-center w-full h-48"
-                      style={{ backgroundImage: `url(${index === 0 ? foto1 : index === 1 ? foto2 : foto3})` }}
-                    >
-                      {index === 0 || index === 1 ? (
-                        <div className="absolute top-0 left-0 bg-tosca200 text-white p-1 rounded-br-lg">
-                          Rekomendasi
-                        </div>
-                      ) : null}
+                  <NavLink to={`/wisata/${index === 0 ? 'curug-koleangkak' : index === 1 ? 'curug-cipondok' : 'curug-dayang-sumbi'}`} className="relative block">
+                    <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${index === 0 ? foto1 : index === 1 ? foto2 : foto3})` }}>
+                      {index === 0 || index === 1 ? <div className="absolute top-0 left-0 bg-tosca200 text-white p-1 rounded-br-lg">Rekomendasi</div> : null}
                     </div>
                     <div className="revire flex justify-between items-center p-1">
                       <ul className="rat flex space-x-1">
@@ -142,9 +135,7 @@ const Attractions = () => {
                       </ul>
                     </div>
                     <div className="detail p-4">
-                      <h4 className="text-base font-bold">
-                        {index === 0 ? 'Curug Koleangkak' : index === 1 ? 'Curug Cipondok' : 'Curug Dayang Sumbi'}
-                      </h4>
+                      <h4 className="text-base font-bold">{index === 0 ? 'Curug Koleangkak' : index === 1 ? 'Curug Cipondok' : 'Curug Dayang Sumbi'}</h4>
                       <p className="text-gray-600 text-sm lg:md">
                         {index === 0 ? (
                           <>
@@ -152,7 +143,9 @@ const Attractions = () => {
                             <p>Tiket Masuk: Rp 10.000/orang</p>
                             <p>Harga Tikar: Rp 15.000/tikar</p>
                             <p>Harga Makanan: ≥Rp 10.000</p>
-                            <p>Buka: Setiap Hari <span className='text-red-600'>(Jumat Tutup)</span></p>
+                            <p>
+                              Buka: Setiap Hari <span className="text-red-600">(Jumat Tutup)</span>
+                            </p>
                             <p>Jam: 07:00 - 17:00</p>
                             <p>Parkir</p>
                             <div className="flex justify-center items-center space-x-4">
