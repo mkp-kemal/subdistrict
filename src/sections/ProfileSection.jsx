@@ -4,6 +4,69 @@ import { Footer } from './HomeSection';
 import foto2 from './../assets/logo_nagrak.png';
 import BgComponent from '../components/BgComponentProfile';
 
+
+const OrganizationChart = () => {
+  const structure = [
+    { role: 'Kepala Desa', name: 'AHMAD' },
+    { role: 'Sekretaris Desa', name: 'YAYAN SUGIANTO' },
+    { role: 'Kasi Pemerintahan', name: 'YUDA RIFAN RIFALDI' },
+    { role: 'Kasi Pelayanan', name: 'DADAR ROHIDIN' },
+    { role: 'Kasi Kesra', name: 'EEP SAEPUDIN' },
+    { role: 'Kaur Umum', name: 'AYI DARLIAH' },
+    { role: 'Kaur Perencanaan', name: 'SACA GUNAWAN' },
+    { role: 'Kaur Keuangan', name: 'YUNENGSIH' },
+    { role: 'Kadus 1', name: 'SUHENDI' },
+    { role: 'Kadus 2', name: 'MS. SAEPUDIN' },
+    { role: 'Kadus 3', name: 'KAHDI' },
+    { role: 'Staf Pelayanan', name: 'ATING' },
+    { role: 'Staf Pemerintahan', name: 'DERI HIDAYAT' },
+  ];
+
+  return (
+    <div className='mb-32'>
+      <div className="text-lg">
+        <h2 className="font-semibold text-md mb-4">Struktur Organisasi Desa Nagrak:</h2>
+        <div className="grid grid-cols-1 gap-4">
+          <div className="text-center mb-8">
+            <div className="bg-tosca p-4 rounded-lg shadow-lg text-white">
+              <div className="font-semibold">Kepala Desa</div>
+              <div>AHMAD</div>
+            </div>
+            <div className="flex justify-center">
+              <div className="border-l-2 border-gray-400 h-8"></div>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {structure.slice(1, 8).map((item, index) => (
+              <div key={index} className="text-center">
+                <div className="bg-green-100 p-4 rounded-lg shadow-lg">
+                  <div className="font-semibold">{item.role}</div>
+                  <div>{item.name}</div>
+                </div>
+                {index < 6 && (
+                  <div className="flex justify-center">
+                    <div className="border-l-2 border-gray-400 h-8"></div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+            {structure.slice(8).map((item, index) => (
+              <div key={index} className="text-center">
+                <div className="bg-yellow-100 p-4 rounded-lg shadow-lg">
+                  <div className="font-semibold">{item.role}</div>
+                  <div>{item.name}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // eslint-disable-next-line react/prop-types
 const AnimatedCountUp = ({ end, duration }) => {
   const [isAnimating, setIsAnimating] = useState(true);
@@ -26,6 +89,7 @@ const ProfileSection = () => {
           </div>
           <div style={{ marginTop: '-250px' }}>
             <h1 className="text-3xl font-bold mb-6 text-center text-blue-900">PROFILE DESA</h1>
+            <OrganizationChart />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
               <div>
                 <p>
@@ -35,13 +99,16 @@ const ProfileSection = () => {
                   <span className="font-semibold">KECAMATAN:</span> CIATER
                 </p>
                 <p>
+                  <span className="font-semibold">KODE KECAMATAN:</span> 321329
+                </p>
+                <p>
                   <span className="font-semibold">KABUPATEN:</span> SUBANG
                 </p>
                 <p>
                   <span className="font-semibold">PROVINSI:</span> JAWA BARAT
                 </p>
                 <p>
-                  <span className="font-semibold">JABAR & NOMOR:</span> 32
+                  <span className="font-semibold">KODE PROVINSI:</span> 32
                 </p>
                 <p>
                   <span className="font-semibold">KODE POS:</span> 41281
