@@ -10,21 +10,21 @@ const CommunitySection = () => {
                 <div className="row">
                     <div className="col-lg-12">
                         <div className="text-center">
-                            <h2 className="text-3xl font-bold mb-4">Community</h2>
+                            <h2 className="text-3xl font-bold mb-4">Lembaga Masyarakat</h2>
                         </div>
                     </div>
                 </div>
                 <Tabs defaultActiveKey="1" centered>
-                    <TabPane tab="BumDes" key="1">
+                    <TabPane tab={<span className="font-bold">BumDes</span>} key="1">
                        <BumdesContent />
                     </TabPane>
-                    <TabPane tab="Linmas" key="2">
+                    <TabPane tab={<span className="font-bold">Linmas</span>} key="2">
                         <p>Content for Linmas</p>
                     </TabPane>
-                    <TabPane tab="DKM" key="3">
+                    <TabPane tab={<span className="font-bold">DKM</span>} key="3">
                         <p>Content for DKM</p>
                     </TabPane>
-                    <TabPane tab="MUI" key="4">
+                    <TabPane tab={<span className="font-bold">MUI</span>} key="4">
                         <p>Content for MUI</p>
                     </TabPane>
                 </Tabs>
