@@ -23,7 +23,7 @@ const BumdesContent = () => {
             </ul>
             <h4 className="text-xl font-bold mt-4">SUSUNAN PENGURUS BUMDes</h4>
             <p>“HASIL BERKAH MOTEKAR”</p>
-            <table className="min-w-full bg-white border border-gray-300">
+            <table className="min-w-full bg-white border border-gray-300 text-sm lg:text-base">
                 <thead>
                     <tr className="bg-tosca text-white">
                         <th className={`py-2 px-4 text-left border-b ${border}`}>NO</th>
