@@ -4,6 +4,69 @@ import { Footer } from './HomeSection';
 import foto2 from './../assets/logo_nagrak.png';
 import BgComponent from '../components/BgComponentProfile';
 
+
+const OrganizationChart = () => {
+  const structure = [
+    { role: 'Kepala Desa', name: 'AHMAD' },
+    { role: 'Sekretaris Desa', name: 'YAYAN SUGIANTO' },
+    { role: 'Kasi Pemerintahan', name: 'YUDA RIFAN RIFALDI' },
+    { role: 'Kasi Pelayanan', name: 'DADAR ROHIDIN' },
+    { role: 'Kasi Kesra', name: 'EEP SAEPUDIN' },
+    { role: 'Kaur Umum', name: 'AYI DARLIAH' },
+    { role: 'Kaur Perencanaan', name: 'SACA GUNAWAN' },
+    { role: 'Kaur Keuangan', name: 'YUNENGSIH' },
+    { role: 'Kadus 1', name: 'SUHENDI' },
+    { role: 'Kadus 2', name: 'MS. SAEPUDIN' },
+    { role: 'Kadus 3', name: 'KAHDI' },
+    { role: 'Staf Pelayanan', name: 'ATING' },
+    { role: 'Staf Pemerintahan', name: 'DERI HIDAYAT' },
+  ];
+
+  return (
+    <div className='mb-32'>
+      <div className="text-lg">
+        <h2 className="font-semibold text-md mb-4">Struktur Organisasi Desa Nagrak:</h2>
+        <div className="grid grid-cols-1 gap-4">
+          <div className="text-center mb-8">
+            <div className="bg-tosca p-4 rounded-lg shadow-lg text-white">
+              <div className="font-semibold">Kepala Desa</div>
+              <div>AHMAD</div>
+            </div>
+            <div className="flex justify-center">
+              <div className="border-l-2 border-gray-400 h-8"></div>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {structure.slice(1, 8).map((item, index) => (
+              <div key={index} className="text-center">
+                <div className="bg-green-100 p-4 rounded-lg shadow-lg">
+                  <div className="font-semibold">{item.role}</div>
+                  <div>{item.name}</div>
+                </div>
+                {index < 6 && (
+                  <div className="flex justify-center">
+                    <div className="border-l-2 border-gray-400 h-8"></div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+            {structure.slice(8).map((item, index) => (
+              <div key={index} className="text-center">
+                <div className="bg-yellow-100 p-4 rounded-lg shadow-lg">
+                  <div className="font-semibold">{item.role}</div>
+                  <div>{item.name}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // eslint-disable-next-line react/prop-types
 const AnimatedCountUp = ({ end, duration }) => {
   const [isAnimating, setIsAnimating] = useState(true);
@@ -14,6 +77,9 @@ const AnimatedCountUp = ({ end, duration }) => {
     </span>
   );
 };
+
+const jumLaki = 1139;
+const jumPerem = 1121;
 
 const ProfileSection = () => {
   return (
@@ -26,6 +92,7 @@ const ProfileSection = () => {
           </div>
           <div style={{ marginTop: '-250px' }}>
             <h1 className="text-3xl font-bold mb-6 text-center text-blue-900">PROFILE DESA</h1>
+            <OrganizationChart />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
               <div>
                 <p>
@@ -35,16 +102,19 @@ const ProfileSection = () => {
                   <span className="font-semibold">KECAMATAN:</span> CIATER
                 </p>
                 <p>
+                  <span className="font-semibold">KODE KECAMATAN:</span> 321329
+                </p>
+                <p>
                   <span className="font-semibold">KABUPATEN:</span> SUBANG
                 </p>
                 <p>
                   <span className="font-semibold">PROVINSI:</span> JAWA BARAT
                 </p>
                 <p>
-                  <span className="font-semibold">JABAR & NOMOR:</span> 32
+                  <span className="font-semibold">KODE PROVINSI:</span> 32
                 </p>
                 <p>
-                  <span className="font-semibold">KODE POS:</span> 41281
+                  <span className="font-semibold">KODE DESA:</span> 3213292003
                 </p>
                 <p>
                   <span className="font-semibold">NAMA KADES:</span> AHMAD
@@ -101,33 +171,26 @@ const ProfileSection = () => {
               <p className="font-semibold text-xl">JUMLAH PENDUDUK:</p>
               <ul className="list-disc pl-5 mb-4">
                 <li>
-                  <span className="font-semibold">LAKI - LAKI:</span> <AnimatedCountUp end={1193} duration={2} />
+                  <span className="font-semibold">LAKI - LAKI (L):</span> <AnimatedCountUp end={1139} duration={2} />
                 </li>
                 <li>
-                  <span className="font-semibold">PEREMPUAN:</span> <AnimatedCountUp end={1121} duration={2} />
+                  <span className="font-semibold">PEREMPUAN (P):</span> <AnimatedCountUp end={1121} duration={2} />
                 </li>
                 <li>
-                  <span className="font-semibold">JUMLAH:</span> <AnimatedCountUp end={2260} duration={2} />
+                  <span className="font-semibold">JUMLAH L+P:</span> <AnimatedCountUp end={jumLaki + jumPerem} duration={2} />
                 </li>
               </ul>
-              <p className="font-semibold text-xl">JUMLAH KEPALA KELUARGA:</p>
-              <ul className="list-disc pl-5 mb-4">
-                <li>
-                  <span className="font-semibold">PRA KS:</span> <AnimatedCountUp end={84} duration={2} />
-                </li>
-                <li>
-                  <span className="font-semibold">KS1:</span> <AnimatedCountUp end={143} duration={2} />
-                </li>
-                <li>
-                  <span className="font-semibold">KS2:</span> <AnimatedCountUp end={104} duration={2} />
-                </li>
-                <li>
-                  <span className="font-semibold">KS3:</span> <AnimatedCountUp end={38} duration={2} />
-                </li>
-              </ul>
-              <p className="font-semibold text-xl">PENANGGULANGAN PELAYANAN KEMISKINAN:</p>
-              <p>JUMLAH PENDUDUK 2234</p>
-              <p>NAMA PROGRAM TAHUN 2015 JUMLAH KELUARGA YANG KURANG MAMPU ….. NAMA PROGRAM TAHUN 2015.</p>
+              <div>
+                <p className="font-semibold text-xl">JUMLAH KEPALA KELUARGA:</p>
+                <ul className="list-disc pl-5 mb-4">
+                  <li>
+                    <span className="font-semibold">KEPALA KELUARGA LAKI-LAKI:</span> <AnimatedCountUp end={720} duration={2} />
+                  </li>
+                  <li>
+                    <span className="font-semibold">KEPALA KELUARGA PEREMPUAN:</span> <AnimatedCountUp end={120} duration={2} />
+                  </li>
+                </ul>
+              </div>
             </div>
             <div className="mt-8">
               <h2 className="font-semibold text-xl mb-4">LOKASI DESA:</h2>
