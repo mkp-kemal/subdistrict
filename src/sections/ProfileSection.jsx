@@ -78,6 +78,9 @@ const AnimatedCountUp = ({ end, duration }) => {
   );
 };
 
+const jumLaki = 1139;
+const jumPerem = 1121;
+
 const ProfileSection = () => {
   return (
     <>
@@ -111,7 +114,7 @@ const ProfileSection = () => {
                   <span className="font-semibold">KODE PROVINSI:</span> 32
                 </p>
                 <p>
-                  <span className="font-semibold">KODE POS:</span> 41281
+                  <span className="font-semibold">KODE DESA:</span> 3213292003
                 </p>
                 <p>
                   <span className="font-semibold">NAMA KADES:</span> AHMAD
@@ -168,33 +171,26 @@ const ProfileSection = () => {
               <p className="font-semibold text-xl">JUMLAH PENDUDUK:</p>
               <ul className="list-disc pl-5 mb-4">
                 <li>
-                  <span className="font-semibold">LAKI - LAKI:</span> <AnimatedCountUp end={1193} duration={2} />
+                  <span className="font-semibold">LAKI - LAKI (L):</span> <AnimatedCountUp end={1139} duration={2} />
                 </li>
                 <li>
-                  <span className="font-semibold">PEREMPUAN:</span> <AnimatedCountUp end={1121} duration={2} />
+                  <span className="font-semibold">PEREMPUAN (P):</span> <AnimatedCountUp end={1121} duration={2} />
                 </li>
                 <li>
-                  <span className="font-semibold">JUMLAH:</span> <AnimatedCountUp end={2260} duration={2} />
+                  <span className="font-semibold">JUMLAH L+P:</span> <AnimatedCountUp end={jumLaki + jumPerem} duration={2} />
                 </li>
               </ul>
-              <p className="font-semibold text-xl">JUMLAH KEPALA KELUARGA:</p>
-              <ul className="list-disc pl-5 mb-4">
-                <li>
-                  <span className="font-semibold">PRA KS:</span> <AnimatedCountUp end={84} duration={2} />
-                </li>
-                <li>
-                  <span className="font-semibold">KS1:</span> <AnimatedCountUp end={143} duration={2} />
-                </li>
-                <li>
-                  <span className="font-semibold">KS2:</span> <AnimatedCountUp end={104} duration={2} />
-                </li>
-                <li>
-                  <span className="font-semibold">KS3:</span> <AnimatedCountUp end={38} duration={2} />
-                </li>
-              </ul>
-              <p className="font-semibold text-xl">PENANGGULANGAN PELAYANAN KEMISKINAN:</p>
-              <p>JUMLAH PENDUDUK 2234</p>
-              <p>NAMA PROGRAM TAHUN 2015 JUMLAH KELUARGA YANG KURANG MAMPU ….. NAMA PROGRAM TAHUN 2015.</p>
+              <div>
+                <p className="font-semibold text-xl">JUMLAH KEPALA KELUARGA:</p>
+                <ul className="list-disc pl-5 mb-4">
+                  <li>
+                    <span className="font-semibold">KEPALA KELUARGA LAKI-LAKI:</span> <AnimatedCountUp end={720} duration={2} />
+                  </li>
+                  <li>
+                    <span className="font-semibold">KEPALA KELUARGA PEREMPUAN:</span> <AnimatedCountUp end={120} duration={2} />
+                  </li>
+                </ul>
+              </div>
             </div>
             <div className="mt-8">
               <h2 className="font-semibold text-xl mb-4">LOKASI DESA:</h2>
