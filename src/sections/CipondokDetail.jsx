@@ -81,6 +81,7 @@ const AttractionDetailCipondok = () => {
               <div className="map">
                 <h2 className="text-2xl font-bold mb-4">Lokasi Curug Cipondok</h2>
                 <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.2596574063336!2d107.66076417441728!3d-6.738146365883237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e691f71b260959f%3A0x9a4fd0be21105e1d!2sCurug%20Cipondok%20Ciater!5e0!3m2!1sen!2sid!4v1723532098866!5m2!1sen!2sid"
                   className="w-full h-96 rounded-lg shadow-md"
                   allowFullScreen=""
                   loading="lazy"
