@@ -2,9 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Divider, message } from 'antd';
 import { FaShareAltSquare, FaSwimmer } from 'react-icons/fa';
 import { Footer } from './HomeSection';
-import BgComponentKoleangkak from '../components/bg/BgComponentKoleangkak';
 import { FaChildren } from 'react-icons/fa6';
 import { HiUserGroup } from 'react-icons/hi';
+import BgComponentDayangSumbi from '../components/bg/BgComponentDayangsumbi';
 
 const AttractionDetailDayangSumbi = () => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const AttractionDetailDayangSumbi = () => {
             Share Link
           </Button>
           <div className="bg-white shadow-md rounded-lg p-6">
-            <BgComponentKoleangkak />
+            <BgComponentDayangSumbi />
             <h1 className="text-3xl font-bold mb-2">Curug Dayang Sumbi</h1>
             <div className="mb-4 flex justify-between">
               <span className="text-sm text-red-400 font-bold rounded-lg px-2">Update Informasi Agustus 2024</span>
@@ -79,7 +79,7 @@ const AttractionDetailDayangSumbi = () => {
               <div className="map">
                 <h2 className="text-2xl font-bold mb-4">Lokasi Curug Dayang Sumbi</h2>
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5417.132379920144!2d107.65914511177168!3d-6.739891393228287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e691f007b0f1703%3A0xc4a8461ed736f944!2sCurug%20Dayang%20Sumbi!5e1!3m2!1sid!2sid!4v1723046901050!5m2!1sid!2sid"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.2454414223935!2d107.65915047441727!3d-6.739886065900638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e691f007b0f1703%3A0xc4a8461ed736f944!2sCurug%20Dayang%20Sumbi!5e0!3m2!1sen!2sid!4v1723532854910!5m2!1sen!2sid"
                   className="w-full h-96 rounded-lg shadow-md"
                   allowFullScreen=""
                   loading="lazy"
