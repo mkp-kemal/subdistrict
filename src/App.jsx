@@ -14,8 +14,6 @@ import AttractionDetailKoleangkak from './sections/AttractionDetail';
 import AttractionDetailCipondok from './sections/CipondokDetail';
 import AttractionDetailDayangSumbi from './sections/DayangSumbiDetail';
 import CommunitySection from './sections/CommunitySection';
-import AttractionDetailCipondok from './sections/CipondokDetail';
-import AttractionDetailDayangSumbi from './sections/DayangSumbiDetail';
 
 const App = () => {
   return (
