@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 import { Footer } from './HomeSection';
 import foto2 from './../assets/logo_nagrak.png';
@@ -6,63 +6,157 @@ import BgComponent from '../components/BgComponentProfile';
 
 
 const OrganizationChart = () => {
-  const structure = [
-    { role: 'Kepala Desa', name: 'AHMAD' },
-    { role: 'Sekretaris Desa', name: 'YAYAN SUGIANTO' },
-    { role: 'Kasi Pemerintahan', name: 'YUDA RIFAN RIFALDI' },
-    { role: 'Kasi Pelayanan', name: 'DADAR ROHIDIN' },
-    { role: 'Kasi Kesra', name: 'EEP SAEPUDIN' },
-    { role: 'Kaur Umum', name: 'AYI DARLIAH' },
-    { role: 'Kaur Perencanaan', name: 'SACA GUNAWAN' },
-    { role: 'Kaur Keuangan', name: 'YUNENGSIH' },
-    { role: 'Kadus 1', name: 'SUHENDI' },
-    { role: 'Kadus 2', name: 'MS. SAEPUDIN' },
-    { role: 'Kadus 3', name: 'KAHDI' },
-    { role: 'Staf Pelayanan', name: 'ATING' },
-    { role: 'Staf Pemerintahan', name: 'DERI HIDAYAT' },
-  ];
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Check on mount
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const structure = {
+    BPD: { role: 'BPD', name: 'BPD' },
+    KepalaDesa: { role: 'Kepala Desa', name: 'AHMAD' },
+    SekretarisDesa: { role: 'Sekretaris Desa', name: 'YAYAN SUGIANTO' },
+    Kaur: [
+      { role: 'Kaur Umum', name: 'AYI DARLIAH' },
+      { role: 'Kaur Perencanaan', name: 'SACA GUNAWAN' },
+      { role: 'Kaur Keuangan', name: 'YUNENGSIH' }
+    ],
+    Kasi: [
+      { role: 'Kasi Pemerintahan', name: 'YUDA RIFAN RIFALDI', staff: [{ role: 'Staf Pemerintahan', name: 'DERI HIDAYAT' }] },
+      { role: 'Kasi Pelayanan', name: 'DADAR ROHIDIN', staff: [{ role: 'Staf Pelayanan', name: 'ATING' }] },
+      { role: 'Kasi Kesra', name: 'EEP SAEPUDIN' }
+    ],
+    Kadus: [
+      { role: 'Kadus 1', name: 'SUHENDI' },
+      { role: 'Kadus 2', name: 'MS. SAEPUDIN' },
+      { role: 'Kadus 3', name: 'KAHDI' }
+    ]
+  };
 
   return (
     <div className='mb-32'>
-      <div className="text-lg">
-        <h2 className="font-semibold text-md mb-4">Struktur Organisasi Desa Nagrak:</h2>
-        <div className="grid grid-cols-1 gap-4">
-          <div className="text-center mb-8">
-            <div className="bg-tosca p-4 rounded-lg shadow-lg text-white">
-              <div className="font-semibold">Kepala Desa</div>
-              <div>AHMAD</div>
+      {isMobile ? (
+        <div>
+          <h2 className="font-semibold text-md mb-4">Struktur Organisasi Desa Nagrak:</h2>
+          <div className="overflow-x-auto" style={{ fontSize: '10px' }}>
+            <div className="min-w-max italic text-red-500 flex justify-center">
+              Struktur organisasi hanya bisa silihat pada layar dekstop/komputer
             </div>
-            <div className="flex justify-center">
-              <div className="border-l-2 border-gray-400 h-8"></div>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {structure.slice(1, 8).map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-green-100 p-4 rounded-lg shadow-lg">
-                  <div className="font-semibold">{item.role}</div>
-                  <div>{item.name}</div>
-                </div>
-                {index < 6 && (
-                  <div className="flex justify-center">
-                    <div className="border-l-2 border-gray-400 h-8"></div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-            {structure.slice(8).map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="bg-yellow-100 p-4 rounded-lg shadow-lg">
-                  <div className="font-semibold">{item.role}</div>
-                  <div>{item.name}</div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
-      </div>
+      ) : (
+        <div className='mb-32'>
+          <div>
+            <h2 className="font-semibold text-md mb-4">Struktur Organisasi Desa Nagrak:</h2>
+            <div className="overflow-x-auto" style={{ fontSize: '11px' }}>
+              <div className="min-w-max">
+                <div className="flex justify-center mb-8">
+                  <div className="flex flex-col items-center mx-4">
+                    <div className="bg-tosca p-4 rounded-lg shadow-lg text-white w-40 justify-center flex mt-2">
+                      <div className="font-semibold">{structure.BPD.role}</div>
+                    </div>
+                    <div className="border-b-2 border-gray-400 w-8" style={{ marginTop: '-25px', marginRight: '-192px' }}></div>
+                  </div>
+                  <div className="flex flex-col items-center mx-4">
+                    <div className="bg-tosca p-4 rounded-lg shadow-lg text-white">
+                      <div className="font-semibold">{structure.KepalaDesa.role}</div>
+                      <div>{structure.KepalaDesa.name}</div>
+                    </div>
+                    <div className="border-l-2 border-gray-400 h-8"></div>
+                    <div className="flex" style={{ marginRight: '1px' }}>
+                      <div className='w-0'>
+                        <div className="border-l-2 border-gray-400 h-8"></div>
+                        <div className="border-b-2 border-gray-400 w-60"></div>
+                      </div>
+                    </div>
+                    <div className="flex">
+                      <div className="border-l-2 border-gray-400 h-52"></div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center mt-24 ml-20">
+                    <div className="bg-green-100 p-4 rounded-lg shadow-lg">
+                      <div className="font-semibold">{structure.SekretarisDesa.role}</div>
+                      <div>{structure.SekretarisDesa.name}</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-center mb-8">
+                  <div className="flex flex-col items-center mx-4" style={{ marginRight: '-380px', marginTop: '-210px' }}>
+                    <div className="border-l-2 border-gray-400 h-8"></div>
+                    <div className="border-b-2 border-gray-400 w-60"></div>
+                    <div className="border-l-2 border-gray-400 h-8" style={{ marginRight: '0px' }}></div>
+                    <div className="border-l-2 border-gray-400 h-8" style={{ marginRight: '-238px', marginTop: '-33px' }}></div>
+                    <div className="border-l-2 border-gray-400 h-8" style={{ marginRight: '238px', marginTop: '-33px' }}></div>
+                    <div className="flex mt-8 ml-4" style={{ marginTop: '-10px' }}>
+                      {structure.Kaur.map((item, index) => (
+                        <div key={index} className="flex flex-col items-center mx-1">
+                          <div className="bg-yellow-100 p-4 rounded-lg shadow-lg">
+                            <div className="font-semibold">{item.role}</div>
+                            <div>{item.name}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="border-b-2 border-gray-400 w-52" style={{ marginTop: '-65px', marginLeft: '205px' }}></div>
+                <div className="flex justify-center mb-8 " style={{ marginLeft: '-460px' }}>
+                  <div className="flex flex-col items-center mx-4" style={{ marginTop: '-2px' }}>
+                    <div className="border-l-2 border-gray-400 h-8" style={{ marginRight: '-40px' }}></div>
+                    <div className="border-b-2 border-gray-400 w-60" style={{ marginRight: '-50px' }}></div>
+                    <div className="border-l-2 border-gray-400 h-8" style={{ marginRight: '-40px' }}></div>
+                    <div className="border-l-2 border-gray-400 h-8" style={{ marginRight: '-288px', marginTop: '-33px' }}></div>
+                    <div className="border-l-2 border-gray-400 h-8" style={{ marginRight: '190px', marginTop: '-33px' }}></div>
+                    <div className="flex" style={{ marginRight: '-10px' }}>
+                      {structure.Kasi.map((item, index) => (
+                        <div key={index} className="flex flex-col items-center mx-1">
+                          <div className="bg-yellow-100 p-4 rounded-lg shadow-lg">
+                            <div className="font-semibold">{item.role}</div>
+                            <div>{item.name}</div>
+                          </div>
+                          {item.staff && (
+                            <div className="flex flex-col items-center">
+                              <div className="border-l-2 border-gray-400 h-8"></div>
+                              {item.staff.map((staff, idx) => (
+                                <div key={idx} className="bg-blue-100 p-4 rounded-lg shadow-lg">
+                                  <div className="font-semibold">{staff.role}</div>
+                                  <div>{staff.name}</div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-center mb-8">
+                  <div className="flex flex-col items-center mx-4" style={{marginTop: '-257px', marginLeft: '9px'}}>
+                    <div className="border-l-2 border-gray-400 h-72"></div>
+                    <div className="flex">
+                      {structure.Kadus.map((item, index) => (
+                        <div key={index} className="flex flex-col items-center mx-4">
+                          <div className="bg-yellow-100 p-4 rounded-lg shadow-lg">
+                            <div className="font-semibold">{item.role}</div>
+                            <div>{item.name}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -167,19 +261,21 @@ const ProfileSection = () => {
                 </p>
               </div>
             </div>
-            <div className="mt-8">
-              <p className="font-semibold text-xl">JUMLAH PENDUDUK:</p>
-              <ul className="list-disc pl-5 mb-4">
-                <li>
-                  <span className="font-semibold">LAKI - LAKI (L):</span> <AnimatedCountUp end={1139} duration={2} />
-                </li>
-                <li>
-                  <span className="font-semibold">PEREMPUAN (P):</span> <AnimatedCountUp end={1121} duration={2} />
-                </li>
-                <li>
-                  <span className="font-semibold">JUMLAH L+P:</span> <AnimatedCountUp end={jumLaki + jumPerem} duration={2} />
-                </li>
-              </ul>
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <p className="font-semibold text-xl">JUMLAH PENDUDUK:</p>
+                <ul className="list-disc pl-5 mb-4">
+                  <li>
+                    <span className="font-semibold">LAKI - LAKI (L):</span> <AnimatedCountUp end={1139} duration={2} />
+                  </li>
+                  <li>
+                    <span className="font-semibold">PEREMPUAN (P):</span> <AnimatedCountUp end={1121} duration={2} />
+                  </li>
+                  <li>
+                    <span className="font-semibold">JUMLAH L+P:</span> <AnimatedCountUp end={jumLaki + jumPerem} duration={2} />
+                  </li>
+                </ul>
+              </div>
               <div>
                 <p className="font-semibold text-xl">JUMLAH KEPALA KELUARGA:</p>
                 <ul className="list-disc pl-5 mb-4">
