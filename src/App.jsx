@@ -12,6 +12,7 @@ import ApbdSection from './sections/ApbdSection';
 import JdihSection from './sections/JdihSection';
 import AttractionDetailKoleangkak from './sections/AttractionDetail';
 import CommunitySection from './sections/CommunitySection';
+import AttractionDetailCipondok from './sections/CipondokDetail';
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const MainRoutes = () => {
           <Route path="/community" element={<CommunitySection />} />
           <Route path="/jdih" element={<JdihSection />} />
           <Route path="/wisata/curug-koleangkak" element={<AttractionDetailKoleangkak />} />
+          <Route path="/wisata/curug-cipondok" element={<AttractionDetailCipondok />} />
           <Route path="/blog/:id" element={<BlogDetailSection />} />
           <Route path="/user/admin" element={<AdminSection />} />
           <Route path="/auth/login" element={<Login />} />
