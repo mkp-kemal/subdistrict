@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { Button, Divider, message } from 'antd';
-import { FaPeopleCarry, FaShareAltSquare, FaSwimmer } from 'react-icons/fa';
+import { FaShareAltSquare, FaSwimmer } from 'react-icons/fa';
 import { Footer } from './HomeSection';
 import BgComponentKoleangkak from '../components/bg/BgComponentKoleangkak';
 import { FaChildren } from 'react-icons/fa6';
 import { HiUserGroup } from 'react-icons/hi';
+import BgComponentCipondok from '../components/bg/BgComponentCipondok';
 
 const AttractionDetailCipondok = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const AttractionDetailCipondok = () => {
             Share Link
           </Button>
           <div className="bg-white shadow-md rounded-lg p-6">
-            <BgComponentKoleangkak />
+            <BgComponentCipondok />
             <h1 className="text-3xl font-bold mb-2">Curug Cipondok</h1>
             <div className="mb-4 flex justify-between">
               <span className="text-sm text-red-400 font-bold rounded-lg px-2">Update Informasi Agustus 2024</span>
@@ -81,7 +82,6 @@ const AttractionDetailCipondok = () => {
               <div className="map">
                 <h2 className="text-2xl font-bold mb-4">Lokasi Curug Cipondok</h2>
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5417.151815850768!2d107.66075881177181!3d-6.738151693229975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e691f71b260959f%3A0x9a4fd0be21105e1d!2sCurug%20Cipondok%20Ciater!5e1!3m2!1sid!2sid!4v1723109121657!5m2!1sid!2sid"
                   className="w-full h-96 rounded-lg shadow-md"
                   allowFullScreen=""
                   loading="lazy"
