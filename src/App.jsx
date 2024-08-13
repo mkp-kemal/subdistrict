@@ -15,6 +15,7 @@ import AttractionDetailCipondok from './sections/CipondokDetail';
 import AttractionDetailDayangSumbi from './sections/DayangSumbiDetail';
 import CommunitySection from './sections/CommunitySection';
 import AttractionDetailCipondok from './sections/CipondokDetail';
+import AttractionDetailDayangSumbi from './sections/DayangSumbiDetail';
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const MainRoutes = () => {
           <Route path="/jdih" element={<JdihSection />} />
           <Route path="/wisata/curug-koleangkak" element={<AttractionDetailKoleangkak />} />
           <Route path="/wisata/curug-cipondok" element={<AttractionDetailCipondok />} />
+          <Route path="/wisata/curug-dayang-sumbi" element={<AttractionDetailDayangSumbi />} />
           <Route path="/blog/:id" element={<BlogDetailSection />} />
           <Route path="/user/admin" element={<AdminSection />} />
           <Route path="/auth/login" element={<Login />} />

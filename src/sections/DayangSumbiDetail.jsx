@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Button, Divider, message } from 'antd';
-import { FaPeopleCarry, FaShareAltSquare, FaSwimmer } from 'react-icons/fa';
+import { FaShareAltSquare, FaSwimmer } from 'react-icons/fa';
 import { Footer } from './HomeSection';
 import BgComponentKoleangkak from '../components/bg/BgComponentKoleangkak';
 import { FaChildren } from 'react-icons/fa6';

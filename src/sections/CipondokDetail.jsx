@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Divider, message } from 'antd';
 import { FaShareAltSquare, FaSwimmer } from 'react-icons/fa';
 import { Footer } from './HomeSection';
-import BgComponentKoleangkak from '../components/bg/BgComponentKoleangkak';
 import { FaChildren } from 'react-icons/fa6';
 import { HiUserGroup } from 'react-icons/hi';
 import BgComponentCipondok from '../components/bg/BgComponentCipondok';
