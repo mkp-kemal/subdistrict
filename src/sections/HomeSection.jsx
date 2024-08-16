@@ -13,6 +13,7 @@ import { FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import foto1 from './../assets/img2.jpg';
 import foto2 from './../assets/img7.jpg';
 import foto3 from './../assets/img8.jpg';
+import foto4 from './../assets/img26.jpg';
 
 const HomeSection = () => {
   const [loading, setLoading] = useState(true);
@@ -118,16 +119,16 @@ const Attractions = () => {
         </div>
         <div className="overflow-x-auto">
           <div className="flex justify-around space-x-4">
-            {[1, 2, 3].map((_, index) => (
+            {[1, 2, 3, 4].map((_, index) => (
               <div key={index} className="flex-shrink-0 w-64 sm:w-72">
                 <div className="bg-white shadow-md rounded-lg overflow-hidden">
-                  <NavLink to={`/wisata/${index === 0 ? 'curug-koleangkak' : index === 1 ? 'curug-cipondok' : 'curug-dayang-sumbi'}`} className="relative block">
-                    <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${index === 0 ? foto1 : index === 1 ? foto2 : foto3})` }}>
-                      {index === 0 || index === 1 ? <div className="absolute top-0 left-0 bg-tosca200 text-white p-1 rounded-br-lg">Rekomendasi</div> : null}
+                  <NavLink to={`/wisata/${index === 0 ? 'curug-koleangkak' : index === 1 ? 'curug-cipondok' : index === 2 ? 'legok-gintung' : 'curug-dayang-sumbi'}`} className="relative block">
+                    <div className="bg-cover bg-center w-full h-48" style={{ backgroundImage: `url(${index === 0 ? foto1 : index === 1 ? foto2 : index === 2 ? foto4 : foto3})` }}>
+                      {index === 0 || index === 1 || index === 2 ? <div className="absolute top-0 left-0 bg-tosca200 text-white p-1 rounded-br-lg">Rekomendasi</div> : null}
                     </div>
                     <div className="revire flex justify-between items-center p-1">
                       <ul className="rat flex space-x-1">
-                        {[1, 2, 3].map((star) => (
+                        {[1, 2, 3, 4].map((star) => (
                           <li key={star}>
                             <i className="fa fa-star text-yellow-500"></i>
                           </li>
@@ -135,7 +136,7 @@ const Attractions = () => {
                       </ul>
                     </div>
                     <div className="detail p-4">
-                      <h4 className="text-base font-bold">{index === 0 ? 'Curug Koleangkak' : index === 1 ? 'Curug Cipondok' : 'Curug Dayang Sumbi'}</h4>
+                      <h4 className="text-base font-bold">{index === 0 ? 'Curug Koleangkak' : index === 1 ? 'Curug Cipondok' : index === 2 ? 'Legok Gintung' : 'Curug Dayang Sumbi'}</h4>
                       <p className="text-gray-600 text-sm lg:md">
                         {index === 0 ? (
                           <>
@@ -176,6 +177,28 @@ const Attractions = () => {
                               <p className="flex flex-col items-center">
                                 <FaCar />
                                 <span className="text-sm">10k</span>
+                              </p>
+                            </div>
+                          </>
+                        ) : index === 2 ? (
+                          <>
+                            <p>Tipe: Santai, Camp</p>
+                            <p>Tiket Masuk: -</p>
+                            <p>Harga Tenda: Rp 250.000/malam</p>
+                            <p>Makanan: <i>Bekal sendiri</i></p>
+                            <p>
+                              Buka: Setiap Hari <span className="text-red-600">(Jumat Tutup)</span>
+                            </p>
+                            <p>Jam: 24 Jam</p>
+                            <p>Parkir</p>
+                            <div className="flex justify-center items-center space-x-4">
+                              <p className="flex flex-col items-center">
+                                <FaMotorcycle />
+                                <span className="text-sm">-</span>
+                              </p>
+                              <p className="flex flex-col items-center">
+                                <FaCar />
+                                <span className="text-sm">-</span>
                               </p>
                             </div>
                           </>
