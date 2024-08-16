@@ -60,7 +60,7 @@ const JdihSection = () => {
                         header={
                             <div className="flex justify-between items-center">
                                 {judul}
-                                <span className="text-gray-500 text-xs">Diterbitkan: {formatDate(new Date().toLocaleDateString())}</span>
+                                <span className="text-gray-500 text-xs">Diterbitkan: {formatDate(new Date())}</span>
                             </div>
                         }
                         key={index}
