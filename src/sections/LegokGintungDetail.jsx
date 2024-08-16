@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { Button, Divider, message } from 'antd';
-import { FaShareAltSquare, FaSwimmer } from 'react-icons/fa';
+import { FaCampground, FaShareAltSquare } from 'react-icons/fa';
 import { Footer } from './HomeSection';
 import { FaChildren } from 'react-icons/fa6';
 import { HiUserGroup } from 'react-icons/hi';
@@ -81,8 +81,8 @@ const AttractionDetailLegokGintung = () => {
             <h2 className="text-sm font-semibold text-white">Wisata bisa untuk</h2>
             <ul className="flex justify-around">
               <li className="flex flex-col items-center">
-                <FaSwimmer className="text-white text-2xl" />
-                <span className="text-xs text-white">Berenang</span>
+                <FaCampground className="text-white text-2xl" />
+                <span className="text-xs text-white">Camping</span>
               </li>
               <li className="flex flex-col items-center">
                 <FaChildren className="text-white text-2xl" />
