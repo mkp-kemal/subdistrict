@@ -4,6 +4,7 @@ import DateTime from './DateTime';
 import { RiInstagramFill } from 'react-icons/ri';
 import { FaFacebook } from 'react-icons/fa';
 import { baseURLAPI } from '../helpers/helper.jsx';
+import logo from './../assets/logo_nagrak.png';
 
 const NavbarComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -102,7 +103,7 @@ const NavbarComponent = () => {
 
       <div className="container mx-auto flex items-center justify-between p-4">
         <div className="flex items-center">
-          <img src="https://i.ibb.co.com/WBndm69/Lambang-Kabupaten-Subang-removebg-preview.png" alt="Logo Desa Nagrak Subang" className="h-11 w-10" />
+          <img src={logo} alt="Logo Desa Nagrak Subang" className="h-11 w-10" />
           <a href="https://nagrakciater.vercel.app/">
             <div className="text-white p-2">
               <p className="font-bold">Desa Nagrak</p>

@@ -14,6 +14,8 @@ import foto1 from './../assets/img2.jpg';
 import foto2 from './../assets/img7.jpg';
 import foto3 from './../assets/img8.jpg';
 import foto4 from './../assets/img26.jpg';
+import logo from './../assets/logo_nagrak.png';
+import logo2 from './../assets/logo.png';
 
 const HomeSection = () => {
   const [loading, setLoading] = useState(true);
@@ -280,6 +282,12 @@ const Footer = () => {
           ) : (
             <>
               <div className="mb-8 md:mb-0 w-52 md:w-full">
+                <div className='flex rounded-tr-xl rounded-bl-xl lg:bg-white justify-center h-16 w-56 mb-5'>
+                  <img src='https://fst.uinsgd.ac.id/wp-content/uploads/2020/05/cropped-logo-uin.png' alt="Logo" className="mb-4 mx-auto sm:mx-0 h-16" />
+                  <img src={logo} alt="Logo" className="mb-4 mx-auto sm:mx-0 h-16" />
+                  <img src={logo2} alt="Logo" className="mb-4 mx-auto sm:mx-0 h-16" />
+                </div>
+
                 <h3 className="text-2xl font-bold mb-4">Kontak Kami</h3>
                 <p>
                   <FaEnvelope className="inline-block mr-2" />
@@ -314,5 +322,6 @@ const Footer = () => {
     </footer>
   );
 };
+
 
 export { HomeSection, Footer };
