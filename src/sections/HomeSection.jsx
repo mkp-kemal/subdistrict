@@ -25,7 +25,9 @@ const HomeSection = () => {
     const fetchBlogs = async () => {
       try {
         const response = await axios.get(baseURLAPI('blogs'));
-        setBlogs(response.data);
+        const sortedBlogs = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        const latestBlogs = sortedBlogs.slice(0, 4);
+        setBlogs(latestBlogs);
       } catch (error) {
         console.error('Error fetching blogs:', error);
       } finally {
@@ -62,48 +64,89 @@ const Activity = ({ blogs }) => {
     navigate(`/blog/${id}`);
   };
 
+  const agendas = [
+    {
+      id: 1,
+      title: 'Rapat Mingguan Desa',
+      description: 'Rapat mingguan untuk membahas perkembangan proyek desa...',
+      date: '2024-08-05',
+    },
+    {
+      id: 2,
+      title: 'Pengajian Akbar',
+      description: 'Pengajian akbar di masjid desa dengan penceramah dari luar kota...',
+      date: '2024-08-06',
+    },
+    {
+      id: 3,
+      title: 'Lomba Memasak Ibu-Ibu PKK',
+      description: 'Lomba memasak antar ibu-ibu PKK se-desa dalam rangka Hari Kemerdekaan...',
+      date: '2024-08-07',
+    },
+  ];
+
   return (
     <div className="popular-pack no-bgpack container-fluid bg-gray-50 py-8">
       <div className="container mx-auto">
         <div className="session-title text-center mb-8">
-          <h2 className="text-3xl font-bold">Kegiatan Desa</h2>
-          <p className="text-gray-600">Berikut kegiatan-kegiatan yang dilakukan di desa</p>
+          <h2 className="lg:text-3xl text-xl font-bold">Berita & Agenda</h2>
+          <p className="lg:text-xl text-md text-gray-600">Menampilkan berita dan agenda seputar desa</p>
         </div>
-        <div className="overflow-x-auto">
-          <div className="flex space-x-4">
-            {blogs.map((blog, index) => (
-              <div key={index} className="flex-shrink-0 w-64 sm:w-72 cursor-pointer" onClick={() => handleClick(blog.title)}>
-                <div className="bg-white shadow-md rounded-lg overflow-hidden">
-                  <div className="relative">
-                    <span className="absolute top-2 left-2 text-white bg-tosca200 bg-opacity-75 px-2 py-1 rounded-full text-xs">{formatDate(blog.date)}</span>
-                    <div className="bg-cover bg-center w-full h-40" style={{ backgroundImage: `url(${blog.image})` }}></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Kolom Berita Terkini */}
+          <div>
+            <h3 className="lg:text-2xl font-semibold mb-4 border-b-2 border-tosca200 inline-block text-sm">Berita Terkini</h3>
+            <div className="overflow-x-auto">
+              <div className="flex space-x-4">
+                {blogs.map((blog, index) => (
+                  <div key={index} className="w-64 sm:w-72 cursor-pointer" onClick={() => handleClick(blog.title)}>
+                    <div className="bg-white shadow-md rounded-lg overflow-hidden w-60">
+                      <div className="relative">
+                        <span className="absolute top-2 left-2 text-white bg-tosca200 bg-opacity-75 px-2 py-1 rounded-full text-xs">{formatDate(blog.date)}</span>
+                        <div className="bg-cover bg-center w-full h-28 lg:h-48" style={{ backgroundImage: `url(${blog.image})` }}></div>
+                      </div>
+                      <div className="detail p-4">
+                        <h4 className="text-base font-bold">{blog.title}</h4>
+                        <p className="text-gray-600 text-sm">{truncateText(blog.description, 55)}</p>
+                      </div>
+                      <div className="options p-2 bg-tosca justify-around">
+                        <ul className="flex justify-around">
+                          {blog.gotongRoyong && (
+                            <li className="w-8 h-8 rounded-full bg-tosca200 flex justify-center items-center">
+                              <FaPeopleCarry className="text-white" />
+                            </li>
+                          )}
+                          {blog.masyarakat && (
+                            <li className="w-8 h-8 rounded-full bg-tosca200 flex justify-center items-center">
+                              <FaPeopleGroup className="text-white" />
+                            </li>
+                          )}
+                          {blog.wisata && (
+                            <li className="w-8 h-8 rounded-full bg-tosca200 flex justify-center items-center">
+                              <FaUmbrellaBeach className="text-white" />
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+                    </div>
                   </div>
-                  <div className="detail p-4">
-                    <h4 className="text-base font-bold">{blog.title}</h4>
-                    <p className="text-gray-600 text-sm">{truncateText(blog.description, 60)}</p>
-                  </div>
-                  <div className="options p-2 bg-tosca justify-around">
-                    <ul className="flex justify-around">
-                      {blog.gotongRoyong && (
-                        <li className="w-8 h-8 rounded-full bg-tosca200 flex justify-center items-center">
-                          <FaPeopleCarry className="text-white" />
-                        </li>
-                      )}
-                      {blog.masyarakat && (
-                        <li className="w-8 h-8 rounded-full bg-tosca200 flex justify-center items-center">
-                          <FaPeopleGroup className="text-white" />
-                        </li>
-                      )}
-                      {blog.wisata && (
-                        <li className="w-8 h-8 rounded-full bg-tosca200 flex justify-center items-center">
-                          <FaUmbrellaBeach className="text-white" />
-                        </li>
-                      )}
-                    </ul>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* Kolom Agenda */}
+          <div>
+            <h3 className="lg:text-2xl font-semibold mb-4 border-b-2 border-tosca200 inline-block text-sm">Agenda</h3>
+            <div className="overflow-y-auto" style={{ maxHeight: '350px' }}>
+              {agendas.map((agenda, index) => (
+                <div key={index} className="bg-white shadow-md rounded-lg mb-4 p-4 cursor-pointer" onClick={() => handleClick(agenda.id)}>
+                  <span className="block text-sm text-gray-500 mb-1">{formatDate(agenda.date)}</span>
+                  <h4 className="text-lg font-bold mb-2">{agenda.title}</h4>
+                  <p className="text-gray-600 text-sm">{truncateText(agenda.description, 80)}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -111,13 +154,15 @@ const Activity = ({ blogs }) => {
   );
 };
 
+
+
 const Attractions = () => {
   return (
     <div className="popular-pack container-fluid bg-gray-50 py-8">
       <div className="container mx-auto">
         <div className="session-title text-center mb-8">
           <h2 className="text-3xl font-bold">Objek Wisata Terdekat</h2>
-          <p className="text-gray-600">Berikut objek wisata yang ada di dekat desa</p>
+          <p className="text-gray-600">Menampilkan objek wisata sekitar Desa Nagrak</p>
         </div>
         <div className="overflow-x-auto">
           <div className="flex justify-around space-x-4">
@@ -283,9 +328,9 @@ const Footer = () => {
             <>
               <div className="mb-8 md:mb-0 w-52 md:w-full">
                 <div className='flex rounded-tr-xl rounded-bl-xl lg:bg-white justify-center h-16 w-56 mb-5'>
-                  <img src='https://fst.uinsgd.ac.id/wp-content/uploads/2020/05/cropped-logo-uin.png' alt="Logo" className="mb-4 mx-auto sm:mx-0 h-16" />
-                  <img src={logo} alt="Logo" className="mb-4 mx-auto sm:mx-0 h-16" />
-                  <img src={logo2} alt="Logo" className="mb-4 mx-auto sm:mx-0 h-16" />
+                  <img src='https://fst.uinsgd.ac.id/wp-content/uploads/2020/05/cropped-logo-uin.png' alt="Logo" className="mx-auto sm:mx-0 h-14" />
+                  <img src={logo} alt="Logo" className="mx-auto sm:mx-0 h-16" />
+                  <img src={logo2} alt="Logo" className="mx-auto sm:mx-0 h-16" />
                 </div>
 
                 <h3 className="text-2xl font-bold mb-4">Kontak Kami</h3>

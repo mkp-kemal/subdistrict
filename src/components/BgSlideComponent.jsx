@@ -27,7 +27,7 @@ const BgSlideComponent = () => {
   };
 
   return (
-    <div className='mt-40 mb-52' style={{ marginBottom: '40%' }}>
+    <div className='mt-40' style={{ marginBottom: '40%' }}>
       <section id="slider">
         {images.map((image, index) => (
           <input
@@ -47,6 +47,7 @@ const BgSlideComponent = () => {
             onClick={() => handleSlideChange(index)}
           >
             <img
+            className='rounded-3xl'
               src={image}
               alt={`Slide ${index + 1}`}
               height="100%"
