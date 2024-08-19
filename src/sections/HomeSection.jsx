@@ -7,7 +7,6 @@ import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { formatDate } from '../components/FormatDate';
 import { baseURLAPI } from '../helpers/helper';
-import BgComponent from '../components/BgComponent';
 import { truncateText } from '../components/Truncated';
 import { FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa';
 import foto1 from './../assets/img2.jpg';
@@ -16,6 +15,7 @@ import foto3 from './../assets/img8.jpg';
 import foto4 from './../assets/img26.jpg';
 import logo from './../assets/logo_nagrak.png';
 import logo2 from './../assets/logo.png';
+import BgSlideComponent from '../components/BgSlideComponent';
 
 const HomeSection = () => {
   const [loading, setLoading] = useState(true);
@@ -44,7 +44,7 @@ const HomeSection = () => {
         </div>
       ) : (
         <div className="fade-in">
-          <BgComponent />
+          <BgSlideComponent />
           <Activity blogs={blogs} />
           <Attractions />
           <Footer />
