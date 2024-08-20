@@ -20,6 +20,7 @@ import BgSlideComponent from '../components/BgSlideComponent';
 const HomeSection = () => {
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState([]);
+  const [agendas, setAgendas] = useState([]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -35,6 +36,20 @@ const HomeSection = () => {
       }
     };
 
+    const fetchAgendas = async () => {
+      try {
+        const response = await axios.get(baseURLAPI('agenda'));
+        const sortedAgendas = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        const latestAgendas = sortedAgendas.slice(0, 4);
+        setAgendas(latestAgendas);
+      } catch (error) {
+        console.error('Error fetching blogs:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAgendas();
     fetchBlogs();
   }, []);
 
@@ -47,7 +62,7 @@ const HomeSection = () => {
       ) : (
         <div className="fade-in">
           <BgSlideComponent />
-          <Activity blogs={blogs} />
+          <Activity blogs={blogs} agendas={agendas} />
           <Attractions />
           <Footer />
         </div>
@@ -57,39 +72,12 @@ const HomeSection = () => {
 };
 
 // eslint-disable-next-line react/prop-types
-const Activity = ({ blogs }) => {
+const Activity = ({ blogs, agendas }) => {
   const navigate = useNavigate();
 
   const handleClick = (id) => {
     navigate(`/blog/${id}`);
   };
-
-  const agendas = [
-    {
-      id: 1,
-      title: 'Rapat Mingguan Desa',
-      description: 'Rapat mingguan untuk membahas perkembangan proyek desa...',
-      date: '2024-08-05',
-    },
-    {
-      id: 2,
-      title: 'Pengajian Akbar',
-      description: 'Pengajian akbar di masjid desa dengan penceramah dari luar kota...',
-      date: '2024-08-06',
-    },
-    {
-      id: 3,
-      title: 'Lomba Memasak Ibu-Ibu PKK',
-      description: 'Lomba memasak antar ibu-ibu PKK se-desa dalam rangka Hari Kemerdekaan...',
-      date: '2024-08-07',
-    },
-    {
-      id: 4,
-      title: 'Lomba Memasak Ibu-Ibu PKK',
-      description: 'Lomba memasak antar ibu-ibu PKK se-desa dalam rangka Hari Kemerdekaan...',
-      date: '2024-08-07',
-    },
-  ];
 
   return (
     <div className="popular-pack no-bgpack container-fluid bg-gray-50 py-8">
