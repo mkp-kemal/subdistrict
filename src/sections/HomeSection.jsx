@@ -83,6 +83,12 @@ const Activity = ({ blogs }) => {
       description: 'Lomba memasak antar ibu-ibu PKK se-desa dalam rangka Hari Kemerdekaan...',
       date: '2024-08-07',
     },
+    {
+      id: 4,
+      title: 'Lomba Memasak Ibu-Ibu PKK',
+      description: 'Lomba memasak antar ibu-ibu PKK se-desa dalam rangka Hari Kemerdekaan...',
+      date: '2024-08-07',
+    },
   ];
 
   return (
@@ -96,54 +102,58 @@ const Activity = ({ blogs }) => {
           {/* Kolom Berita Terkini */}
           <div>
             <h3 className="lg:text-2xl font-semibold mb-4 border-b-2 border-tosca200 inline-block text-sm">Berita Terkini</h3>
-            <div className="overflow-x-auto">
-              <div className="flex space-x-4">
-                {blogs.map((blog, index) => (
-                  <div key={index} className="w-64 sm:w-72 cursor-pointer" onClick={() => handleClick(blog.title)}>
-                    <div className="bg-white shadow-md rounded-lg overflow-hidden w-60">
-                      <div className="relative">
-                        <span className="absolute top-2 left-2 text-white bg-tosca200 bg-opacity-75 px-2 py-1 rounded-full text-xs">{formatDate(blog.date)}</span>
-                        <div className="bg-cover bg-center w-full h-28 lg:h-48" style={{ backgroundImage: `url(${blog.image})` }}></div>
-                      </div>
-                      <div className="detail p-4">
-                        <h4 className="text-base font-bold">{blog.title}</h4>
-                        <p className="text-gray-600 text-sm">{truncateText(blog.description, 55)}</p>
-                      </div>
-                      <div className="options p-2 bg-tosca justify-around">
-                        <ul className="flex justify-around">
-                          {blog.gotongRoyong && (
-                            <li className="w-8 h-8 rounded-full bg-tosca200 flex justify-center items-center">
-                              <FaPeopleCarry className="text-white" />
-                            </li>
-                          )}
-                          {blog.masyarakat && (
-                            <li className="w-8 h-8 rounded-full bg-tosca200 flex justify-center items-center">
-                              <FaPeopleGroup className="text-white" />
-                            </li>
-                          )}
-                          {blog.wisata && (
-                            <li className="w-8 h-8 rounded-full bg-tosca200 flex justify-center items-center">
-                              <FaUmbrellaBeach className="text-white" />
-                            </li>
-                          )}
-                        </ul>
-                      </div>
+            <div className="overflow-y-auto">
+              {blogs.map((blog, index) => (
+                <div key={index} className="flex items-start mb-4 cursor-pointer bg-white shadow-md rounded-lg p-2" onClick={() => handleClick(blog.title)}>
+                  <div className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden">
+                    {blog.image ? (
+                      <img
+                        src={blog.image}
+                        alt={blog.title}
+                        className="object-cover w-full h-full"
+                      />
+                    ) : (
+                      <FaPeopleCarry className="text-gray-500 text-3xl" />
+                    )}
+                  </div>
+                  <div className="ml-4 flex-1">
+                    <span className="block text-xs text-gray-500 mb-1">{formatDate(blog.date)}</span>
+                    <h4 className="text-sm font-bold mb-2">{blog.title}</h4>
+                    <p className="text-gray-600 text-xs">{truncateText(blog.description, 55)}</p>
+                    <div className="options mt-2">
+                      <ul className="flex space-x-2">
+                        {blog.gotongRoyong && (
+                          <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
+                            <FaPeopleCarry className="text-white" />
+                          </li>
+                        )}
+                        {blog.masyarakat && (
+                          <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
+                            <FaPeopleGroup className="text-white" />
+                          </li>
+                        )}
+                        {blog.wisata && (
+                          <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
+                            <FaUmbrellaBeach className="text-white" />
+                          </li>
+                        )}
+                      </ul>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Kolom Agenda */}
           <div>
             <h3 className="lg:text-2xl font-semibold mb-4 border-b-2 border-tosca200 inline-block text-sm">Agenda</h3>
-            <div className="overflow-y-auto" style={{ maxHeight: '350px' }}>
+            <div className="overflow-y-auto max-h-[500px]">
               {agendas.map((agenda, index) => (
-                <div key={index} className="bg-white shadow-md rounded-lg mb-4 p-4 cursor-pointer" onClick={() => handleClick(agenda.id)}>
-                  <span className="block text-sm text-gray-500 mb-1">{formatDate(agenda.date)}</span>
-                  <h4 className="text-lg font-bold mb-2">{agenda.title}</h4>
-                  <p className="text-gray-600 text-sm">{truncateText(agenda.description, 80)}</p>
+                <div key={index} className="bg-white shadow-md rounded-lg mb-4 p-4">
+                  <span className="block text-xs text-gray-500 mb-1">{formatDate(agenda.date)}</span>
+                  <h4 className="text-sm font-bold mb-2">{agenda.title}</h4>
+                  <p className="text-gray-600 text-xs">{agenda.description}</p>
                 </div>
               ))}
             </div>
@@ -153,6 +163,7 @@ const Activity = ({ blogs }) => {
     </div>
   );
 };
+
 
 
 
