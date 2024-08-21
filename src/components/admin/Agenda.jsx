@@ -74,7 +74,7 @@ const Agenda = ({ user }) => {
             setModalVisible(false);
             fetchAgendas();
         } catch (error) {
-            message.error('Gagal menyimpan agenda, coba lagi');
+            message.error('Gagal menyimpan agenda, coba lagi!');
         } finally {
             setLoading(false);
         }
