@@ -51,8 +51,8 @@ const Agenda = ({ user }) => {
 
         try {
             if (editingAgenda) {
-                // Update existing agenda
-                await axios.put(`${baseURLAPI('put/agenda')}/${editingAgenda.id}`, formData, {
+                // Update agenda
+                await axios.put(`${baseURLAPI('agenda')}/${editingAgenda._id}`, formData, {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`,
@@ -60,7 +60,7 @@ const Agenda = ({ user }) => {
                 });
                 message.success('Berhasil memperbarui agenda');
             } else {
-                // Create new agenda
+                // Create agenda
                 await axios.post(baseURLAPI('post/agenda'), formData, {
                     headers: {
                         'Content-Type': 'application/json',
@@ -81,6 +81,8 @@ const Agenda = ({ user }) => {
     };
 
     const handleEdit = record => {
+        console.log(record);
+        
         setEditingAgenda(record);
         form.setFieldsValue({
             title: record.title,
