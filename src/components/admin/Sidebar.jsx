@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { FaTachometerAlt, FaBlog, FaSignOutAlt, FaRegImages } from 'react-icons/fa';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { useNavigate } from 'react-router-dom';
+import { TfiAgenda } from "react-icons/tfi";
 
+// eslint-disable-next-line react/prop-types
 const Sidebar = ({ setCurrentSection, user }) => {
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
+  // eslint-disable-next-line react/prop-types
   const email = user?.email;
 
 
@@ -47,6 +50,12 @@ const Sidebar = ({ setCurrentSection, user }) => {
           <button onClick={() => setCurrentSection('blog')} className="flex items-center p-2 space-x-2 hover:bg-gray-700 w-full text-left">
             <FaBlog className="group-hover:animate-bounce transition-all duration-300 ease-in-out" />
             {isOpen && <span>Blog</span>}
+          </button>
+        </li>
+        <li>
+          <button onClick={() => setCurrentSection('agenda')} className="flex items-center p-2 space-x-2 hover:bg-gray-700 w-full text-left">
+            <TfiAgenda className="group-hover:animate-bounce transition-all duration-300 ease-in-out" />
+            {isOpen && <span>Agenda</span>}
           </button>
         </li>
         {email === 'kemal@gmail.com' && (
