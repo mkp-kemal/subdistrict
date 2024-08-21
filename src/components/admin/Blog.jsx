@@ -78,7 +78,11 @@ const Blog = ({ user }) => {
             setMasyarakat(false);
             setWisata(false);
         } catch (error) {
-            message.error(error.response.data.message);
+            if (error.code === 'Network Error') {
+                message.error('Gagal menambahkan blog, coba lagi');
+            } else {
+                message.error('Gambar harus kurang dari 2MB!');
+            }
         } finally {
             setLoading(false);
         }

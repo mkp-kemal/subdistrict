@@ -26,7 +26,6 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true);
     const [loadingModal, setLoadingModal] = useState(false);
 
-
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
@@ -164,15 +163,15 @@ const Dashboard = () => {
 
     const formatDateAdmin = (dateString) => {
         const [day, month, year] = dateString.split('/');
-    
+
         const date = new Date(`${year}-${month}-${day}`);
-    
+
         const dayFormatter = new Intl.DateTimeFormat('id-ID', { weekday: 'long' });
         const dateFormatter = new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-    
+
         const dayString = dayFormatter.format(date);
         const dateStringFormatted = dateFormatter.format(date);
-    
+
         return `${dayString}, ${dateStringFormatted}`;
     };
 
@@ -261,7 +260,7 @@ const Dashboard = () => {
         image: blog.image,
     }));
 
-    const handleUploadChange = info => {
+    const handleUploadChange = (info) => {
         setFileList(info.fileList);
     };
 
@@ -353,7 +352,7 @@ const Dashboard = () => {
                                 label="Judul (max 23 huruf)"
                                 rules={[{ required: true, message: 'Masukan Judul' }]}
                             >
-                                <Input maxLength={23}/>
+                                <Input maxLength={23} />
                             </Form.Item>
                             <Form.Item
                                 name="description"
@@ -392,8 +391,7 @@ const Dashboard = () => {
                                             src={previewImage}
                                             alt="Blog"
                                             className="object-cover"
-                                            width={200}
-                                            height={100}
+                                            height={50}
                                         />
                                     ) : (
                                         <div>
