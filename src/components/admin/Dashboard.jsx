@@ -154,8 +154,13 @@ const Dashboard = () => {
             setBlogCount(response.data.length);
             handleCancel();
         } catch (error) {
-            message.error('Gagal update blog, coba lagi yaa');
-            console.error(error);
+            console.log(error);
+
+            if (error.code === 'Network Error') {
+                message.error('Gagal mengubah blog, coba lagi');
+            } else {
+                message.error('Gambar harus kurang dari 2MB!');
+            }
         } finally {
             setLoadingModal(false);
         }
@@ -373,11 +378,19 @@ const Dashboard = () => {
                                 label="Gambar"
                                 valuePropName="file"
                             >
+
                                 <Upload
                                     name="image"
                                     listType="picture-card"
                                     showUploadList={false}
+                                    accept=".jpg,.jpeg,.png"
                                     beforeUpload={(file) => {
+                                        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg';
+                                        if (!isJpgOrPng) {
+                                            message.error('Hanya file JPG, PNG, atau JPEG yang dapat diunggah!');
+                                            return false;
+                                        }
+
                                         const reader = new FileReader();
                                         reader.onload = () => setPreviewImage(reader.result);
                                         reader.readAsDataURL(file);
