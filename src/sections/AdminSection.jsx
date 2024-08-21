@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { baseURLAPI } from '../helpers/helper';
 import axios from 'axios';
 import { Images } from '../components/admin/Images';
+import Agenda from '../components/admin/Agenda';
 
 export const AdminSection = () => {
     const [currentSection, setCurrentSection] = useState('dashboard');
@@ -47,6 +48,8 @@ export const AdminSection = () => {
                 return <Dashboard />;
             case 'blog':
                 return <Blog user={user} />;
+            case 'agenda':
+                return <Agenda user={user} />;
             case 'images':
                 return <Images />;
             default:
