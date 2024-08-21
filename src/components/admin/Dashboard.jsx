@@ -26,7 +26,6 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true);
     const [loadingModal, setLoadingModal] = useState(false);
 
-
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
@@ -155,8 +154,13 @@ const Dashboard = () => {
             setBlogCount(response.data.length);
             handleCancel();
         } catch (error) {
-            message.error('Gagal update blog, coba lagi yaa');
-            console.error(error);
+            console.log(error);
+
+            if (error.code === 'Network Error') {
+                message.error('Gagal mengubah blog, coba lagi');
+            } else {
+                message.error('Gambar harus kurang dari 2MB!');
+            }
         } finally {
             setLoadingModal(false);
         }
@@ -164,15 +168,15 @@ const Dashboard = () => {
 
     const formatDateAdmin = (dateString) => {
         const [day, month, year] = dateString.split('/');
-    
+
         const date = new Date(`${year}-${month}-${day}`);
-    
+
         const dayFormatter = new Intl.DateTimeFormat('id-ID', { weekday: 'long' });
         const dateFormatter = new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
-    
+
         const dayString = dayFormatter.format(date);
         const dateStringFormatted = dateFormatter.format(date);
-    
+
         return `${dayString}, ${dateStringFormatted}`;
     };
 
@@ -261,7 +265,7 @@ const Dashboard = () => {
         image: blog.image,
     }));
 
-    const handleUploadChange = info => {
+    const handleUploadChange = (info) => {
         setFileList(info.fileList);
     };
 
@@ -353,7 +357,7 @@ const Dashboard = () => {
                                 label="Judul (max 23 huruf)"
                                 rules={[{ required: true, message: 'Masukan Judul' }]}
                             >
-                                <Input maxLength={23}/>
+                                <Input maxLength={23} />
                             </Form.Item>
                             <Form.Item
                                 name="description"
@@ -374,11 +378,19 @@ const Dashboard = () => {
                                 label="Gambar"
                                 valuePropName="file"
                             >
+
                                 <Upload
                                     name="image"
                                     listType="picture-card"
                                     showUploadList={false}
+                                    accept=".jpg,.jpeg,.png"
                                     beforeUpload={(file) => {
+                                        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg';
+                                        if (!isJpgOrPng) {
+                                            message.error('Hanya file JPG, PNG, atau JPEG yang dapat diunggah!');
+                                            return false;
+                                        }
+
                                         const reader = new FileReader();
                                         reader.onload = () => setPreviewImage(reader.result);
                                         reader.readAsDataURL(file);
@@ -392,8 +404,7 @@ const Dashboard = () => {
                                             src={previewImage}
                                             alt="Blog"
                                             className="object-cover"
-                                            width={200}
-                                            height={100}
+                                            height={50}
                                         />
                                     ) : (
                                         <div>
