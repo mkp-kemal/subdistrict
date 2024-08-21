@@ -52,7 +52,7 @@ const Agenda = ({ user }) => {
         try {
             if (editingAgenda) {
                 // Update agenda
-                await axios.put(`${baseURLAPI('agenda')}/${editingAgenda._id}`, formData, {
+                await axios.put(`${baseURLAPI('agenda')}/${editingAgenda.id}`, formData, {
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`,
