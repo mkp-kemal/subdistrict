@@ -84,7 +84,7 @@ const Activity = ({ blogs, agendas }) => {
       <div className="container mx-auto">
         <div className="session-title text-center mb-8">
           <h2 className="lg:text-3xl text-xl font-bold">Berita & Agenda</h2>
-          <p className="lg:text-xl text-md text-gray-600">Menampilkan berita dan agenda seputar desa</p>
+          <p className="lg:text-xl text-xs text-gray-600">Menampilkan berita dan agenda seputar desa</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Kolom Berita Terkini */}
@@ -160,8 +160,8 @@ const Attractions = () => {
     <div className="popular-pack container-fluid bg-gray-50 py-8">
       <div className="container mx-auto">
         <div className="session-title text-center mb-8">
-          <h2 className="text-3xl font-bold">Objek Wisata Terdekat</h2>
-          <p className="text-gray-600">Menampilkan objek wisata sekitar Desa Nagrak</p>
+          <h2 className="lg:text-3xl text-xl font-bold">Objek Wisata Terdekat</h2>
+          <p className="lg:text-xl text-xs text-gray-600">Menampilkan objek wisata sekitar Desa Nagrak</p>
         </div>
         <div className="overflow-x-auto">
           <div className="flex justify-around space-x-4">
