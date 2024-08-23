@@ -16,6 +16,7 @@ import foto4 from './../assets/img26.jpg';
 import logo from './../assets/logo_nagrak.png';
 import logo2 from './../assets/logo.png';
 import BgSlideComponent from '../components/BgSlideComponent';
+import { MdOutlineImageNotSupported } from "react-icons/md";
 
 const HomeSection = () => {
   const [loading, setLoading] = useState(true);
@@ -91,45 +92,49 @@ const Activity = ({ blogs, agendas }) => {
           <div>
             <h3 className="lg:text-2xl font-semibold mb-4 border-b-2 border-tosca200 inline-block text-sm">Berita Terkini</h3>
             <div className="overflow-y-auto">
-              {blogs.map((blog, index) => (
-                <div key={index} className="flex items-start mb-4 cursor-pointer bg-white shadow-md rounded-lg p-2" onClick={() => handleClick(blog.title)}>
-                  <div className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden">
-                    {blog.image ? (
-                      <img
-                        src={blog.image}
-                        alt={blog.title}
-                        className="object-cover w-full h-full"
-                      />
-                    ) : (
-                      <FaPeopleCarry className="text-gray-500 text-3xl" />
-                    )}
-                  </div>
-                  <div className="ml-4 flex-1">
-                    <span className="block text-xs text-gray-500 mb-1">{formatDate(blog.date)}</span>
-                    <h4 className="text-sm font-bold mb-2">{blog.title}</h4>
-                    <p className="text-gray-600 text-xs">{truncateText(blog.description, 55)}</p>
-                    <div className="options mt-2">
-                      <ul className="flex space-x-2">
-                        {blog.gotongRoyong && (
-                          <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
-                            <FaPeopleCarry className="text-white" />
-                          </li>
-                        )}
-                        {blog.masyarakat && (
-                          <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
-                            <FaPeopleGroup className="text-white" />
-                          </li>
-                        )}
-                        {blog.wisata && (
-                          <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
-                            <FaUmbrellaBeach className="text-white" />
-                          </li>
-                        )}
-                      </ul>
+              {blogs.length <= 0 ? (
+                <p className="text-gray-600 text-sm font-semibold lg:text-base flex flex-col items-center rounded-xl bg-gray-300 p-4"><MdOutlineImageNotSupported className="mt-2" /><span>Tidak ada berita terkini</span></p>
+              ) : (
+                blogs.map((blog, index) => (
+                  <div key={index} className="flex items-start mb-4 cursor-pointer bg-white shadow-md rounded-lg p-2" onClick={() => handleClick(blog.title)}>
+                    <div className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden">
+                      {blog.image ? (
+                        <img
+                          src={blog.image}
+                          alt={blog.title}
+                          className="object-cover w-full h-full"
+                        />
+                      ) : (
+                        <FaPeopleCarry className="text-gray-500 text-3xl" />
+                      )}
+                    </div>
+                    <div className="ml-4 flex-1">
+                      <span className="block text-xs text-gray-500 mb-1">{formatDate(blog.date)}</span>
+                      <h4 className="text-sm font-bold mb-2">{blog.title}</h4>
+                      <p className="text-gray-600 text-xs">{truncateText(blog.description, 55)}</p>
+                      <div className="options mt-2">
+                        <ul className="flex space-x-2">
+                          {blog.gotongRoyong && (
+                            <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
+                              <FaPeopleCarry className="text-white" />
+                            </li>
+                          )}
+                          {blog.masyarakat && (
+                            <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
+                              <FaPeopleGroup className="text-white" />
+                            </li>
+                          )}
+                          {blog.wisata && (
+                            <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
+                              <FaUmbrellaBeach className="text-white" />
+                            </li>
+                          )}
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
 
@@ -137,13 +142,17 @@ const Activity = ({ blogs, agendas }) => {
           <div>
             <h3 className="lg:text-2xl font-semibold mb-4 border-b-2 border-tosca200 inline-block text-sm">Agenda</h3>
             <div className="overflow-y-auto max-h-[500px]">
-              {agendas.map((agenda, index) => (
-                <div key={index} className="bg-white shadow-md rounded-lg mb-4 p-4">
-                  <span className="block text-xs text-gray-500 mb-1">{formatDate(agenda.date)}</span>
-                  <h4 className="text-sm font-bold mb-2">{agenda.title}</h4>
-                  <p className="text-gray-600 text-xs">{agenda.description}</p>
-                </div>
-              ))}
+              {agendas.length <= 0 ? (
+                <p className="text-gray-600 text-sm font-semibold lg:text-base flex flex-col items-center rounded-xl bg-gray-300 p-4"><MdOutlineImageNotSupported className="mt-2" /><span>Tidak ada agenda</span></p>
+              ) : (
+                agendas.map((agenda, index) => (
+                  <div key={index} className="bg-white shadow-md rounded-lg mb-4 p-4">
+                    <span className="block text-xs text-gray-500 mb-1">{formatDate(agenda.date)}</span>
+                    <h4 className="text-sm font-bold mb-2">{agenda.title}</h4>
+                    <p className="text-gray-600 text-xs">{agenda.description}</p>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
