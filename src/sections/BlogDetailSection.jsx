@@ -10,6 +10,7 @@ import DOMPurify from 'dompurify';
 import { baseURLAPI } from '../helpers/helper';
 import { ImSpinner10 } from "react-icons/im";
 import { Footer } from './HomeSection';
+import { PiClockCountdownFill } from "react-icons/pi";
 
 const BlogDetailSection = () => {
     const { id } = useParams();
@@ -129,12 +130,12 @@ const BlogDetailSection = () => {
                     </div>
                     {/* Related Blogs Section */}
                     <div className="container mx-auto py-8 px-4">
-                        <h3 className="text-2xl font-bold mb-4">Related Blogs</h3>
+                        <h3 className="text-2xl font-bold mb-4">Berita Terkini</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                             {relatedBlogs.map((relatedBlog) => (
                                 <div key={relatedBlog._id} className="bg-white shadow-md rounded-lg p-4">
                                     <h4 className="text-base font-semibold mb-2">{relatedBlog.title}</h4>
-                                    <p className="text-xs text-gray-600">{formatDate(relatedBlog.date)}</p>
+                                    <p className="text-xs text-gray-600 items-center flex rounded-xl"><span><PiClockCountdownFill className='text-tosca text-2xl mr-1' /></span><span>{formatDate(relatedBlog.date)}</span></p>
                                     <Image
                                         src={`${relatedBlog.image}`}
                                         alt={relatedBlog.title}
@@ -143,7 +144,7 @@ const BlogDetailSection = () => {
                                         height={150}
                                     />
                                     <Button type="link" onClick={() => navigate(`/blog/${relatedBlog.title}`)}>
-                                        Read More
+                                        Selengkapnya...
                                     </Button>
                                 </div>
                             ))}

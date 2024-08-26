@@ -232,7 +232,7 @@ const Agenda = ({ user }) => {
                             >
                                 <DatePicker
                                     format="YYYY-MM-DD"
-                                    disabledDate={(current) => current && current < moment().startOf('day')}
+                                    disabledDate={!editingAgenda ? (current) => current && current < moment().startOf('day') : null}
                                 />
                             </Form.Item>
                             <Form.Item>

@@ -54,7 +54,7 @@ const ActivityKknSection = () => {
                     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4 mt-28">
                         <div className="bg-white shadow-2xl rounded-xl p-8 max-w-5xl w-full">
                             <div className="relative mb-6">
-                                <img src="https://picsum.photos/1200/800?random=1" alt="" className='w-full h-56 object-cover rounded-xl hover:scale-105 duration-300 ' />
+                                <img src="https://storage.googleapis.com/image_blogs_subdistrict/bg_berita.jpg" alt="" className='w-full h-56 object-cover rounded-xl hover:scale-105 duration-300 ' />
                                 <img src="https://i.ibb.co.com/WBndm69/Lambang-Kabupaten-Subang-removebg-preview.png" alt="Logo" className="absolute top-0 left-0 h-11 w-10 m-2 bg-white rounded-md" />
                             </div>
                             <h1 className="text-3xl font-bold mb-6 text-center text-blue-900">AKTIVITAS KKN DI DESA NAGRAK</h1>

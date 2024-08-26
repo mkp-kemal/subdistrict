@@ -17,6 +17,7 @@ import logo from './../assets/logo_nagrak.png';
 import logo2 from './../assets/logo.png';
 import BgSlideComponent from '../components/BgSlideComponent';
 import { MdOutlineImageNotSupported } from "react-icons/md";
+import { PiClockCountdownFill } from 'react-icons/pi';
 
 const HomeSection = () => {
   const [loading, setLoading] = useState(true);
@@ -84,7 +85,7 @@ const Activity = ({ blogs, agendas }) => {
     <div className="popular-pack no-bgpack container-fluid bg-gray-50 py-8">
       <div className="container mx-auto">
         <div className="session-title text-center mb-8">
-          <h2 className="lg:text-3xl text-xl font-bold">Berita & Agenda</h2>
+          <h2 className="lg:text-3xl text-xl font-bold">Informasi</h2>
           <p className="lg:text-xl text-xs text-gray-600">Menampilkan berita dan agenda seputar desa</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -109,27 +110,30 @@ const Activity = ({ blogs, agendas }) => {
                       )}
                     </div>
                     <div className="ml-4 flex-1">
-                      <span className="block text-xs text-gray-500 mb-1">{formatDate(blog.date)}</span>
+                      <span className="text-xs text-gray-500 mb-1 items-center flex "><PiClockCountdownFill className='text-tosca text-xl mr-1' />{formatDate(blog.date)}</span>
                       <h4 className="text-sm font-bold mb-2">{blog.title}</h4>
-                      <p className="text-gray-600 text-xs">{truncateText(blog.description, 55)}</p>
-                      <div className="options mt-2">
-                        <ul className="flex space-x-2">
-                          {blog.gotongRoyong && (
-                            <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
-                              <FaPeopleCarry className="text-white" />
-                            </li>
-                          )}
-                          {blog.masyarakat && (
-                            <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
-                              <FaPeopleGroup className="text-white" />
-                            </li>
-                          )}
-                          {blog.wisata && (
-                            <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
-                              <FaUmbrellaBeach className="text-white" />
-                            </li>
-                          )}
-                        </ul>
+                      <div className="flex">
+                        <div className="w-1 bg-tosca mr-2"></div>
+                        <p className="text-gray-600 text-xs flex-1">{truncateText(blog.description, 150)}</p>
+                        <div className="options mt-2">
+                          <ul className="flex space-x-2">
+                            {blog.gotongRoyong && (
+                              <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
+                                <FaPeopleCarry className="text-white" />
+                              </li>
+                            )}
+                            {blog.masyarakat && (
+                              <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
+                                <FaPeopleGroup className="text-white" />
+                              </li>
+                            )}
+                            {blog.wisata && (
+                              <li className="w-6 h-6 rounded-full bg-tosca200 flex justify-center items-center">
+                                <FaUmbrellaBeach className="text-white" />
+                              </li>
+                            )}
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -147,9 +151,12 @@ const Activity = ({ blogs, agendas }) => {
               ) : (
                 agendas.map((agenda, index) => (
                   <div key={index} className="bg-white shadow-md rounded-lg mb-4 p-4">
-                    <span className="block text-xs text-gray-500 mb-1">{formatDate(agenda.date)}</span>
+                    <span className="text-xs text-gray-500 mb-1 items-center flex"><PiClockCountdownFill className='text-tosca text-xl mr-1' />{formatDate(agenda.date)}</span>
                     <h4 className="text-sm font-bold mb-2">{agenda.title}</h4>
-                    <p className="text-gray-600 text-xs">{agenda.description}</p>
+                    <div className="flex">
+                      <div className="w-1 bg-tosca mr-2"></div>
+                      <p className="text-gray-600 text-xs flex-1">{agenda.description}</p>
+                    </div>
                   </div>
                 ))
               )}
@@ -169,8 +176,8 @@ const Attractions = () => {
     <div className="popular-pack container-fluid bg-gray-50 py-8">
       <div className="container mx-auto">
         <div className="session-title text-center mb-8">
-          <h2 className="lg:text-3xl text-xl font-bold">Objek Wisata Terdekat</h2>
-          <p className="lg:text-xl text-xs text-gray-600">Menampilkan objek wisata sekitar Desa Nagrak</p>
+          <h2 className="lg:text-3xl text-xl font-bold">Wisata Terdekat</h2>
+          <p className="lg:text-xl text-xs text-gray-600">Menampilkan wisata sekitar Desa Nagrak</p>
         </div>
         <div className="overflow-x-auto">
           <div className="flex justify-around space-x-4">
