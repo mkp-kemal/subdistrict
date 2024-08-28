@@ -15,6 +15,7 @@ import AttractionDetailCipondok from './sections/CipondokDetail';
 import AttractionDetailDayangSumbi from './sections/DayangSumbiDetail';
 import CommunitySection from './sections/CommunitySection';
 import AttractionDetailLegokGintung from './sections/LegokGintungDetail';
+import LandingSection from './sections/LandingSection';
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const MainRoutes = () => {
       <div className="pt-19">
         <Routes>
           <Route path="/" element={<HomeSection />} />
+          <Route path="/landing" element={<LandingSection />} />
           <Route path="/home" element={<HomeSection />} />
           <Route path="/profile" element={<ProfileSection />} />
           <Route path="/activity" element={<ActivityKknSection />} />

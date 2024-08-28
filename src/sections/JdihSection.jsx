@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Collapse, Table, Input } from 'antd';
+import { Collapse, Table, Input, Button } from 'antd';
 import { formatDate } from '../components/FormatDate';
 import foto1 from './../assets/logounsub.png';
 import foto2 from './../assets/logo-unsub.png';
@@ -9,19 +9,19 @@ const { Search } = Input;
 
 const dataDummy = {
     'Rumah Tangga': [
-        { key: '1', jenis: 'Peraturan Desa', nomor: '001', tentang: 'TATA CARA PENGGUNAAN DAN PENYELENGGARAAN KARTU KREDIT PEMERINTAH DAERAH DALAM PELAKSANAAN ANGGARAN PENDAPATAN DAN BELANJA DAERAH', download: 'Download Draft' },
-        { key: '2', jenis: 'Peraturan Desa', nomor: '002', tentang: '-', download: 'Download Draft' },
-        { key: '3', jenis: 'Peraturan Desa', nomor: '003', tentang: '-', download: 'Download Draft' }
+        { key: '1', jenis: 'Peraturan Desa', nomor: '001', tentang: 'TATA CARA PENGGUNAAN DAN PENYELENGGARAAN KARTU KREDIT PEMERINTAH DAERAH DALAM PELAKSANAAN ANGGARAN PENDAPATAN DAN BELANJA DAERAH', download: 'Download Draft', file: '/assets/draft1.pdf' },
+        { key: '2', jenis: 'Peraturan Desa', nomor: '002', tentang: '-', download: 'Download Draft', file: '/assets/draft2.pdf' },
+        { key: '3', jenis: 'Peraturan Desa', nomor: '003', tentang: '-', download: 'Download Draft', file: '/assets/draft3.pdf' }
     ],
     'Peraturan 2': [
-        { key: '1', jenis: 'Peraturan Desa', nomor: '004', tentang: '-', download: 'Download Draft' },
-        { key: '2', jenis: 'Peraturan Desa', nomor: '005', tentang: '-', download: 'Download Draft' },
-        { key: '3', jenis: 'Peraturan Desa', nomor: '006', tentang: '-', download: 'Download Draft' }
+        { key: '1', jenis: 'Peraturan Desa', nomor: '004', tentang: '-', download: 'Download Draft', file: '/assets/draft4.pdf' },
+        { key: '2', jenis: 'Peraturan Desa', nomor: '005', tentang: '-', download: 'Download Draft', file: '/assets/draft5.pdf' },
+        { key: '3', jenis: 'Peraturan Desa', nomor: '006', tentang: '-', download: 'Download Draft', file: '/assets/draft6.pdf' }
     ],
     'Peraturan 3': [
-        { key: '1', jenis: 'Peraturan Desa', nomor: '007', tentang: '-', download: 'Download Draft' },
-        { key: '2', jenis: 'Peraturan Desa', nomor: '008', tentang: '-', download: 'Download Draft' },
-        { key: '3', jenis: 'Peraturan Desa', nomor: '009', tentang: '-', download: 'Download Draft' }
+        { key: '1', jenis: 'Peraturan Desa', nomor: '007', tentang: '-', download: 'Download Draft', file: '/assets/draft7.pdf' },
+        { key: '2', jenis: 'Peraturan Desa', nomor: '008', tentang: '-', download: 'Download Draft', file: '/assets/draft8.pdf' },
+        { key: '3', jenis: 'Peraturan Desa', nomor: '009', tentang: '-', download: 'Download Draft', file: '/assets/draft9.pdf' }
     ]
 };
 
@@ -45,7 +45,11 @@ const columns = [
         title: 'Download',
         dataIndex: 'download',
         key: 'download',
-        render: (text) => <a href="#">{text}</a>
+        render: (text, record) => (
+            <a href={record.file} download>
+                <Button type="link" size="small">{text}</Button>
+            </a>
+        )
     }
 ];
 
