@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Row, Col, Modal } from 'antd';
 import { FaGlobe, FaCalendarAlt } from 'react-icons/fa';
-import foto1 from './../assets/img15.jpg';
-import foto2 from './../assets/bg.png';
+import foto2 from './../assets/bg2.png';
+import foto1 from './../assets/bg.png';
 import logo1 from './../assets/logo_nagrak2.png';
 import logo2 from './../assets/logo.png';
 
@@ -18,7 +18,7 @@ const LandingSection = () => {
     };
 
     return (
-        <div className="bg-tosca200 text-white py-20 mt-52">
+        <div className="bg-tosca200 text-white h-screen p-10">
             <div className="container mx-auto text-center">
                 {/* Row untuk Logo */}
                 <Row justify="center" gutter={[16, 16]} className="mb-6 rounded-full">
@@ -48,8 +48,7 @@ const LandingSection = () => {
                 </Row>
 
                 <h1 className="text-4xl font-bold mb-4">Penyerahan Website Desa Nagrak</h1>
-                <p className="text-lg mb-6">Mari bersama-sama menyaksikan penyerahan resmi website desa yang akan memajukan informasi dan pelayanan publik.</p>
-
+                <p className="text-lg mb-6">Acara serah terima website sebagai langkah digitalisasi untuk memajukan Desa Nagrak, di mana platform ini diharapkan dapat menjadi sarana informasi dan komunikasi yang efektif bagi masyarakat.</p>
                 <Row justify="center" gutter={[16, 16]}>
                     <Col span={24} md={12}>
                         <img
@@ -72,13 +71,13 @@ const LandingSection = () => {
                     <Col>
                         <div className="flex items-center justify-center">
                             <FaGlobe className="text-3xl mr-2" />
-                            <span className="text-lg">Website Desa Nagrak</span>
+                            <span className="text-lg"><a href="https://nagrakciater.vercel.app">https://nagrakciater.vercel.app</a></span>
                         </div>
                     </Col>
                     <Col>
                         <div className="flex items-center justify-center">
                             <FaCalendarAlt className="text-3xl mr-2" />
-                            <span className="text-lg">Tanggal: 30 Agustus 2024</span>
+                            <span className="text-lg">Tanggal: 29 Agustus 2024</span>
                         </div>
                     </Col>
                 </Row>

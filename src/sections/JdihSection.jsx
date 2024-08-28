@@ -3,6 +3,8 @@ import { Collapse, Table, Input, Button } from 'antd';
 import { formatDate } from '../components/FormatDate';
 import foto1 from './../assets/logounsub.png';
 import foto2 from './../assets/logo-unsub.png';
+import { Footer } from './HomeSection';
+
 
 const { Panel } = Collapse;
 const { Search } = Input;
@@ -82,53 +84,56 @@ const JdihSection = () => {
     };
 
     return (
-        <div className="p-4 mt-36">
-            <h1 className="text-xl text-center font-bold mb-4">Jaringan Dokumentasi dan Informasi Hukum <br /> (JDIH) Desa Nagrak</h1>
+        <>
+            <div className="p-4 mt-36">
+                <h1 className="text-xl text-center font-bold mb-4">Jaringan Dokumentasi dan Informasi Hukum <br /> (JDIH) Desa Nagrak</h1>
 
-            {/* Form Pencarian */}
-            <div className="mb-4 flex justify-center">
-                <Search
-                    placeholder="Cari jenis peraturan atau nomor"
-                    enterButton
-                    value={searchText}
-                    onChange={(e) => onSearch(e.target.value)}
-                    onSearch={onSearch}
-                    style={{ maxWidth: 400 }}
-                />
-            </div>
+                {/* Form Pencarian */}
+                <div className="mb-4 flex justify-center">
+                    <Search
+                        placeholder="Cari jenis peraturan atau nomor"
+                        enterButton
+                        value={searchText}
+                        onChange={(e) => onSearch(e.target.value)}
+                        onSearch={onSearch}
+                        style={{ maxWidth: 400 }}
+                    />
+                </div>
 
-            <Collapse>
-                {Object.keys(filteredData).map((judul, index) => (
-                    <Panel
-                        header={
-                            <div className="flex justify-between items-center">
-                                {judul}
-                                <span className="text-gray-500 text-xs">Diterbitkan: {formatDate(new Date())}</span>
-                            </div>
-                        }
-                        key={index}
-                    >
-                        <div className="flex flex-col font-bold">
-                            <div className="flex-1 p-2">
-                                <h3 className="text-center font-bold bg-tosca200 rounded-tl-lg rounded-tr-lg text-white p-2">Detail</h3>
-                                <div className="overflow-x-auto rounded-xl">
-                                    <Table
-                                        dataSource={filteredData[judul]}
-                                        columns={columns}
-                                        pagination={false}
-                                    />
+                <Collapse>
+                    {Object.keys(filteredData).map((judul, index) => (
+                        <Panel
+                            header={
+                                <div className="flex justify-between items-center">
+                                    {judul}
+                                    <span className="text-gray-500 text-xs">Diterbitkan: {formatDate(new Date())}</span>
+                                </div>
+                            }
+                            key={index}
+                        >
+                            <div className="flex flex-col font-bold">
+                                <div className="flex-1 p-2">
+                                    <h3 className="text-center font-bold bg-tosca200 rounded-tl-lg rounded-tr-lg text-white p-2">Detail</h3>
+                                    <div className="overflow-x-auto rounded-xl">
+                                        <Table
+                                            dataSource={filteredData[judul]}
+                                            columns={columns}
+                                            pagination={false}
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </Panel>
-                ))}
-            </Collapse>
-            <p className='text-center font-bold mt-5'>Penerbit Aturan Desa</p>
-            <div className='flex justify-center mt-5'>
-                <img src={foto2} className='w-14 h-14 rounded-full mr-4' alt="img" />
-                <img src={foto1} className='w-14 h-14 rounded-full' alt="img" />
+                        </Panel>
+                    ))}
+                </Collapse>
+                <p className='text-center font-bold mt-5'>Penerbit Aturan Desa</p>
+                <div className='flex justify-center mt-5'>
+                    <img src={foto2} className='w-14 h-14 rounded-full mr-4' alt="img" />
+                    <img src={foto1} className='w-14 h-14 rounded-full' alt="img" />
+                </div>
             </div>
-        </div>
+            <Footer />
+        </>
     );
 };
 

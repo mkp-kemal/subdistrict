@@ -4,6 +4,7 @@ import { formatRupiah } from '../components/FormatRupiah';
 import foto1 from './../assets/logodesatertinggal.png';
 import foto2 from './../assets/logosgds.png';
 import foto3 from './../assets/logo_nagrak.png';
+import { Footer } from './HomeSection';
 
 const { Panel } = Collapse;
 
@@ -298,6 +299,7 @@ const ApbdSection = () => {
     };
 
     return (
+        <>
         <div style={{ padding: '20px' }} className="mt-36">
             <h1 className="text-xl text-center font-bold mb-4">Anggaran Pendapatan dan Belanja Daerah <br />(APBD) Desa Nagrak Tiap Tahun</h1>
             <Collapse defaultActiveKey={['0']}>
@@ -419,6 +421,8 @@ const ApbdSection = () => {
                 <img src={foto2} className='w-14 h-14 rounded-full' alt="img" />
             </div>
         </div>
+        <Footer />
+        </>
     );
 };
 

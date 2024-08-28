@@ -28,10 +28,11 @@ const App = () => {
 const MainRoutes = () => {
   const location = useLocation();
   const isAdminPage = location.pathname.startsWith('/user/admin');
+  const isLandingPage = location.pathname === '/landing';
 
   return (
     <>
-      {!isAdminPage && <NavbarComponent />}
+      {!isAdminPage && !isLandingPage && <NavbarComponent />}
       <div className="pt-19">
         <Routes>
           <Route path="/" element={<HomeSection />} />
