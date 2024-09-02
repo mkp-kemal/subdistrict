@@ -129,7 +129,7 @@ const JdihSection = () => {
                 <p className='text-center font-bold mt-5'>Penerbit Aturan Desa</p>
                 <div className='flex justify-center mt-5'>
                     <img src={foto2} className='w-14 h-14 rounded-full mr-4' alt="img" />
-                    <img src={foto1} className='w-14 h-14 rounded-full' alt="img" />
+                    <a href="https://drive.google.com/file/d/1e3tXGav1LBJlCDpmOHA7cPWcg64i9MMm/view?usp=drivesdk" target='_blank'><img src={foto1} className='w-14 h-14 rounded-full' alt="img" /></a>
                 </div>
             </div>
             <Footer />
