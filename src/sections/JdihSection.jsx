@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Collapse, Table, Input, Button } from 'antd';
-import { formatDate } from '../components/FormatDate';
 import foto1 from './../assets/logounsub.png';
 import foto2 from './../assets/logo-unsub.png';
 import { Footer } from './HomeSection';
@@ -10,21 +9,14 @@ const { Panel } = Collapse;
 const { Search } = Input;
 
 const dataDummy = {
-    'Rumah Tangga': [
-        { key: '1', jenis: 'Peraturan Desa', nomor: '001', tentang: 'TATA CARA PENGGUNAAN DAN PENYELENGGARAAN KARTU KREDIT PEMERINTAH DAERAH DALAM PELAKSANAAN ANGGARAN PENDAPATAN DAN BELANJA DAERAH', download: 'Download Draft', file: '/assets/draft1.pdf' },
-        { key: '2', jenis: 'Peraturan Desa', nomor: '002', tentang: '-', download: 'Download Draft', file: '/assets/draft2.pdf' },
-        { key: '3', jenis: 'Peraturan Desa', nomor: '003', tentang: '-', download: 'Download Draft', file: '/assets/draft3.pdf' }
+    'BUMDES': [
+        { key: '1', jenis: 'Peraturan Desa', nomor: '001', tentang: 'PENDIRIAN BADAN USAHA MILIK DESA HASIL BERKAH MOTEKAR', download: 'Download Draft', file: 'https://drive.google.com/file/d/1N5-U1HZRV6DX-zukbbXVa8f_fA41xenL/view' },
+        { key: '2', jenis: 'Peraturan Desa', nomor: '002', tentang: 'PENDIRIAN BADAN USAHA MILIK DESA PENGELOLAAN SAMPAH', download: 'Download Draft', file: 'https://drive.google.com/file/d/13nglocJsAADSV594_giRWOuw9jmRnaRE/view?usp=sharing' },
     ],
-    'Peraturan 2': [
-        { key: '1', jenis: 'Peraturan Desa', nomor: '004', tentang: '-', download: 'Download Draft', file: '/assets/draft4.pdf' },
-        { key: '2', jenis: 'Peraturan Desa', nomor: '005', tentang: '-', download: 'Download Draft', file: '/assets/draft5.pdf' },
-        { key: '3', jenis: 'Peraturan Desa', nomor: '006', tentang: '-', download: 'Download Draft', file: '/assets/draft6.pdf' }
+    'PEMBENTUKAN PERATURAN DESA': [
+        { key: '1', jenis: 'Bimtek Pembentukan PERDES', nomor: '003', tentang: 'KERANGKA PEMBENTUKAN PERATURAN DI DESA (MEKANISME PEMBENTUKAN PERATURAN DESA)', download: 'Download Draft', file: 'https://drive.google.com/file/d/1CHoVgb0tlXU_IPvhuUPtaEnxrfmN8pu0/view?usp=sharing' },
+        { key: '2', jenis: 'Bimtek Pembentukan PERDES', nomor: '004', tentang: 'SIMULASI TEKNIS/TATA CARA PEMBENTUKAN PERATURAN DI DESA', download: 'Download Draft', file: 'https://drive.google.com/file/d/1mrdb680uoysgzWoiiMI7QGsXWkg7qDQt/view?usp=sharing' },
     ],
-    'Peraturan 3': [
-        { key: '1', jenis: 'Peraturan Desa', nomor: '007', tentang: '-', download: 'Download Draft', file: '/assets/draft7.pdf' },
-        { key: '2', jenis: 'Peraturan Desa', nomor: '008', tentang: '-', download: 'Download Draft', file: '/assets/draft8.pdf' },
-        { key: '3', jenis: 'Peraturan Desa', nomor: '009', tentang: '-', download: 'Download Draft', file: '/assets/draft9.pdf' }
-    ]
 };
 
 const columns = [
@@ -48,7 +40,7 @@ const columns = [
         dataIndex: 'download',
         key: 'download',
         render: (text, record) => (
-            <a href={record.file} download>
+            <a href={record.file} download target='_blank'>
                 <Button type="link" size="small">{text}</Button>
             </a>
         )
@@ -83,6 +75,8 @@ const JdihSection = () => {
         }
     };
 
+    console.log(filteredData);
+
     return (
         <>
             <div className="p-4 mt-36">
@@ -91,7 +85,7 @@ const JdihSection = () => {
                 {/* Form Pencarian */}
                 <div className="mb-4 flex justify-center">
                     <Search
-                        placeholder="Cari jenis peraturan atau nomor"
+                        placeholder="Cari tentang peraturan atau nomor"
                         enterButton
                         value={searchText}
                         onChange={(e) => onSearch(e.target.value)}
@@ -106,7 +100,6 @@ const JdihSection = () => {
                             header={
                                 <div className="flex justify-between items-center">
                                     {judul}
-                                    <span className="text-gray-500 text-xs">Diterbitkan: {formatDate(new Date())}</span>
                                 </div>
                             }
                             key={index}
@@ -129,7 +122,7 @@ const JdihSection = () => {
                 <p className='text-center font-bold mt-5'>Penerbit Aturan Desa</p>
                 <div className='flex justify-center mt-5'>
                     <img src={foto2} className='w-14 h-14 rounded-full mr-4' alt="img" />
-                    <a href="https://drive.google.com/file/d/1e3tXGav1LBJlCDpmOHA7cPWcg64i9MMm/view?usp=drivesdk" target='_blank'><img src={foto1} className='w-14 h-14 rounded-full' alt="img" /></a>
+                    <a href="https://drive.google.com/file/d/1ZnwUq8Gk13uvayDuzrkWYymWMOyUYYsq/view?usp=sharing" target='_blank'><img src={foto1} className='w-14 h-14 rounded-full' alt="img" /></a>
                 </div>
             </div>
             <Footer />
