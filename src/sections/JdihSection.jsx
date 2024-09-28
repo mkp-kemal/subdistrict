@@ -9,13 +9,13 @@ const { Panel } = Collapse;
 const { Search } = Input;
 
 const dataDummy = {
-    'BUMDES': [
-        { key: '1', jenis: 'Peraturan Desa', nomor: '001', tentang: 'PENDIRIAN BADAN USAHA MILIK DESA HASIL BERKAH MOTEKAR', download: 'Download Draft', file: 'https://drive.google.com/file/d/1N5-U1HZRV6DX-zukbbXVa8f_fA41xenL/view' },
-        { key: '2', jenis: 'Peraturan Desa', nomor: '002', tentang: 'PENDIRIAN BADAN USAHA MILIK DESA PENGELOLAAN SAMPAH', download: 'Download Draft', file: 'https://drive.google.com/file/d/13nglocJsAADSV594_giRWOuw9jmRnaRE/view?usp=sharing' },
-    ],
     'PEMBENTUKAN PERATURAN DESA': [
-        { key: '1', jenis: 'Bimtek Pembentukan PERDES', nomor: '003', tentang: 'KERANGKA PEMBENTUKAN PERATURAN DI DESA (MEKANISME PEMBENTUKAN PERATURAN DESA)', download: 'Download Draft', file: 'https://drive.google.com/file/d/1CHoVgb0tlXU_IPvhuUPtaEnxrfmN8pu0/view?usp=sharing' },
-        { key: '2', jenis: 'Bimtek Pembentukan PERDES', nomor: '004', tentang: 'SIMULASI TEKNIS/TATA CARA PEMBENTUKAN PERATURAN DI DESA', download: 'Download Draft', file: 'https://drive.google.com/file/d/1mrdb680uoysgzWoiiMI7QGsXWkg7qDQt/view?usp=sharing' },
+        { key: '1', jenis: 'Bimtek Pembentukan PERDES', nomor: '001', tentang: 'KERANGKA PEMBENTUKAN PERATURAN DI DESA (MEKANISME PEMBENTUKAN PERATURAN DESA)', download: 'Download Draft', file: 'https://drive.google.com/file/d/1CHoVgb0tlXU_IPvhuUPtaEnxrfmN8pu0/view?usp=sharing' },
+        { key: '2', jenis: 'Bimtek Pembentukan PERDES', nomor: '002', tentang: 'SIMULASI TEKNIS/TATA CARA PEMBENTUKAN PERATURAN DI DESA', download: 'Download Draft', file: 'https://drive.google.com/file/d/1mrdb680uoysgzWoiiMI7QGsXWkg7qDQt/view?usp=sharing' },
+    ],
+    'BUMDES': [
+        { key: '1', jenis: 'Peraturan Desa', nomor: '003', tentang: 'PENDIRIAN BADAN USAHA MILIK DESA HASIL BERKAH MOTEKAR', download: 'Download Draft', file: 'https://drive.google.com/file/d/1N5-U1HZRV6DX-zukbbXVa8f_fA41xenL/view' },
+        { key: '2', jenis: 'Peraturan Desa', nomor: '004', tentang: 'PENDIRIAN BADAN USAHA MILIK DESA PENGELOLAAN SAMPAH', download: 'Download Draft', file: 'https://drive.google.com/file/d/13nglocJsAADSV594_giRWOuw9jmRnaRE/view?usp=sharing' },
     ],
 };
 
